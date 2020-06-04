@@ -1,3 +1,55 @@
 .page {
 	margin-top: 20px;
 }
+.mb-20 {
+	margin-bottom: 20px !important;
+}
+.f-24 {
+	font-size: 24px !important;
+}
+.f-12 {
+	font-size: 12px !important;
+}
+.opacity-50 {
+	opacity: 0.5;
+}
+.gotham {
+	font-family: 'gotham' !important;
+}
+.text-success {
+	color: #6bb645 !important;
+}
+.f-18 {
+	font-size: 18px !important;
+}
+.font-weight-bold {
+	font-weight: 700 !important;
+}
+.arrow-bubble {
+	height: 25px;
+	width: 25px;
+}
+.arrow-bubble span {
+	left: 0px;
+	top: 0px;
+	opacity: 0.16;
+	z-index: 1;
+}
+.graph-value {
+	min-width: 90px;
+}
+.p-25 {
+	padding: 25px !important;
+}
+.mb-25 {
+	margin-bottom: 25px !important;
+}
+.p-15 {
+	padding: 15px !important;
+}
+.gotham {
+	font-family: 'gotham' !important;
+}
+.lh-25 {
+	line-height: 25px;
+}
