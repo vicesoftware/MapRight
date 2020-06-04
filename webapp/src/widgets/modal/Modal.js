@@ -6,7 +6,7 @@ import { actions } from './modal.slice'
 
 const { useHideModal } = actions
 
-export default function ViceModal({ children }) {
+export default function MapRightModal({ children }) {
 	const show = useSelector(selectShowModal)
 	const hideModal = useHideModal()
 
