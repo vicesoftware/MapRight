@@ -1,3 +1,160 @@
-.page {
-	margin-top: 20px;
+.bg-primary {
+	background-color: #273766 !important;
 }
+.f-12 {
+	font-size: 12px !important;
+}
+.f-14 {
+	font-size: 14px !important;
+}
+.f-16 {
+	font-size: 16px !important;
+}
+.f-24 {
+	font-size: 24px !important;
+}
+.lh-25 {
+	line-height: 25px;
+}
+.lh-40 {
+	line-height: 40px;
+}
+.mr-30 {
+	margin-right: 30px !important;
+}
+.py-30 {
+	padding-top: 30px !important;
+	padding-bottom: 30px !important;
+}
+
+/*###############-------Navigation  css Start------###################*/
+.navbar-nav .nav-item > .nav-link {
+	line-height: 75px;
+	position: relative;
+	padding: 0px;
+	font-size: 12px;
+	text-transform: uppercase;
+	color: white;
+}
+
+.navbar-nav .nav-item > .btn {
+	height: 35px;
+	line-height: 1;
+	min-width: 210px;
+}
+.navbar-nav .nav-item.active > .nav-link::before {
+	content: '';
+	position: absolute;
+	height: 5px;
+	width: 100%;
+	background-color: #6bb645;
+	bottom: 0px;
+	left: 0px;
+	border-radius: 4px 4px 0 0;
+}
+.nav-item .nav-link::after {
+	display: none;
+}
+.notification-dropdown .nav-link span.badge {
+	height: 18px;
+	width: 18px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	position: absolute;
+	right: -10px;
+	top: -2px;
+	line-height: initial;
+}
+.user-dropdown .user-name {
+	height: 40px;
+	width: 40px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	line-height: initial;
+}
+.audit-bar {
+	background-color: #ef4565;
+	letter-spacing: 1px;
+}
+.audit-bar a:hover {
+	opacity: 1;
+	text-decoration: none;
+}
+@media (max-width: 767.98px) {
+	.navbar-expand-md > .container,
+	.navbar-expand-md > .container-fluid {
+		padding-right: 15px;
+		padding-left: 15px;
+	}
+	.navbar-nav .nav-item > .nav-link {
+		padding: 0px !important;
+	}
+}
+/*###############-------Navigation  css End------###################*/
+
+/*###############-------Form  css Start------###################*/
+.form-control {
+	height: 40px;
+	border: 1px solid #273766;
+	font-size: 12px;
+	font-weight: 600;
+	border-radius: 4px;
+	text-transform: uppercase;
+	font-weight: 700;
+}
+.form-control:focus {
+	border-color: inherit;
+	box-shadow: none;
+}
+/*###############-------Form  css End------###################*/
+
+/*###############-------Btn  css Start------###################*/
+.btn {
+	height: 40px;
+	min-width: 150px;
+	font-size: 12px;
+	font-weight: bold;
+	border-radius: 5px;
+	border-width: 1px;
+	text-transform: uppercase;
+}
+.btn:focus {
+	box-shadow: none !important;
+}
+.btn-sm {
+	min-width: 100px !important;
+	height: 20px;
+	line-height: 10px;
+	font-weight: bold !important;
+}
+.btn-auto {
+	min-width: auto;
+	height: auto;
+}
+.btn-primary,
+.btn-primary:focus,
+.btn-primary:active {
+	background-color: #273765;
+	border-color: #273765;
+}
+.btn-primary:hover {
+	background-color: #0f1b3e;
+	border-color: #0e1b3e;
+}
+.btn-outline-primary,
+.btn-outline-primary:focus,
+.btn-outline-primary:active {
+	color: #273764;
+	border-color: #273764;
+}
+.btn-outline-primary:hover {
+	color: #fff;
+	background-color: #273764;
+	border-color: #273764;
+}
+.btn-link {
+	color: #294c6a;
+}
+/*###############-------Btn  css End------###################*/

@@ -1,0 +1,14 @@
+.search-block .btn {
+	min-width: 210px;
+}
+
+.search-block .search-icon {
+	top: 50%;
+	transform: translateY(-50%);
+	left: 15px;
+}
+.search-block .form-control {
+	padding-left: 45px;
+	border-top-left-radius: 0px;
+	border-bottom-left-radius: 0px;
+}
