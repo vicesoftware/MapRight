@@ -7,6 +7,7 @@ import closeIcon from './close.svg'
 import editBlueIcon from './editBlue.svg'
 import editDarkIcon from './editDark.svg'
 import searchIcon from './search.svg'
+import closeDarkIcon from './closeDark.svg'
 
 export default {
 	arrowDownIcon,
@@ -18,4 +19,5 @@ export default {
 	editBlueIcon,
 	editDarkIcon,
 	searchIcon,
+	closeDarkIcon,
 }

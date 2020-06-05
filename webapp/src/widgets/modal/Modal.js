@@ -1,5 +1,5 @@
 import React from 'react'
-import { Modal, Image, Button } from 'react-bootstrap'
+import { Modal, Image } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux'
 import { selectShowModal } from './modal.selectors'
 import { actions } from './modal.slice'
@@ -36,9 +36,9 @@ const MapRightModal = ({
 						{title}
 					</Modal.Title>
 				)}
-				<Button className='close p-0 pr-2' onClick={handleClose}>
-					<Image src={Icons.closeIcon} alt='close-icon' width='25' />
-				</Button>
+				<button className='close p-0' onClick={handleClose}>
+					<Image src={Icons.closeDarkIcon} alt='close-icon' width='25' />
+				</button>
 			</Modal.Header>
 			<Modal.Body className='pt-0'>{children}</Modal.Body>
 			<Modal.Footer className='justify-content-start border-0'>

@@ -25,7 +25,7 @@ export default function NavBar() {
 					</Nav>
 					<Nav className='nav-bar-right'>
 						<Nav.Item>
-							<LinkContainer to='/home'>
+							<LinkContainer to=''>
 								<Nav.Link className='d-flex align-items-center'>
 									Return To Admin
 									<Image

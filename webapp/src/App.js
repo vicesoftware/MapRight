@@ -4,13 +4,15 @@ import NavBar from './widgets/NavBar'
 import Routes from './Routes'
 import './app.css'
 import NotificationPopup from './infrastructure/notificationPopup'
+import Footer from './widgets/footer'
 
-function App() {
+const App = () => {
 	return (
 		<Router>
 			<NavBar />
 			<NotificationPopup />
 			<Routes />
+			<Footer />
 		</Router>
 	)
 }

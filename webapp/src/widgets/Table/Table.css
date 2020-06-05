@@ -20,7 +20,13 @@
 	border-color: rgb(147, 155, 178) !important;
 	color: #294c6a;
 }
-.expan .btn img {
+.text-table-data td:nth-last-child(1) {
+	text-align: right;
+}
+.invertArrow {
 	transform: rotate(180deg);
+}
+.reset-expansion-style {
+	padding: 0 !important;
 }
 /*###############-------Table  css End------###################*/

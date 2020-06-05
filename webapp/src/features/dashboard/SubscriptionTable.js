@@ -16,6 +16,7 @@ import { selectedDashboardModal } from './dashboard.selectors'
 import getDashboardModal from '../dashboardModals'
 import { useDispatch, useSelector } from 'react-redux'
 import { DASHBOARD_MODAL_TYPES } from '../dashboardModals/dashboardModals.constants'
+import classNames from 'classnames'
 
 const SubscriptionTable = () => {
 	const dispatch = useDispatch()
@@ -28,14 +29,24 @@ const SubscriptionTable = () => {
 				onClick={() =>
 					dispatch(
 						setSelectedDashboardModal(
-							DASHBOARD_MODAL_TYPES.MANAGEMENT_SUBSCRIPTION_MODAL
+							DASHBOARD_MODAL_TYPES.MANAGE_SUBSCRIPTION_MODAL
 						)
 					)
 				}
 			>
 				<Image src={Icons.editBlueIcon} width='20' className='ml-2' />
 			</Button>
-			<Button variant='link' className='btn-auto p-0'>
+			<Button
+				variant='link'
+				className='btn-auto p-0'
+				onClick={() =>
+					dispatch(
+						setSelectedDashboardModal(
+							DASHBOARD_MODAL_TYPES.CANCEL_SUBSCRIPTION_MODAL
+						)
+					)
+				}
+			>
 				<Image src={Icons.closeIcon} width='20' className='ml-2' />
 			</Button>
 			<Button
@@ -44,7 +55,29 @@ const SubscriptionTable = () => {
 			>
 				View
 			</Button>
-			{selectedModal && getDashboardModal(selectedModal)}
+		</div>
+	)
+	const manageRate = (row) => (
+		<div className='d-flex align-items-center'>
+			<Button
+				variant='link'
+				className='btn-auto p-0'
+				onClick={() =>
+					dispatch(
+						setSelectedDashboardModal(
+							DASHBOARD_MODAL_TYPES.MANAGE_SUBSCRIPTION_RATE_MODAL
+						)
+					)
+				}
+			>
+				<Image
+					src={Icons.editDarkIcon}
+					alt='edit-dark-icon'
+					width='14'
+					className='mr-1'
+				/>
+			</Button>
+			{row}
 		</div>
 	)
 	const mockTableGroupData = [
@@ -127,75 +160,76 @@ const SubscriptionTable = () => {
 	const groupColumn = [
 		{
 			dataField: 'groupName',
-			text: 'GROUP NAME',
+			text: 'Group Name',
 			sort: true,
 		},
 		{
 			dataField: 'totalUsers',
-			text: 'TOTAL USERS',
+			text: 'Total Users',
 			sort: true,
 		},
 		{
 			dataField: 'totalRevenue',
-			text: 'TOTAL REVENUE',
+			text: 'Total Revenue',
 			sort: true,
 		},
 		{
 			dataField: 'mrr',
-			text: 'MRR',
+			text: 'Mrr',
 			sort: true,
 		},
 		{
 			dataField: 'arpu',
-			text: 'ARPU',
+			text: 'Arpu',
 			sort: true,
 		},
 		{
 			dataField: 'churnRate',
-			text: 'CHURN RATE',
+			text: 'Churn Rate',
 			sort: true,
 		},
 		{
 			dataField: 'taxExempt',
-			text: 'TAX EXEMPT?',
+			text: 'Tax Exempt?',
 			sort: true,
 		},
 		{
 			dataField: 'rate',
-			text: 'RATE',
+			text: 'Rate',
 			sort: true,
+			formatter: manageRate,
 		},
 	]
 
 	const groupUsersColumn = [
 		{
 			dataField: 'userName',
-			text: 'USER NAME',
+			text: 'User Name',
 			sort: true,
 		},
 		{
 			dataField: 'subscriptionStatus',
-			text: 'SUBSCRIPTION STATUS',
+			text: 'Subscription Status',
 			sort: true,
 		},
 		{
 			dataField: 'plan',
-			text: 'PLAN',
+			text: 'Plan',
 			sort: true,
 		},
 		{
 			dataField: 'addOns',
-			text: 'ADD-ONS',
+			text: 'Add-Ons',
 			sort: true,
 		},
 		{
 			dataField: 'totalRevenue',
-			text: 'TOTAL REVENUE',
+			text: 'Total Revenue',
 			sort: true,
 		},
 		{
 			dataField: 'userRole',
-			text: 'USER ROLE',
+			text: 'User Role',
 			sort: true,
 		},
 		{
@@ -229,13 +263,18 @@ const SubscriptionTable = () => {
 					className='btn-auto p-0 d-inline-flex align-items-center'
 				>
 					{expanded ? 'CLOSE' : 'EXPAND'}
-					<Image src={Icons.arrowDownDarkIcon} width='14' className='ml-2' />
+					<Image
+						src={Icons.arrowDownDarkIcon}
+						width='14'
+						className={classNames('ml-2', { invertArrow: expanded })}
+					/>
 				</Button>
 			)
 		},
 	}
 	return (
 		<>
+			{selectedModal && getDashboardModal(selectedModal)}
 			<Row className='py-30'>
 				<Col lg={5} xl={7}>
 					<h4 className='font-weight-bold f-24 mb-4 lh-40 gotham mb-lg-0'>

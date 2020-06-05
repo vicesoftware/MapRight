@@ -22,6 +22,7 @@ const Table = ({
 			classes={classes}
 			headerWrapperClasses={headerWrapperClasses}
 			bodyClasses={bodyClasses}
+			rowClasses='text-table-data'
 		/>
 	)
 }
