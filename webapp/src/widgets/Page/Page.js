@@ -1,6 +1,11 @@
 import React from 'react'
 import './page.css'
+import { Container } from 'react-bootstrap'
 
 export default function Page({ children }) {
-	return <div>{children}</div>
+	return (
+		<Container fluid className='bg-light'>
+			{children}
+		</Container>
+	)
 }
