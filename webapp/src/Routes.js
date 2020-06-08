@@ -1,7 +1,6 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import Page from './widgets/Page/Page'
-import Dashboard from './features/dashboard'
 import UserItem from './features/userItem'
 
 export default function Routes() {
@@ -9,9 +8,6 @@ export default function Routes() {
 		<Switch>
 			<PageRoute path='/userItem'>
 				<UserItem />
-			</PageRoute>
-			<PageRoute path='/'>
-				<Dashboard />
 			</PageRoute>
 		</Switch>
 	)

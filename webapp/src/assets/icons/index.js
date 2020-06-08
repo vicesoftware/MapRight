@@ -7,6 +7,8 @@ import closeIcon from './close.svg'
 import editBlueIcon from './editBlue.svg'
 import editDarkIcon from './editDark.svg'
 import searchIcon from './search.svg'
+import downloadIcon from './download.svg'
+import refundIcon from './refund.svg'
 import closeDarkIcon from './closeDark.svg'
 
 export default {
@@ -19,5 +21,7 @@ export default {
 	editBlueIcon,
 	editDarkIcon,
 	searchIcon,
+	downloadIcon,
+	refundIcon,
 	closeDarkIcon,
 }

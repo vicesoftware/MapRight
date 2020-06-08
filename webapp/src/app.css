@@ -10,6 +10,12 @@
 .f-14 {
 	font-size: 14px !important;
 }
+.opacity-50 {
+	opacity: 0.5;
+}
+.f-18 {
+	font-size: 18px !important;
+}
 .f-16 {
 	font-size: 16px !important;
 }
@@ -203,5 +209,8 @@ select.form-control,
 }
 .btn-link {
 	color: #294c6a;
+}
+.mb-30 {
+	margin-bottom: 25px !important;
 }
 /*###############-------Btn  css End------###################*/

@@ -1,5 +1,7 @@
 import React from 'react'
 import ActivityHistory from './ActivityHistory'
+import UserInformation from './UserInformation'
+import BillingHistory from './BillingHistory'
 import { Container, Row, Col, Button, Image } from 'react-bootstrap'
 import './UserItem.css'
 import Icons from '../../assets/icons'
@@ -63,7 +65,10 @@ const UserItem = () => {
 					</Row>
 				</header>
 				<Row>
-					<Col lg={4}></Col>
+					<Col lg={4}>
+						<UserInformation />
+						<BillingHistory />
+					</Col>
 					<Col lg={8}>
 						<ActivityHistory />
 					</Col>

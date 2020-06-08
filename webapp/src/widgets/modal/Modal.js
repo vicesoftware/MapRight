@@ -18,7 +18,6 @@ const MapRightModal = ({
 }) => {
 	const show = useSelector(selectShowModal)
 	const dispatch = useDispatch()
-
 	const handleClose = () => {
 		dispatch(hideModal())
 		if (reset) reset()
@@ -47,5 +46,4 @@ const MapRightModal = ({
 		</Modal>
 	)
 }
-
 export default MapRightModal
