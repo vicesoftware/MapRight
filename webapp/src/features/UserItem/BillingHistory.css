@@ -1,0 +1,21 @@
+.btn-primary {
+	background-color: white !important;
+	border-color: white !important;
+}
+.btn {
+	padding: 0 !important;
+	font-weight: 700 !important;
+}
+thead {
+	font-size: 12px !important;
+	color: #294c6a !important;
+	text-transform: uppercase !important;
+}
+table td,
+.table th {
+	padding: 15px 0px !important;
+}
+tbody {
+	font-size: 14px !important;
+	font-weight: 400 !important;
+}

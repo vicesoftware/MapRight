@@ -5,7 +5,7 @@ import * as pendingRequest from './infrastructure/pendingRequest'
 import * as notificationPopup from './infrastructure/notificationPopup'
 import * as httpCache from './infrastructure/httpCache'
 import * as dashboard from './features/Dashboard'
-import * as userItem from './features/userItem'
+import * as userItem from './features/UserItem'
 
 export default combineReducers({
 	[busyIndicator.name]: busyIndicator.reducer,
