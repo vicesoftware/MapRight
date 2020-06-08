@@ -199,3 +199,7 @@ select.form-control,
 	color: #294c6a;
 }
 /*###############-------Btn  css End------###################*/
+
+.bg-light {
+	background-color: #f7f7fc !important;
+}
