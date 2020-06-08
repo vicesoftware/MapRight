@@ -1,3 +1,6 @@
+.bg-light {
+	background-color: #f7f7fc !important;
+}
 .bg-primary {
 	background-color: #273766 !important;
 }
@@ -21,6 +24,9 @@
 }
 .mr-30 {
 	margin-right: 30px !important;
+}
+.mb-20 {
+	margin-bottom: 20px !important;
 }
 .mb-25 {
 	margin-bottom: 25px !important;
@@ -184,8 +190,8 @@ select.form-control,
 	border-color: #273764;
 }
 .btn-outline-primary:hover {
-	color: #fff;
-	background-color: #273764;
+	color: #273765;
+	background-color: #2737650f;
 	border-color: #273764;
 }
 .btn-outline-primary:not(:disabled):not(.disabled).active,
