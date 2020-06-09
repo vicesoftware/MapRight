@@ -1,9 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import ReportCard from './ReportCard'
 import { Row } from 'react-bootstrap'
 import DashboardFilters from './DashboardFilters'
+import { fetchChurnRate } from './dashboard.asyncActions'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectChurnRate } from './dashboard.selectors'
 
 const Dashboard = () => {
+	const dispatch = useDispatch()
+	const churnRate = useSelector(selectChurnRate)
+	useEffect(() => {
+		dispatch(fetchChurnRate())
+	}, [dispatch])
 	return (
 		<>
 			<div className='py-30'>
@@ -13,7 +21,7 @@ const Dashboard = () => {
 			</div>
 			<Row>
 				<DashboardFilters />
-				<ReportCard />
+				<ReportCard churnRate={churnRate} />
 			</Row>
 		</>
 	)

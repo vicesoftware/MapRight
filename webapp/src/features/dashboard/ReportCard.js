@@ -5,7 +5,7 @@ import Graph from '../../widgets/graph'
 import Icons from '../../assets/icons'
 import classNames from 'classnames'
 
-const ReportCard = () => {
+const ReportCard = ({ churnRate }) => {
 	const mockData = [
 		{
 			title: 'User Churn Rate',
