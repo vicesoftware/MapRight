@@ -1,7 +1,7 @@
 import React from 'react'
 import ReportCard from './ReportCard'
 import { Row } from 'react-bootstrap'
-import DashboardFilter from './DashboardFilter'
+import DashboardFilters from './DashboardFilters'
 
 const Dashboard = () => {
 	return (
@@ -12,7 +12,7 @@ const Dashboard = () => {
 				</h3>
 			</div>
 			<Row>
-				<DashboardFilter />
+				<DashboardFilters />
 				<ReportCard />
 			</Row>
 		</>
