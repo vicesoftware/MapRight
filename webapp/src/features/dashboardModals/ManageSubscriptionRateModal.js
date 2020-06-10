@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
-import Modal, { hideModal, showModal } from '../../widgets/modal'
+import Modal, { hideModal, showModal } from '../../widgets/Modal'
 import { Button, Form, Row, Col } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
-import { setSelectedDashboardModal } from '../dashboard/dashboard.slice'
+import { setSelectedDashboardModal } from '../Dashboard/dashboard.slice'
 
 const ManageSubscriptionRateModal = () => {
 	const dispatch = useDispatch()

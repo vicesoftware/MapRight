@@ -13,9 +13,9 @@ import './Dashboard.css'
 import Icons from '../../assets/icons'
 import { setSelectedDashboardModal } from './dashboard.slice'
 import { selectedDashboardModal } from './dashboard.selectors'
-import getDashboardModal from '../dashboardModals'
+import getDashboardModal from '../DashboardModals'
 import { useDispatch, useSelector } from 'react-redux'
-import { DASHBOARD_MODAL_TYPES } from '../dashboardModals/dashboardModals.constants'
+import { DASHBOARD_MODAL_TYPES } from '../DashboardModals/DashboardModals.constants'
 import classNames from 'classnames'
 
 const SubscriptionTable = () => {

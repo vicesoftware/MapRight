@@ -2,7 +2,7 @@ import React from 'react'
 import ManageSubscriptionModal from './ManageSubscriptionModal'
 import ManageSubscriptionRateModal from './ManageSubscriptionRateModal'
 import CancelSubscriptionModal from './CancelSubscriptionModal'
-import { DASHBOARD_MODAL_TYPES } from './dashboardModals.constants'
+import { DASHBOARD_MODAL_TYPES } from './DashboardModals.constants'
 
 const getDashboardModal = (modalName) => {
 	switch (modalName) {

@@ -4,7 +4,7 @@ import NavBar from './widgets/NavBar'
 import Routes from './Routes'
 import './app.css'
 import NotificationPopup from './infrastructure/notificationPopup'
-import Footer from './widgets/footer'
+import Footer from './widgets/Footer'
 
 const App = () => {
 	return (
