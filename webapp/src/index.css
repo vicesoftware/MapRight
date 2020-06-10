@@ -1,13 +1,29 @@
-body {
-	margin: 0;
-	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-		'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-		sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+@font-face {
+	font-family: 'gotham';
+	src: url('./assets/fonts/gotham/gothamLight.ttf') format('truetype');
+	font-weight: 100;
+}
+@font-face {
+	font-family: 'gotham';
+	src: url('./assets/fonts/gotham/gothamBook.ttf') format('truetype');
+	font-weight: 400;
+}
+@font-face {
+	font-family: 'gotham';
+	src: url('./assets/fonts/gotham/gothamMedium.ttf') format('truetype');
+	font-weight: 600;
+}
+@font-face {
+	font-family: 'gotham';
+	src: url('./assets/fonts/gotham/gothamMedium.ttf') format('truetype');
+	font-weight: 800;
+}
+.gotham {
+	font-family: 'gotham' !important;
 }
 
-code {
-	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-		monospace;
+body {
+	font-family: 'Open Sans', sans-serif;
+	color: #294c6a;
+	font-weight: 600;
 }
