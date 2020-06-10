@@ -1,7 +1,7 @@
 import React from 'react'
 import { Col, Row } from 'react-bootstrap'
-import Cards from '../../widgets/cards'
-import Graph from '../../widgets/graph'
+import Cards from '../../widgets/Cards'
+import Graph from '../../widgets/Graph'
 import Icons from '../../assets/icons'
 import classNames from 'classnames'
 

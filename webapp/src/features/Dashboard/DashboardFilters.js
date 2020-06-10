@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Col, Button, Form } from 'react-bootstrap'
-import Cards from '../../widgets/cards'
+import Cards from '../../widgets/Cards'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import './DashboardFilters.css'

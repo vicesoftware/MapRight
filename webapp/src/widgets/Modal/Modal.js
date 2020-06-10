@@ -1,5 +1,5 @@
 import React from 'react'
-import Modal from 'react-bootstrap/Modal'
+import { Modal } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 import { selectShowModal } from './modal.selectors'
 import { actions } from './modal.slice'
