@@ -15,7 +15,7 @@
 }
 @font-face {
 	font-family: 'gotham';
-	src: url('./assets/fonts/gotham/gothamMedium.ttf') format('truetype');
+	src: url('./assets/fonts/gotham/gothamBold.ttf') format('truetype');
 	font-weight: 800;
 }
 .gotham {

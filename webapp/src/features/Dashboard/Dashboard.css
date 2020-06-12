@@ -12,3 +12,11 @@
 	border-top-left-radius: 0px;
 	border-bottom-left-radius: 0px;
 }
+.react-datepicker-wrapper {
+	display: block !important;
+}
+button#input-dropdown-basic {
+	justify-content: space-between !important;
+	align-items: center !important;
+	display: flex !important;
+}

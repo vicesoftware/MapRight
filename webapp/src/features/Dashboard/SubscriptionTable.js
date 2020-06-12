@@ -7,48 +7,26 @@ import {
 	InputGroup,
 	Dropdown,
 	Button,
+	DropdownButton,
 } from 'react-bootstrap'
 import Table from '../../widgets/Table'
 import './Dashboard.css'
 import Icons from '../../assets/icons'
-import { setSelectedDashboardModal } from './dashboard.slice'
-import { selectedDashboardModal } from './dashboard.selectors'
-import getDashboardModal from '../DashboardModals'
-import { useDispatch, useSelector } from 'react-redux'
-import { DASHBOARD_MODAL_TYPES } from '../DashboardModals/DashboardModals.constants'
 import classNames from 'classnames'
 
 const SubscriptionTable = () => {
-	const dispatch = useDispatch()
-	const selectedModal = useSelector(selectedDashboardModal)
-	const viewButton = () => (
+	const viewButton = (cell, row) => (
 		<div className='d-inline-flex align-items-center'>
-			<Button
-				variant='link'
-				className='btn-auto p-0'
-				onClick={() =>
-					dispatch(
-						setSelectedDashboardModal(
-							DASHBOARD_MODAL_TYPES.MANAGE_SUBSCRIPTION_MODAL
-						)
-					)
-				}
-			>
-				<Image src={Icons.editBlueIcon} width='20' className='ml-2' />
-			</Button>
-			<Button
-				variant='link'
-				className='btn-auto p-0'
-				onClick={() =>
-					dispatch(
-						setSelectedDashboardModal(
-							DASHBOARD_MODAL_TYPES.CANCEL_SUBSCRIPTION_MODAL
-						)
-					)
-				}
-			>
-				<Image src={Icons.closeIcon} width='20' className='ml-2' />
-			</Button>
+			{row.userName === 'Test1' ? (
+				<Button variant='link' className='btn-auto p-0'>
+					<Image
+						src={Icons.alertIcon}
+						alt='alert-icon'
+						width='20'
+						className='ml-2'
+					/>
+				</Button>
+			) : null}
 			<Button
 				variant='outline-primary'
 				className='font-weight-normal btn-sm ml-3'
@@ -57,26 +35,18 @@ const SubscriptionTable = () => {
 			</Button>
 		</div>
 	)
-	const manageRate = (row) => (
+	const NullCheckAlert = (row) => (
 		<div className='d-flex align-items-center'>
-			<Button
-				variant='link'
-				className='btn-auto p-0'
-				onClick={() =>
-					dispatch(
-						setSelectedDashboardModal(
-							DASHBOARD_MODAL_TYPES.MANAGE_SUBSCRIPTION_RATE_MODAL
-						)
-					)
-				}
-			>
-				<Image
-					src={Icons.editDarkIcon}
-					alt='edit-dark-icon'
-					width='14'
-					className='mr-1'
-				/>
-			</Button>
+			{row === 'Cody Miles' && (
+				<Button variant='link' className='btn-auto p-0'>
+					<Image
+						src={Icons.alertIcon}
+						alt='alert-icon'
+						width='14'
+						className='mr-1'
+					/>
+				</Button>
+			)}
 			{row}
 		</div>
 	)
@@ -162,6 +132,7 @@ const SubscriptionTable = () => {
 			dataField: 'groupName',
 			text: 'Group Name',
 			sort: true,
+			formatter: NullCheckAlert,
 		},
 		{
 			dataField: 'totalUsers',
@@ -197,7 +168,6 @@ const SubscriptionTable = () => {
 			dataField: 'rate',
 			text: 'Rate',
 			sort: true,
-			formatter: manageRate,
 		},
 	]
 
@@ -274,7 +244,6 @@ const SubscriptionTable = () => {
 	}
 	return (
 		<>
-			{selectedModal && getDashboardModal(selectedModal)}
 			<Row className='py-30'>
 				<Col lg={5} xl={7}>
 					<h4 className='font-weight-bold f-24 mb-4 lh-40 gotham mb-lg-0'>
@@ -283,25 +252,18 @@ const SubscriptionTable = () => {
 				</Col>
 				<Col lg={7} xl={5}>
 					<InputGroup className='search-block'>
-						<InputGroup.Prepend>
-							<Dropdown>
-								<Dropdown.Toggle
-									variant='primary'
-									data-toggle='dropdown'
-									aria-haspopup='true'
-									aria-expanded='false'
-								>
-									Search Groups
-								</Dropdown.Toggle>
-								<Dropdown.Menu>
-									<Dropdown.Item>Action</Dropdown.Item>
-									<Dropdown.Item>Another action</Dropdown.Item>
-									<Dropdown.Item>Something else here</Dropdown.Item>
-									<Dropdown.Divider />
-									<Dropdown.Item>Separated link</Dropdown.Item>
-								</Dropdown.Menu>
-							</Dropdown>
-						</InputGroup.Prepend>
+						<DropdownButton
+							as={InputGroup.Prepend}
+							title='Search Groups'
+							variant='primary'
+							id='input-dropdown-basic'
+						>
+							<Dropdown.Item>Action</Dropdown.Item>
+							<Dropdown.Item>Another action</Dropdown.Item>
+							<Dropdown.Item>Something else here</Dropdown.Item>
+							<Dropdown.Divider />
+							<Dropdown.Item>Separated link</Dropdown.Item>
+						</DropdownButton>
 						<div className='flex-fill position-relative'>
 							<Form.Control type='text' placeholder='Search...' />
 							<Image
