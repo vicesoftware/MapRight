@@ -42,7 +42,7 @@ const SubscriptionTable = () => {
 					<Image
 						src={Icons.alertIcon}
 						alt='alert-icon'
-						width='14'
+						width='20'
 						className='mr-1'
 					/>
 				</Button>
@@ -50,6 +50,58 @@ const SubscriptionTable = () => {
 			{row}
 		</div>
 	)
+	const columnGroupSortCaret = (order) => {
+		return (
+			<span className='order-arrow d-flex flex-column'>
+				{(order === 'asc' || !order) && (
+					<span className='arrow-up'>
+						<Image
+							src={Icons.caretIcon}
+							alt='caret-icon'
+							className='opacity-50 upArrow'
+							width='10'
+						/>
+					</span>
+				)}
+				{(order === 'desc' || !order) && (
+					<span className='arrow-down'>
+						<Image
+							src={Icons.caretIcon}
+							alt='caret-icon'
+							className='opacity-50'
+							width='10'
+						/>
+					</span>
+				)}
+			</span>
+		)
+	}
+	const columnGroupUserSortCaret = (order) => {
+		return (
+			<span className='order-arrow d-flex flex-column'>
+				{(order === 'asc' || !order) && (
+					<span className='arrow-up'>
+						<Image
+							src={Icons.caretDarkIcon}
+							alt='caret-icon'
+							className='opacity-50 upArrow'
+							width='10'
+						/>
+					</span>
+				)}
+				{(order === 'desc' || !order) && (
+					<span className='arrow-down'>
+						<Image
+							src={Icons.caretDarkIcon}
+							alt='caret-icon'
+							className='opacity-50'
+							width='10'
+						/>
+					</span>
+				)}
+			</span>
+		)
+	}
 	const mockTableGroupData = [
 		{
 			id: 1,
@@ -132,42 +184,50 @@ const SubscriptionTable = () => {
 			dataField: 'groupName',
 			text: 'Group Name',
 			sort: true,
+			sortCaret: columnGroupSortCaret,
 			formatter: NullCheckAlert,
 		},
 		{
 			dataField: 'totalUsers',
 			text: 'Total Users',
 			sort: true,
+			sortCaret: columnGroupSortCaret,
 		},
 		{
 			dataField: 'totalRevenue',
 			text: 'Total Revenue',
 			sort: true,
+			sortCaret: columnGroupSortCaret,
 		},
 		{
 			dataField: 'mrr',
 			text: 'Mrr',
 			sort: true,
+			sortCaret: columnGroupSortCaret,
 		},
 		{
 			dataField: 'arpu',
 			text: 'Arpu',
 			sort: true,
+			sortCaret: columnGroupSortCaret,
 		},
 		{
 			dataField: 'churnRate',
 			text: 'Churn Rate',
 			sort: true,
+			sortCaret: columnGroupSortCaret,
 		},
 		{
 			dataField: 'taxExempt',
 			text: 'Tax Exempt?',
 			sort: true,
+			sortCaret: columnGroupSortCaret,
 		},
 		{
 			dataField: 'rate',
 			text: 'Rate',
 			sort: true,
+			sortCaret: columnGroupSortCaret,
 		},
 	]
 
@@ -176,31 +236,37 @@ const SubscriptionTable = () => {
 			dataField: 'userName',
 			text: 'User Name',
 			sort: true,
+			sortCaret: columnGroupUserSortCaret,
 		},
 		{
 			dataField: 'subscriptionStatus',
 			text: 'Subscription Status',
 			sort: true,
+			sortCaret: columnGroupUserSortCaret,
 		},
 		{
 			dataField: 'plan',
 			text: 'Plan',
 			sort: true,
+			sortCaret: columnGroupUserSortCaret,
 		},
 		{
 			dataField: 'addOns',
 			text: 'Add-Ons',
 			sort: true,
+			sortCaret: columnGroupUserSortCaret,
 		},
 		{
 			dataField: 'totalRevenue',
 			text: 'Total Revenue',
 			sort: true,
+			sortCaret: columnGroupUserSortCaret,
 		},
 		{
 			dataField: 'userRole',
 			text: 'User Role',
 			sort: true,
+			sortCaret: columnGroupUserSortCaret,
 		},
 		{
 			dataField: 'view',
@@ -258,11 +324,8 @@ const SubscriptionTable = () => {
 							variant='primary'
 							id='input-dropdown-basic'
 						>
-							<Dropdown.Item>Action</Dropdown.Item>
-							<Dropdown.Item>Another action</Dropdown.Item>
-							<Dropdown.Item>Something else here</Dropdown.Item>
-							<Dropdown.Divider />
-							<Dropdown.Item>Separated link</Dropdown.Item>
+							<Dropdown.Item>Plan</Dropdown.Item>
+							<Dropdown.Item>E-mail</Dropdown.Item>
 						</DropdownButton>
 						<div className='flex-fill position-relative'>
 							<Form.Control type='text' placeholder='Search...' />
