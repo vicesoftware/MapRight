@@ -1,6 +1,12 @@
 .bg-primary {
 	background-color: #273766 !important;
 }
+.text-success {
+	color: #6bb645 !important;
+}
+.text-danger {
+	color: #ea496a !important;
+}
 .f-12 {
 	font-size: 12px !important;
 }
@@ -10,8 +16,14 @@
 .f-16 {
 	font-size: 16px !important;
 }
+.f-18 {
+	font-size: 18px !important;
+}
 .f-24 {
 	font-size: 24px !important;
+}
+.f-28 {
+	font-size: 28px !important;
 }
 .lh-25 {
 	line-height: 25px;
@@ -19,15 +31,40 @@
 .lh-40 {
 	line-height: 40px;
 }
+.mb-20 {
+	margin-bottom: 20px !important;
+}
 .mr-30 {
 	margin-right: 30px !important;
 }
 .mb-25 {
 	margin-bottom: 25px !important;
 }
+.mb-15 {
+	margin-bottom: 15px !important;
+}
+.p-15 {
+	padding: 15px !important;
+}
+.p-25 {
+	padding: 25px !important;
+}
+.pb-25 {
+	padding-bottom: 25px !important;
+}
 .py-30 {
 	padding-top: 30px !important;
 	padding-bottom: 30px !important;
+}
+.px-40 {
+	padding-left: 40px !important;
+	padding-right: 40px !important;
+}
+.opacity-50 {
+	opacity: 0.5;
+}
+.font-weight-bold {
+	font-weight: 700 !important;
 }
 
 /*###############-------Navigation  css Start------###################*/
@@ -98,6 +135,15 @@
 /*###############-------Navigation  css End------###################*/
 
 /*###############-------Form  css Start------###################*/
+.form-group > label {
+	font-size: 12px;
+	font-weight: bold;
+	line-height: 25px;
+	margin-bottom: 0px;
+	font-family: 'gotham';
+	text-transform: uppercase;
+	margin-left: 6px;
+}
 .form-control {
 	height: 40px;
 	border: 1px solid #273766;
@@ -202,4 +248,44 @@ select.form-control,
 
 .bg-light {
 	background-color: #f7f7fc !important;
+}
+
+.arrow-bubble {
+	height: 25px;
+	width: 25px;
+}
+.arrow-bubble span {
+	left: 0px;
+	top: 0px;
+	opacity: 0.16;
+	z-index: 1;
+}
+.graph-value {
+	min-width: 90px;
+}
+.calender-input {
+	background-image: url(./assets/icons/calendar.svg);
+	background-size: 20px;
+	background-repeat: no-repeat;
+	background-position: center right 15px;
+	padding-right: 30px;
+}
+.upArrow {
+	transform: rotateZ(-180deg);
+}
+.order-arrow {
+	height: 20px;
+	width: 10px;
+	display: block;
+	position: absolute;
+	right: 0px;
+	top: 50%;
+	transform: translateY(-50%);
+}
+.order-arrow span {
+	height: 10px;
+	display: block;
+}
+.order-arrow span img {
+	display: block;
 }

@@ -8,6 +8,9 @@ import editBlueIcon from './editBlue.svg'
 import editDarkIcon from './editDark.svg'
 import searchIcon from './search.svg'
 import closeDarkIcon from './closeDark.svg'
+import alertIcon from './alert.svg'
+import caretIcon from './caret.svg'
+import caretDarkIcon from './caretDark.svg'
 
 export default {
 	arrowDownIcon,
@@ -20,4 +23,7 @@ export default {
 	editDarkIcon,
 	searchIcon,
 	closeDarkIcon,
+	alertIcon,
+	caretIcon,
+	caretDarkIcon,
 }

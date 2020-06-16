@@ -7,17 +7,9 @@ const initialState = {
 const slice = createSlice({
 	name: 'dashboard',
 	initialState,
-	reducers: {
-		setSelectedDashboardModal(state, action) {
-			state.selectedDashboardModal = action.payload || null
-		},
-	},
+	reducers: {},
 })
 
 export default slice
 
-export const {
-	name,
-	actions: { setSelectedDashboardModal },
-	reducer,
-} = slice
+export const { name, actions, reducer } = slice
