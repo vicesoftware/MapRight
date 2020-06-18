@@ -1,11 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import SubscriptionTable from './SubscriptionTable'
 import ReportCard from './ReportCard'
 import DashboardFilters from './DashboardFilters'
 import Row from 'react-bootstrap/Row'
 import './Dashboard.css'
+import { fetchTotalRevenue } from './dashboard.asyncActions'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectTotalRevenue } from './dashboard.selectors'
 
 const Dashboard = () => {
+	const dispatch = useDispatch()
+	const totalRevenue = useSelector(selectTotalRevenue)
+
+	useEffect(() => {
+		dispatch(fetchTotalRevenue())
+	}, [dispatch])
 	return (
 		<>
 			<div className='py-30'>
@@ -15,7 +24,7 @@ const Dashboard = () => {
 			</div>
 			<Row>
 				<DashboardFilters />
-				<ReportCard />
+				<ReportCard totalRevenue={totalRevenue} />
 			</Row>
 			<SubscriptionTable />
 		</>
