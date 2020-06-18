@@ -10,7 +10,7 @@ import { USERITEM_MODAL_TYPES } from './userItemModals.constants'
 import getUserItemModal from '../UserItemModals'
 import './BillingHistory.css'
 
-const BillingHistory = () => {
+const BillingHistory = ({ selectedBillingHistory }) => {
 	const dispatch = useDispatch()
 	const selectedModal = useSelector(selectedUserItemModal)
 
@@ -36,47 +36,19 @@ const BillingHistory = () => {
 		</div>
 	)
 
-	const mockTableData = [
-		{
-			invoice: '#123456789',
-			date: '01/01/22',
-			status: 'Refunded',
-		},
-		{
-			invoice: '#123456789',
-			date: '01/01/22',
-			status: 'Paid',
-		},
-		{
-			invoice: '#123456789',
-			date: '01/01/22',
-			status: 'Paid',
-		},
-		{
-			invoice: '#123456789',
-			date: '01/01/22',
-			status: 'Paid',
-		},
-		{
-			invoice: '#123456789',
-			date: '01/01/22',
-			status: 'Paid',
-		},
-	]
-
 	const Column = [
 		{
-			dataField: 'invoice',
-			text: 'invoice',
+			dataField: 'InvoiceId',
+			text: 'Invoice',
 			sort: true,
 		},
 		{
-			dataField: 'date',
-			text: 'date',
+			dataField: 'StartDate',
+			text: 'Date',
 		},
 		{
-			dataField: 'status',
-			text: 'status',
+			dataField: 'Revenue',
+			text: 'Revenue',
 		},
 		{
 			dataField: 'button',
@@ -89,7 +61,11 @@ const BillingHistory = () => {
 		<>
 			{selectedModal && getUserItemModal(selectedModal)}
 			<Cards className='mb-25' title='Billing History'>
-				<Table keyField='id' data={mockTableData} columns={Column} />
+				<Table
+					keyField='id'
+					data={selectedBillingHistory.data}
+					columns={Column}
+				/>
 			</Cards>
 		</>
 	)
