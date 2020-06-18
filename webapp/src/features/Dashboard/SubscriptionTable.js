@@ -15,9 +15,13 @@ import Icons from '../../assets/icons'
 import classNames from 'classnames'
 import { useHistory } from 'react-router-dom'
 import SortingCustomIcon from '../../widgets/SortingCustomIcon'
+import { useSelector } from 'react-redux'
+import { selectAllSubscriptions } from './dashboard.selectors'
+import BusyIndicator from '../../widgets/busyIndicator'
 
 const SubscriptionTable = () => {
 	const history = useHistory()
+	const allSubscriptions = useSelector(selectAllSubscriptions)
 	const viewButton = (cell, row) => (
 		<div className='d-inline-flex align-items-center'>
 			{row.userName === 'Test1' ? (
@@ -33,7 +37,7 @@ const SubscriptionTable = () => {
 			<Button
 				variant='outline-primary'
 				className='font-weight-normal btn-sm ml-3'
-				onClick={() => history.push('user-item')}
+				onClick={() => history.push(`users/${row.id}`)}
 			>
 				View
 			</Button>
@@ -54,83 +58,58 @@ const SubscriptionTable = () => {
 			{row}
 		</div>
 	)
-	const mockTableGroupData = [
-		{
-			id: 1,
-			groupName: 'Cody Miles',
-			totalUsers: 5,
-			totalRevenue: '$20205',
-			mrr: '$400',
-			arpu: '$50',
-			churnRate: '11%',
-			taxExempt: 'No',
-			rate: '$25',
-		},
-		{
-			id: 2,
-			groupName: 'Any Miles',
-			totalUsers: 5,
-			totalRevenue: '$20205',
-			mrr: '$400',
-			arpu: '$50',
-			churnRate: '11%',
-			taxExempt: 'No',
-			rate: '$25',
-		},
-		{
-			id: 3,
-			groupName: 'Kaylie Meek',
-			totalUsers: 5,
-			totalRevenue: '$20205',
-			mrr: '$400',
-			arpu: '$50',
-			churnRate: '11%',
-			taxExempt: 'No',
-			rate: '$25',
-		},
-		{
-			id: 4,
-			groupName: 'AbbyNash',
-			totalUsers: 5,
-			totalRevenue: '$20205',
-			mrr: '$400',
-			arpu: '$50',
-			churnRate: '11%',
-			taxExempt: 'Yes',
-			rate: '$25',
-		},
-	]
-
-	// TODOs: we need to remove mockData.
-	const mockTableGroupUsersData = [
-		{
-			id: 1,
-			userName: 'Test1',
-			subscriptionStatus: 'active',
-			plan: 'Flex',
-			addOns: 5,
-			totalRevenue: 2050,
-			userRole: 'Owner',
-		},
-		{
-			id: 2,
-			userName: 'Test2',
-			subscriptionStatus: 'active',
-			plan: 'Flex',
-			addOns: 5,
-			totalRevenue: 2050,
-			userRole: 'Owner',
-		},
-		{
-			id: 3,
-			userName: 'Test3',
-			subscriptionStatus: 'active',
-			plan: 'Flex',
-			addOns: 5,
-			totalRevenue: 2050,
-			userRole: 'Owner',
-		},
-	]
+	const columnGroupSortCaret = (order) => {
+		return (
+			<span className='order-arrow d-flex flex-column'>
+				{(order === 'asc' || !order) && (
+					<span className='arrow-up'>
+						<Image
+							src={Icons.caretIcon}
+							alt='caret-icon'
+							className='opacity-50 upArrow'
+							width='10'
+						/>
+					</span>
+				)}
+				{(order === 'desc' || !order) && (
+					<span className='arrow-down'>
+						<Image
+							src={Icons.caretIcon}
+							alt='caret-icon'
+							className='opacity-50'
+							width='10'
+						/>
+					</span>
+				)}
+			</span>
+		)
+	}
+	const columnGroupUserSortCaret = (order) => {
+		return (
+			<span className='order-arrow d-flex flex-column'>
+				{(order === 'asc' || !order) && (
+					<span className='arrow-up'>
+						<Image
+							src={Icons.caretDarkIcon}
+							alt='caret-icon'
+							className='opacity-50 upArrow'
+							width='10'
+						/>
+					</span>
+				)}
+				{(order === 'desc' || !order) && (
+					<span className='arrow-down'>
+						<Image
+							src={Icons.caretDarkIcon}
+							alt='caret-icon'
+							className='opacity-50'
+							width='10'
+						/>
+					</span>
+				)}
+			</span>
+		)
+	}
 
 	const groupColumn = [
 		{
@@ -235,12 +214,12 @@ const SubscriptionTable = () => {
 	]
 	const expandRow = {
 		// eslint-disable-next-line
-		renderer: () => (
+		renderer: (row) => (
 			<Table
 				keyField='id'
-				data={mockTableGroupUsersData}
+				data={row.data}
 				columns={groupUsersColumn}
-				classes='bg-light mb-0'
+				classes='bg-light m-0'
 				headerWrapperClasses='f-12 text-uppercase'
 			/>
 		),
@@ -298,15 +277,17 @@ const SubscriptionTable = () => {
 					</InputGroup>
 				</Col>
 			</Row>
-			<Table
-				keyField='id'
-				data={mockTableGroupData}
-				columns={groupColumn}
-				expandRow={expandRow}
-				classes='bg-white'
-				headerWrapperClasses='f-12 text-uppercase bg-primary text-white'
-				bodyClasses='f-14 font-weight-bold'
-			/>
+			<BusyIndicator>
+				<Table
+					keyField='id'
+					data={allSubscriptions}
+					columns={groupColumn}
+					expandRow={expandRow}
+					classes='bg-white'
+					headerWrapperClasses='f-12 text-uppercase bg-primary text-white'
+					bodyClasses='f-14 font-weight-bold'
+				/>
+			</BusyIndicator>
 		</>
 	)
 }
