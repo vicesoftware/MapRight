@@ -1,13 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit'
+import * as asyncActions from './dashboard.asyncActions'
+
+const allSubscriptionDefault = []
 
 const initialState = {
-	selectedDashboardModal: null,
+	allSubscriptions: allSubscriptionDefault,
 }
 
 const slice = createSlice({
 	name: 'dashboard',
 	initialState,
 	reducers: {},
+	extraReducers: {
+		[asyncActions.fetchAllSubscriptions.fulfilled]: (state, action) => {
+			state.allSubscriptions = action.payload || allSubscriptionDefault
+		},
+	},
 })
 
 export default slice

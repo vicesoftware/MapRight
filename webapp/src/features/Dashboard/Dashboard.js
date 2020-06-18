@@ -1,11 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import SubscriptionTable from './SubscriptionTable'
 import ReportCard from './ReportCard'
 import DashboardFilters from './DashboardFilters'
 import Row from 'react-bootstrap/Row'
 import './Dashboard.css'
+import { useDispatch } from 'react-redux'
+import { fetchAllSubscriptions } from './dashboard.asyncActions'
 
 const Dashboard = () => {
+	const dispatch = useDispatch()
+	useEffect(() => {
+		dispatch(fetchAllSubscriptions())
+	}, [dispatch])
 	return (
 		<>
 			<div className='py-30'>
