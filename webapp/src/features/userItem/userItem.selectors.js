@@ -4,3 +4,6 @@ export const selectSlice = (state) => state[slice.name]
 
 export const selectedUserItemModal = (state) =>
 	selectSlice(state).selectedUserItemModal
+
+export const selectUserInformation = (state) =>
+	selectSlice(state).userInformation

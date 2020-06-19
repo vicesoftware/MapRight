@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import ActivityHistory from './ActivityHistory'
 import UserInformation from './UserInformation'
 import BillingHistory from './BillingHistory'
@@ -8,12 +8,22 @@ import Icons from '../../assets/icons'
 import { useDispatch, useSelector } from 'react-redux'
 import { DASHBOARD_MODAL_TYPES } from '../dashboardModals/dashboardModals.constants'
 import { setSelectedUserItemModal } from './userItem.slice'
-import { selectedUserItemModal } from './userItem.selectors'
+import { fetchUserInformation } from './userItem.asyncActions'
+import {
+	selectedUserItemModal,
+	selectUserInformation,
+} from './userItem.selectors'
 import getDashboardModal from '../dashboardModals'
 
 const UserItem = () => {
 	const dispatch = useDispatch()
 	const selectedModal = useSelector(selectedUserItemModal)
+	const selectedUserInformation = useSelector(selectUserInformation)
+
+	useEffect(() => {
+		dispatch(fetchUserInformation())
+	}, [dispatch])
+
 	return (
 		<>
 			{selectedModal && getDashboardModal(selectedModal)}
@@ -66,7 +76,9 @@ const UserItem = () => {
 				</header>
 				<Row>
 					<Col lg={4}>
-						<UserInformation />
+						<UserInformation
+							selectedUserInformation={selectedUserInformation}
+						/>
 						<BillingHistory />
 					</Col>
 					<Col lg={8}>

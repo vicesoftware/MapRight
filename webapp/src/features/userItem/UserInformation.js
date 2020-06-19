@@ -3,41 +3,55 @@ import { Col, Row } from 'react-bootstrap'
 import Cards from '../../widgets/cards'
 import classNames from 'classnames'
 
-const UserInformation = () => {
-	const mockData = [
+const UserInformation = ({ selectedUserInformation }) => {
+	const userData = [
 		{
-			name: 'Total Revenue',
-			value: '$2,050',
+			name: 'Lifetime Value',
+			value:
+				selectedUserInformation.data !== undefined &&
+				selectedUserInformation.data[0].LifetimeValue,
 		},
 		{
 			name: 'Monthly Recurring Revenue',
-			value: '$70',
+			value:
+				selectedUserInformation.data !== undefined &&
+				selectedUserInformation.data[0].MRR,
 		},
 		{
 			name: 'Subscription Status',
-			value: 'Active',
+			value:
+				selectedUserInformation.data !== undefined &&
+				selectedUserInformation.data[0].Status,
 		},
 		{
 			name: 'Add-Ons',
-			value: '5 states',
+			value:
+				selectedUserInformation.data !== undefined &&
+				selectedUserInformation.data[0].Addons,
 		},
 		{
 			name: 'Role',
-			value: 'Owner',
+			value:
+				selectedUserInformation.data !== undefined &&
+				selectedUserInformation.data[0].Role,
 		},
 		{
 			name: 'Plan',
-			value: 'Flex',
+			value:
+				selectedUserInformation.data !== undefined &&
+				selectedUserInformation.data[0].Plan,
 		},
 		{
 			name: 'Group',
-			value: 'Brandcave',
+			value:
+				selectedUserInformation.data !== undefined &&
+				selectedUserInformation.data[0].Group,
 		},
 	]
 	return (
 		<Cards className='mb-25' title='User Information'>
 			<Row className='user-info'>
-				{mockData.map((user, index) => (
+				{userData.map((user, index) => (
 					<Col
 						md={6}
 						key={user.name}

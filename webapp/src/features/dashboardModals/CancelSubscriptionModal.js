@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import Modal, { hideModal, showModal } from '../../widgets/modal'
 import { Button } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
-import { setSelectedDashboardModal } from '../dashboard/dashboard.slice'
+import { setSelectedDashboardModal } from '../Dashboard/dashboard.slice'
 import { setSelectedUserItemModal } from '../userItem/userItem.slice'
 
 const CancelSubscriptionModal = () => {
