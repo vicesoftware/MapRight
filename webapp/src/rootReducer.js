@@ -4,7 +4,7 @@ import * as modal from './widgets/modal'
 import * as pendingRequest from './infrastructure/pendingRequest'
 import * as notificationPopup from './infrastructure/notificationPopup'
 import * as httpCache from './infrastructure/httpCache'
-import * as dashboard from './features/dashboard'
+import * as dashboard from './features/Dashboard'
 import * as userItem from './features/userItem'
 
 export default combineReducers({
