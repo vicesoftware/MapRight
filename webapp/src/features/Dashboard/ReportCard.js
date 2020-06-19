@@ -5,44 +5,47 @@ import Graph from '../../widgets/Graph'
 import Icons from '../../assets/icons'
 import classNames from 'classnames'
 
-const ReportCard = () => {
+const ReportCard = ({ activeUserRate }) => {
 	const mockData = [
 		{
-			title: 'User Churn Rate',
 			graphValue: '4.2%',
 			range: '10.5%',
 			successValue: '60.1%',
 		},
 		{
-			title: 'Lifetime Value',
 			graphValue: '$149',
 			range: '$555',
 			successValue: '27.01%',
 		},
 		{
-			title: 'Average Revenue Per User',
 			graphValue: '$200',
 			range: '$100',
 			successValue: '200%',
 		},
 		{
-			title: 'Total MRR',
 			graphValue: '$50.5K',
 			range: '$50.4K',
 			successValue: '00.2%',
 		},
 		{
-			title: 'Active User Rate',
 			graphValue: '89.12%',
 			range: '78.50%',
 			successValue: '13.17%',
 		},
 		{
-			title: 'Growth Rate',
 			graphValue: '25.5%',
 			range: '24%',
 			successValue: '4.17%',
 		},
+	]
+
+	const title = [
+		'User Churn Rate',
+		'Lifetime Value',
+		'Average Revenue Per User',
+		'Total MRR',
+		'Active User Rate',
+		'Growth Rate',
 	]
 
 	return (
@@ -50,7 +53,7 @@ const ReportCard = () => {
 			<Row>
 				{mockData.map((entry, index) => (
 					<Col key={entry.title} md={6} lg={6} xl={4}>
-						<Cards key={entry.title} title={entry.title}>
+						<Cards key={title[index]} title={title[index]}>
 							<div className='d-flex align-items-center justify-content-between mb-20'>
 								<div className='flex-fill d-flex'>
 									<h4 className='mb-0 gotham f-24 font-weight-bold graph-value'>
@@ -92,7 +95,7 @@ const ReportCard = () => {
 									</div>
 								</div>
 							</div>
-							<Graph />
+							<Graph activeUserRate={activeUserRate} index={index} />
 						</Cards>
 					</Col>
 				))}
