@@ -1,13 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit'
+import * as asyncActions from './dashboard.asyncActions'
 
 const initialState = {
 	selectedDashboardModal: null,
+	growthRate: {},
 }
 
 const slice = createSlice({
 	name: 'dashboard',
 	initialState,
-	reducers: {},
+	extraReducers: {
+		[asyncActions.fetchGrowthRate.fulfilled]: (state, action) => {
+			state.growthRate = action.payload
+		},
+	},
 })
 
 export default slice
