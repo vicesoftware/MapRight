@@ -1,14 +1,18 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import doAsync from '../../infrastructure/doAsync'
+import { createFilterString } from './dashboard.utils'
 
 export const fetchAllSubscriptions = createAsyncThunk(
 	'subscriptions',
-	async ({ useCaching, noBusySpinner } = {}, thunkArgs) =>
-		await doAsync({
-			url: 'api/subscriptions?beginTime=2020-06-03&endTime=2020-06-22',
+	async (filters, thunkArgs, { noBusySpinner } = {}) => {
+		const filterQs = createFilterString(filters)
+		const fullQs = filterQs ? `?${filterQs}` : ''
+		return await doAsync({
+			url: `api/subscriptions${fullQs}`,
 			useCaching: true,
 			noBusySpinner,
 			errorMessage: 'Unable to load subscription data. Please try again later.',
 			...thunkArgs,
 		})
+	}
 )

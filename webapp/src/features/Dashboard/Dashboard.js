@@ -10,7 +10,12 @@ import { fetchAllSubscriptions } from './dashboard.asyncActions'
 const Dashboard = () => {
 	const dispatch = useDispatch()
 	useEffect(() => {
-		dispatch(fetchAllSubscriptions())
+		dispatch(
+			fetchAllSubscriptions({
+				beginTime: '2020-06-03',
+				endTime: '2020-06-22',
+			})
+		)
 	}, [dispatch])
 	return (
 		<>
