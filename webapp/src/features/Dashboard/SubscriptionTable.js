@@ -13,8 +13,10 @@ import Table from '../../widgets/Table'
 import './Dashboard.css'
 import Icons from '../../assets/icons'
 import classNames from 'classnames'
+import { useHistory } from 'react-router-dom'
 
 const SubscriptionTable = () => {
+	const history = useHistory()
 	const viewButton = (cell, row) => (
 		<div className='d-inline-flex align-items-center'>
 			{row.userName === 'Test1' ? (
@@ -30,6 +32,7 @@ const SubscriptionTable = () => {
 			<Button
 				variant='outline-primary'
 				className='font-weight-normal btn-sm ml-3'
+				onClick={() => history.push('userItem')}
 			>
 				View
 			</Button>
@@ -281,7 +284,7 @@ const SubscriptionTable = () => {
 				keyField='id'
 				data={mockTableGroupUsersData}
 				columns={groupUsersColumn}
-				classes='bg-light'
+				classes='bg-light mb-0'
 				headerWrapperClasses='f-12 text-uppercase'
 			/>
 		),

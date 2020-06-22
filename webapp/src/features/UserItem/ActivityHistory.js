@@ -155,6 +155,7 @@ const ActivityHistory = () => {
 		{
 			dataField: 'eventDate',
 			text: 'Event Date',
+			classes: 'event-date',
 		},
 	]
 	const mockActivityHistory = [

@@ -12,9 +12,6 @@
 	opacity: 0.16;
 	z-index: 1;
 }
-tr th:nth-last-child(1) {
-	width: 150px !important;
-}
-tr td:nth-last-child(1) {
+.event-date {
 	opacity: 0.5;
 }

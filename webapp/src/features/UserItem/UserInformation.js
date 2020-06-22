@@ -1,6 +1,6 @@
 import React from 'react'
 import { Col, Row } from 'react-bootstrap'
-import Cards from '../../widgets/cards'
+import Cards from '../../widgets/Cards'
 import classNames from 'classnames'
 
 const UserInformation = () => {

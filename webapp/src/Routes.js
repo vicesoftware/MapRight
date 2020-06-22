@@ -10,6 +10,9 @@ export default function Routes() {
 			<PageRoute path='/userItem'>
 				<UserItem />
 			</PageRoute>
+			<PageRoute path='/'>
+				<Dashboard />
+			</PageRoute>
 		</Switch>
 	)
 }

@@ -13,7 +13,10 @@
 	border-top: 0px !important;
 	color: #294c6a;
 }
-
+.table-sidebar.table td,
+.table-sidebar.table th {
+	padding: 15px 0px;
+}
 .table tbody td {
 	padding: 15px 25px;
 	vertical-align: middle;
@@ -22,6 +25,9 @@
 }
 .text-table-data td:nth-last-child(1) {
 	text-align: right;
+}
+tr th:nth-last-child(1) {
+	width: 136px !important;
 }
 .invertArrow {
 	transform: rotate(180deg);

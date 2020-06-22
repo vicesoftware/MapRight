@@ -11,6 +11,8 @@ import closeDarkIcon from './closeDark.svg'
 import alertIcon from './alert.svg'
 import caretIcon from './caret.svg'
 import caretDarkIcon from './caretDark.svg'
+import binIcon from './bin.svg'
+import arrowRightDarkIcon from './arrowRightDark.svg'
 
 export default {
 	arrowDownIcon,
@@ -26,4 +28,6 @@ export default {
 	alertIcon,
 	caretIcon,
 	caretDarkIcon,
+	binIcon,
+	arrowRightDarkIcon,
 }
