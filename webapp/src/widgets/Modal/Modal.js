@@ -3,7 +3,6 @@ import { Modal, Image } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux'
 import { selectShowModal } from './modal.selectors'
 import { actions } from './modal.slice'
-import './Modal.css'
 import Icons from '../../assets/icons'
 
 const { hideModal } = actions

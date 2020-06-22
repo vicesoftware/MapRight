@@ -13,6 +13,12 @@ import caretIcon from './caret.svg'
 import caretDarkIcon from './caretDark.svg'
 import binIcon from './bin.svg'
 import arrowRightDarkIcon from './arrowRightDark.svg'
+import orangeDollarIcon from './orangeDollar.svg'
+import redDollarIcon from './redDollar.svg'
+import redArrowDownIcon from './redArrowDown.svg'
+import greenDollarIcon from './greenDollar.svg'
+import blueDollarIcon from './blueDollar.svg'
+import greenArrowUpIcon from './greenArrowUp.svg'
 
 export default {
 	arrowDownIcon,
@@ -30,4 +36,10 @@ export default {
 	caretDarkIcon,
 	binIcon,
 	arrowRightDarkIcon,
+	orangeDollarIcon,
+	redDollarIcon,
+	redArrowDownIcon,
+	greenDollarIcon,
+	blueDollarIcon,
+	greenArrowUpIcon,
 }

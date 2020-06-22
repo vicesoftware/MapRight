@@ -37,7 +37,7 @@ const UserInformation = () => {
 	return (
 		<Cards className='mb-25' title='User Information'>
 			<Row className='user-info'>
-				{mockData.map((user, index) => (
+				{mockData.map((user) => (
 					<Col
 						md={6}
 						key={user.name}

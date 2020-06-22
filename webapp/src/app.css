@@ -267,7 +267,6 @@ select.form-control,
 	margin-bottom: 25px !important;
 }
 /*###############-------Btn  css End------###################*/
-
 /*###############-------Modal  css Start------###################*/
 .modal-footer,
 .modal-header,
@@ -277,12 +276,6 @@ select.form-control,
 .modal-backdrop {
 	background-color: #0d1e45;
 }
-.upload-container {
-	min-height: 150px;
-	border: 2px dashed rgba(13, 30, 69, 0.5);
-	border-radius: 4px;
-}
-
 .modal-header .close {
 	position: relative;
 	right: 15px;
@@ -299,21 +292,6 @@ select.form-control,
 	}
 }
 /*###############-------Modal  css End------###################*/
-
-.bg-light {
-	background-color: #f7f7fc !important;
-}
-
-.arrow-bubble {
-	height: 25px;
-	width: 25px;
-}
-.arrow-bubble span {
-	left: 0px;
-	top: 0px;
-	opacity: 0.16;
-	z-index: 1;
-}
 .graph-value {
 	min-width: 90px;
 }
