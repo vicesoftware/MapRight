@@ -1,6 +1,6 @@
 import React from 'react'
 import { Line, defaults } from 'react-chartjs-2'
-import moment from 'moment'
+import moment from 'moment/moment'
 
 defaults.global.defaultFontSize = '8'
 

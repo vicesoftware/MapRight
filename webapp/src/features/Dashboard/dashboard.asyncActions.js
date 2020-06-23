@@ -1,12 +1,15 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import doAsync from '../../infrastructure/doAsync'
+import { createFilterString } from './dashboard.utils'
 
 export const fetchActiveUserRate = createAsyncThunk(
 	'api/activeUserRate',
-	async ({ useCaching, noBusySpinner } = {}, thunkArgs) => {
+	async (filters, thunkArgs, { noBusySpinner } = {}) => {
+		const filterQs = createFilterString(filters)
+		const fullQs = filterQs ? `?${filterQs}` : ''
 		return await doAsync({
-			url: 'api/activeUserRate?beginTime=2020-06-03&endTime=2020-06-22',
-			useCaching,
+			url: `api/users/activeRate${fullQs}`,
+			useCaching: true,
 			noBusySpinner,
 			errorMessage: 'Unable to load active user rate. Please try again later.',
 			...thunkArgs,

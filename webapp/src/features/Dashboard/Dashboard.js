@@ -13,7 +13,12 @@ const Dashboard = () => {
 	const activeUserRate = useSelector(selectActiveUserRate)
 
 	useEffect(() => {
-		dispatch(fetchActiveUserRate())
+		dispatch(
+			fetchActiveUserRate({
+				beginTime: '2020-06-03',
+				endTime: '2020-06-22',
+			})
+		)
 	}, [dispatch])
 	return (
 		<>
