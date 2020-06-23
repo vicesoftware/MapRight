@@ -1,8 +1,12 @@
-import React from 'react'
-import { Row, Col, Button, Image } from 'react-bootstrap'
+import React, { useState } from 'react'
+import { Row, Col, Image } from 'react-bootstrap'
+import Dropdown from 'react-bootstrap/Dropdown'
+import DropdownButton from 'react-bootstrap/DropdownButton'
 import Icons from '../../assets/icons'
 import Table from '../../widgets/Table'
 import classNames from 'classnames'
+import { setSelectedEventType } from './userItem.slice'
+import { useDispatch } from 'react-redux'
 
 const ActivityHistory = () => {
 	const eventIconFormatter = (row) => {
@@ -112,6 +116,13 @@ const ActivityHistory = () => {
 			eventDate: 'May 24, 2020',
 		},
 	]
+	const [dropdownTitle, setDropdownTitle] = useState('Filter by Event Type')
+	const dispatch = useDispatch()
+	const handleClick = (e) => {
+		setDropdownTitle(e)
+		dispatch(setSelectedEventType({ eventType: e }))
+	}
+
 	return (
 		<>
 			<Row className='mb-20'>
@@ -121,17 +132,47 @@ const ActivityHistory = () => {
 					</h4>
 				</Col>
 				<Col md={6} lg={4} xl={3} className='ml-auto'>
-					<Button
+					<DropdownButton
 						variant='outline-primary'
 						className='d-flex align-items-center justify-content-between w-100'
+						title={
+							<div>
+								{dropdownTitle}
+								<Image
+									src={Icons.arrowDownDarkIcon}
+									alt='arrow-down-dark'
+									width='20'
+								/>
+							</div>
+						}
 					>
-						Filter by Event Type
-						<Image
-							src={Icons.arrowDownDarkIcon}
-							alt='arrow-down-dark'
-							width='20'
-						/>
-					</Button>
+						<Dropdown.Menu>
+							<Dropdown.Item
+								eventKey='Subscription Creation'
+								onSelect={handleClick}
+							>
+								Subscription Creation
+							</Dropdown.Item>
+							<Dropdown.Item eventKey='Invoices paid' onSelect={handleClick}>
+								Invoices paid
+							</Dropdown.Item>
+							<Dropdown.Item
+								eventKey='Upgrading or downgrading'
+								onSelect={handleClick}
+							>
+								Upgrading or downgrading
+							</Dropdown.Item>
+							<Dropdown.Item eventKey='Churn' onSelect={handleClick}>
+								Churn
+							</Dropdown.Item>
+							<Dropdown.Item eventKey='Refunds' onSelect={handleClick}>
+								Refunds
+							</Dropdown.Item>
+							<Dropdown.Item eventKey='Credits' onSelect={handleClick}>
+								Credits
+							</Dropdown.Item>
+						</Dropdown.Menu>
+					</DropdownButton>
 				</Col>
 			</Row>
 			<Table
