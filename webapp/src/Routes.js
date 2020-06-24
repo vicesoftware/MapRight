@@ -7,7 +7,7 @@ import UserItem from './features/UserItem'
 export default function Routes() {
 	return (
 		<Switch>
-			<PageRoute path='/userItem'>
+			<PageRoute path='/user-Item'>
 				<UserItem />
 			</PageRoute>
 			<PageRoute path='/'>

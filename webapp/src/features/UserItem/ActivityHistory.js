@@ -3,60 +3,47 @@ import { Row, Col, Button, Image } from 'react-bootstrap'
 import Icons from '../../assets/icons'
 import Table from '../../widgets/Table'
 import classNames from 'classnames'
+import SortingCustomIcon from '../../widgets/SortingCustomIcon'
 
 const ActivityHistory = () => {
 	const eventIconFormatter = (row) => {
-		let credit = false
-		let refunded = false
-		let downgraded = false
-		let paid = false
-		let churn = false
-		let upgraded = false
-		let creation = false
-		if (row.includes('Credit')) {
-			credit = true
-		} else if (row.includes('Refunded')) {
-			refunded = true
-		} else if (row.includes('Downgraded')) {
-			downgraded = true
-		} else if (row.includes('Paid')) {
-			paid = true
-		} else if (row.includes('Churn')) {
-			churn = true
-		} else if (row.includes('Upgraded')) {
-			upgraded = true
-		} else if (row.includes('Subscription Creation')) {
-			creation = true
+		let iconName = ''
+		let iconClass = ''
+		switch (true) {
+			case row.includes('Credit'):
+				iconName = 'orangeDollarIcon'
+				iconClass = 'bg-warning'
+				break
+			case row.includes('Refunded'):
+				iconName = 'blueDollarIcon'
+				iconClass = 'bg-secondary'
+				break
+			case row.includes('Downgraded'):
+				iconName = 'redArrowDownIcon'
+				iconClass = 'bg-danger'
+				break
+			case row.includes('Paid'):
+			case row.includes('Subscription Creation'):
+				iconName = 'greenDollarIcon'
+				iconClass = 'bg-success'
+				break
+			case row.includes('Churn'):
+				iconName = 'redDollarIcon'
+				iconClass = 'bg-danger'
+				break
+			case row.includes('Upgraded'):
+				iconName = 'greenArrowUpIcon'
+				iconClass = 'bg-success'
+				break
+			default:
+				break
 		}
 		return (
 			<div className='d-flex align-items-center'>
 				<div className='arrow-bubble bubble-sm position-relative rounded-circle overflow-hidden d-flex align-items-center justify-content-center mr-2'>
-					{credit && (
-						<Image src={Icons.orangeDollarIcon} alt='orange-dollar-icon' />
-					)}
-					{refunded && (
-						<Image src={Icons.blueDollarIcon} alt='blue-dollar-icon' />
-					)}
-					{downgraded && (
-						<Image src={Icons.redArrowDownIcon} alt='red-arrow-down-icon' />
-					)}
-					{(paid || creation) && (
-						<Image src={Icons.greenDollarIcon} alt='green-dollar-icon' />
-					)}
-					{churn && <Image src={Icons.redDollarIcon} alt='red-dollar-icon' />}
-					{upgraded && (
-						<Image src={Icons.greenArrowUpIcon} alt='green-arrow-up-icon' />
-					)}
+					<Image src={Icons[iconName]} alt='events-icon' />
 					<span
-						className={classNames(
-							{
-								'bg-warning': credit,
-								'bg-secondary': refunded,
-								'bg-danger': downgraded || churn,
-								'bg-success': paid || upgraded || creation,
-							},
-							'position-absolute h-100 w-100'
-						)}
+						className={classNames(iconClass, 'position-absolute h-100 w-100')}
 					></span>
 				</div>
 				{row}
@@ -73,6 +60,8 @@ const ActivityHistory = () => {
 			dataField: 'eventDate',
 			text: 'Event Date',
 			classes: 'event-date',
+			sort: true,
+			sortCaret: SortingCustomIcon,
 		},
 	]
 	const mockActivityHistory = [
