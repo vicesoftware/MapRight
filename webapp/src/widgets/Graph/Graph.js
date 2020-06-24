@@ -4,31 +4,33 @@ import moment from 'moment/moment'
 
 defaults.global.defaultFontSize = '8'
 
-export const Graph = ({ activeUserRate, index }) => {
+export const Graph = ({ activeUserRateGraph, index }) => {
 	const label = []
 	const formattedLabels = []
 	const activeUserRateArray = []
-	const length = activeUserRate.data && activeUserRate.data.length
+	const length = activeUserRateGraph.data && activeUserRateGraph.data.length
 	const labelCount = 5
 	const increment = Math.round(length / labelCount)
 
-	activeUserRate.data &&
+	activeUserRateGraph.data &&
 		(length > 5
-			? activeUserRate.data.map((entry, index) => {
+			? activeUserRateGraph.data.map((entry, index) => {
 					if (Math.floor(index % increment) === 0) {
 						return (
-							label.push(activeUserRate.data[index].date),
+							label.push(activeUserRateGraph.data[index].date),
 							activeUserRateArray.push(
-								activeUserRate.data[index].activeUserRate
+								activeUserRateGraph.data[index].activeUserRate
 							)
 						)
 					}
 					return null
 			  })
-			: activeUserRate.data.map((entry, index) => {
+			: activeUserRateGraph.data.map((entry, index) => {
 					return (
-						label.push(activeUserRate.data[index].date),
-						activeUserRateArray.push(activeUserRate.data[index].activeUserRate)
+						label.push(activeUserRateGraph.data[index].date),
+						activeUserRateArray.push(
+							activeUserRateGraph.data[index].activeUserRate
+						)
 					)
 			  }))
 
