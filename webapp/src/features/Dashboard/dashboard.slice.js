@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
 import * as asyncActions from './dashboard.asyncActions'
 
-const allSubscriptionDefault = []
+const allSubscriptionsDefault = []
 
 const initialState = {
-	allSubscriptions: allSubscriptionDefault,
+	allSubscriptions: allSubscriptionsDefault,
 }
 
 const slice = createSlice({
@@ -13,7 +13,7 @@ const slice = createSlice({
 	reducers: {},
 	extraReducers: {
 		[asyncActions.fetchAllSubscriptions.fulfilled]: (state, action) => {
-			state.allSubscriptions = action.payload || allSubscriptionDefault
+			state.allSubscriptions = action.payload || allSubscriptionsDefault
 		},
 	},
 })
