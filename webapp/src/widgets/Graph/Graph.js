@@ -4,32 +4,18 @@ import moment from 'moment'
 
 defaults.global.defaultFontSize = '8'
 
-export const Graph = ({ growthRate, index }) => {
+export const Graph = ({ growthRateGraph, index }) => {
 	const label = []
 	const formattedLabels = []
 	const growthRateArray = []
-	const length = growthRate.data && growthRate.data.length
-	const labelCount = 5
-	let increment = Math.round(length / labelCount)
-	increment = increment === 1 ? increment + 1 : increment
 
-	growthRate.data &&
-		(length > 5
-			? growthRate.data.map((entry, index) => {
-					if (Math.floor(index % increment) === 0) {
-						return (
-							label.push(growthRate.data[index].Date),
-							growthRateArray.push(growthRate.data[index].GrowthRate)
-						)
-					}
-					return null
-			  })
-			: growthRate.data.map((entry, index) => {
-					return (
-						label.push(growthRate.data[index].Date),
-						growthRateArray.push(growthRate.data[index].GrowthRate)
-					)
-			  }))
+	growthRateGraph.data &&
+		growthRateGraph.data.map((entry, index) => {
+			return (
+				label.push(growthRateGraph.data[index].date),
+				growthRateArray.push(growthRateGraph.data[index].growthRate)
+			)
+		})
 
 	label.map((date) => formattedLabels.push(moment(date).format('MMM Do')))
 
