@@ -8,31 +8,14 @@ export const Graph = ({ activeUserRateGraph, index }) => {
 	const label = []
 	const formattedLabels = []
 	const activeUserRateArray = []
-	const length = activeUserRateGraph.data && activeUserRateGraph.data.length
-	const labelCount = 5
-	const increment = Math.round(length / labelCount)
 
 	activeUserRateGraph.data &&
-		(length > 5
-			? activeUserRateGraph.data.map((entry, index) => {
-					if (Math.floor(index % increment) === 0) {
-						return (
-							label.push(activeUserRateGraph.data[index].date),
-							activeUserRateArray.push(
-								activeUserRateGraph.data[index].activeUserRate
-							)
-						)
-					}
-					return null
-			  })
-			: activeUserRateGraph.data.map((entry, index) => {
-					return (
-						label.push(activeUserRateGraph.data[index].date),
-						activeUserRateArray.push(
-							activeUserRateGraph.data[index].activeUserRate
-						)
-					)
-			  }))
+		activeUserRateGraph.data.map((entry, index) => {
+			return (
+				label.push(activeUserRateGraph.data[index].date),
+				activeUserRateArray.push(activeUserRateGraph.data[index].activeUserRate)
+			)
+		})
 
 	label.map((date) => formattedLabels.push(moment(date).format('MMM Do')))
 
