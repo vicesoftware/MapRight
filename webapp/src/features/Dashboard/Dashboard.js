@@ -5,11 +5,9 @@ import DashboardFilters from './DashboardFilters'
 import Row from 'react-bootstrap/Row'
 import './Dashboard.css'
 import { fetchLifeTimeValue } from './dashboard.asyncActions'
-import { useDispatch, useSelector } from 'react-redux'
-import { selectLifeTimeValue } from './dashboard.selectors'
+import { useDispatch } from 'react-redux'
 
 const Dashboard = () => {
-	const lifeTimeValue = useSelector(selectLifeTimeValue)
 	const dispatch = useDispatch()
 
 	useEffect(() => {
@@ -24,7 +22,7 @@ const Dashboard = () => {
 			</div>
 			<Row>
 				<DashboardFilters />
-				<ReportCard lifeTimeValue={lifeTimeValue} />
+				<ReportCard />
 			</Row>
 			<SubscriptionTable />
 		</>
