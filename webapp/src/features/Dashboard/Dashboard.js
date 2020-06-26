@@ -1,11 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import SubscriptionTable from './SubscriptionTable'
 import ReportCard from './ReportCard'
 import DashboardFilters from './DashboardFilters'
 import Row from 'react-bootstrap/Row'
 import './Dashboard.css'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchChurnRate } from './dashboard.asyncActions'
+import { selectChurnRate } from './dashboard.selectors'
+import isEmpty from 'lodash/isEmpty'
 
 const Dashboard = () => {
+	const dispatch = useDispatch()
+	const allChurnRate = useSelector(selectChurnRate)
+	useEffect(() => {
+		dispatch(fetchChurnRate({ beginTime: '2020-06-03', endTime: '2020-06-22' }))
+	}, [dispatch])
 	return (
 		<>
 			<div className='py-30'>
@@ -15,7 +24,7 @@ const Dashboard = () => {
 			</div>
 			<Row>
 				<DashboardFilters />
-				<ReportCard />
+				{!isEmpty(allChurnRate) && <ReportCard />}
 			</Row>
 			<SubscriptionTable />
 		</>
