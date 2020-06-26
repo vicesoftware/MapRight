@@ -1,12 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit'
 import * as asyncActions from './dashboard.asyncActions'
 
+const allSubscriptionsDefault = []
+
 const initialState = {
 	churnRate: {},
 	lifeTimeValue: {},
 	totalRevenue: {},
 	activeUserRate: {},
 	growthRate: {},
+	allSubscriptions: allSubscriptionsDefault,
 }
 
 const slice = createSlice({
@@ -28,6 +31,9 @@ const slice = createSlice({
 		},
 		[asyncActions.fetchGrowthRate.fulfilled]: (state, action) => {
 			state.growthRate = action.payload
+		},
+		[asyncActions.fetchAllSubscriptions.fulfilled]: (state, action) => {
+			state.allSubscriptions = action.payload || allSubscriptionsDefault
 		},
 	},
 })

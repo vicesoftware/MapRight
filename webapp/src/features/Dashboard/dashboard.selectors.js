@@ -11,3 +11,6 @@ export const selectTotalRevenue = (state) => selectSlice(state).totalRevenue
 export const selectActiveUserRate = (state) => selectSlice(state).activeUserRate
 
 export const selectGrowthRate = (state) => selectSlice(state).growthRate
+
+export const selectAllSubscriptions = (state) =>
+	selectSlice(state).allSubscriptions

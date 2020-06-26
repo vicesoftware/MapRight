@@ -32,6 +32,12 @@ const Dashboard = () => {
 		dispatch(
 			fetchGrowthRate({ beginTime: '2020-06-12', endTime: '2020-06-20' })
 		)
+		dispatch(
+			fetchAllSubscriptions({
+				beginTime: '2020-06-03',
+				endTime: '2020-06-22',
+			})
+		)
 	}, [dispatch])
 	return (
 		<>
