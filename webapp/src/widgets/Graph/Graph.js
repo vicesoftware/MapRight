@@ -4,31 +4,21 @@ import moment from 'moment'
 
 defaults.global.defaultFontSize = '8'
 
-export const Graph = ({ totalRevenueGraph, index }) => {
+export const Graph = ({ data }) => {
 	const label = []
-	const formattedLabels = []
-	const totalRevenueArray = []
+	const coordinates = []
 
-	totalRevenueGraph.data &&
-		totalRevenueGraph.data.map((entry, index) => {
-			return (
-				label.push(totalRevenueGraph.data[index].endDate),
-				totalRevenueArray.push(totalRevenueGraph.data[index].revenueAtEndDate)
-			)
+	data.length &&
+		data.forEach((each) => {
+			label.push(each.date)
+			coordinates.push(each.value)
 		})
 
-	label.map((date) => formattedLabels.push(moment(date).format('MMM Do')))
+	const formattedLabels = label.map((eachDate) =>
+		moment(eachDate).format('MMM Do').slice(0, -2)
+	)
 
-	const handleData = (index) => {
-		switch (index) {
-			case 4:
-				return totalRevenueArray
-			default:
-				return null
-		}
-	}
-
-	const data = {
+	const graphData = {
 		labels: formattedLabels,
 		datasets: [
 			{
@@ -37,7 +27,7 @@ export const Graph = ({ totalRevenueGraph, index }) => {
 				lineTension: 0.1,
 				borderColor: 'rgba(44, 130, 201, 1)',
 				borderWidth: 2,
-				data: handleData(index + 1),
+				data: coordinates,
 			},
 		],
 	}
@@ -45,7 +35,7 @@ export const Graph = ({ totalRevenueGraph, index }) => {
 	return (
 		<div className='graph'>
 			<Line
-				data={data}
+				data={graphData}
 				options={{
 					responsive: true,
 					maintainAspectRatio: false,
