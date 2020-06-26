@@ -3,7 +3,7 @@ import doAsync from '../../infrastructure/doAsync'
 import { createFilterString } from './dashboard.utils'
 
 export const fetchActiveUserRate = createAsyncThunk(
-	'api/activeUserRate',
+	'api/users/activeRate',
 	async (filters, thunkArgs, { noBusySpinner } = {}) => {
 		const filterQs = createFilterString(filters)
 		const fullQs = filterQs ? `?${filterQs}` : ''

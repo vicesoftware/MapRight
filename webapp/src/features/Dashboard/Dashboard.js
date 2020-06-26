@@ -5,12 +5,10 @@ import DashboardFilters from './DashboardFilters'
 import Row from 'react-bootstrap/Row'
 import './Dashboard.css'
 import { fetchActiveUserRate } from './dashboard.asyncActions'
-import { useDispatch, useSelector } from 'react-redux'
-import { selectActiveUserRate } from './dashboard.selectors'
+import { useDispatch } from 'react-redux'
 
 const Dashboard = () => {
 	const dispatch = useDispatch()
-	const activeUserRate = useSelector(selectActiveUserRate)
 
 	useEffect(() => {
 		dispatch(
@@ -29,7 +27,7 @@ const Dashboard = () => {
 			</div>
 			<Row>
 				<DashboardFilters />
-				<ReportCard activeUserRate={activeUserRate} />
+				<ReportCard />
 			</Row>
 			<SubscriptionTable />
 		</>

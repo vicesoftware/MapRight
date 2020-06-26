@@ -4,31 +4,21 @@ import moment from 'moment/moment'
 
 defaults.global.defaultFontSize = '8'
 
-export const Graph = ({ activeUserRateGraph, index }) => {
+export const Graph = ({ data }) => {
 	const label = []
-	const formattedLabels = []
-	const activeUserRateArray = []
+	const coordinates = []
 
-	activeUserRateGraph.data &&
-		activeUserRateGraph.data.map((entry, index) => {
-			return (
-				label.push(activeUserRateGraph.data[index].date),
-				activeUserRateArray.push(activeUserRateGraph.data[index].activeUserRate)
-			)
+	data.length &&
+		data.forEach((each) => {
+			label.push(each.date)
+			coordinates.push(each.value)
 		})
 
-	label.map((date) => formattedLabels.push(moment(date).format('MMM Do')))
+	const formattedLabels = label.map((eachDate) =>
+		moment(eachDate).format('MMM Do').slice(0, -2)
+	)
 
-	const handleData = (index) => {
-		switch (index) {
-			case 5:
-				return activeUserRateArray
-			default:
-				return null
-		}
-	}
-
-	const data = {
+	const graphData = {
 		labels: formattedLabels,
 		datasets: [
 			{
@@ -37,14 +27,15 @@ export const Graph = ({ activeUserRateGraph, index }) => {
 				lineTension: 0.1,
 				borderColor: 'rgba(44, 130, 201, 1)',
 				borderWidth: 2,
-				data: handleData(index + 1),
+				data: coordinates,
 			},
 		],
 	}
+
 	return (
 		<div className='graph'>
 			<Line
-				data={data}
+				data={graphData}
 				options={{
 					responsive: true,
 					maintainAspectRatio: false,
