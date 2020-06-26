@@ -20,16 +20,18 @@ import {
 	fetchActivityHistory,
 } from './userItem.asyncActions'
 import isEmpty from 'lodash/isEmpty'
+import { useParams } from 'react-router'
 
 const UserItem = () => {
 	const dispatch = useDispatch()
+	const { userId } = useParams()
 	const selectedModal = useSelector(selectedUserItemModal)
 	const allUserInformation = useSelector(selectUserInformation)
 	const selectedBillingHistory = useSelector(selectBillingHistory)
 	useEffect(() => {
 		dispatch(fetchUserInformation())
 		dispatch(fetchBillingHistory())
-		dispatch(fetchActivityHistory('n1baksigi8be'))
+		dispatch(fetchActivityHistory(userId))
 	}, [dispatch])
 	return (
 		<>

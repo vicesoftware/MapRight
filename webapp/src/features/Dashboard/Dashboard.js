@@ -26,7 +26,7 @@ const Dashboard = () => {
 			fetchLifeTimeValue({ beginTime: '2020-07-03', endTime: '2020-07-10' })
 		)
 		dispatch(
-			fetchTotalRevenue({ beginTime: '2020-06-16', endTime: '2020-06-20' })
+			fetchTotalRevenue({ beginTime: '2020-06-03', endTime: '2020-06-20' })
 		)
 		dispatch(
 			fetchAverageRevenue({ beginTime: '2020-06-16', endTime: '2020-06-20' })

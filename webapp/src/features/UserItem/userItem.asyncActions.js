@@ -5,7 +5,7 @@ export const fetchUserInformation = createAsyncThunk(
 	'api/userInformation',
 	async ({ noBusySpinner } = {}, thunkArgs) => {
 		return await doAsync({
-			url: 'api/userInformation?subscriptionId=n0il5aple0be',
+			url: 'api/userInformation?subscriptionId=n1baut0n8wua',
 			useCaching: true,
 			noBusySpinner,
 			errorMessage: 'Unable to load user information. Please try again later.',
@@ -18,7 +18,7 @@ export const fetchBillingHistory = createAsyncThunk(
 	'api/billingHistory',
 	async ({ noBusySpinner } = {}, thunkArgs) => {
 		return await doAsync({
-			url: 'api/billingHistory?subscriptionId=n0il5aple0be',
+			url: 'api/billingHistory?subscriptionId=n1baut0n8wua',
 			useCaching: true,
 			noBusySpinner,
 			errorMessage: 'Unable to load billing history. Please try again later.',

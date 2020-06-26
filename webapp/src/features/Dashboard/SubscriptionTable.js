@@ -37,7 +37,7 @@ const SubscriptionTable = () => {
 			<Button
 				variant='outline-primary'
 				className='font-weight-normal btn-sm ml-3'
-				onClick={() => history.push('user-item')}
+				onClick={() => history.push(`user-item/${row.id}`)}
 			>
 				View
 			</Button>
