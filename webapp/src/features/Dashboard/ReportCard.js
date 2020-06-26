@@ -66,7 +66,8 @@ const ReportCard = () => {
 												'text-success gotham f-18 font-weight-bold mb-0 mr-1',
 												{
 													'text-danger':
-														entry.totalValue < entry.totalValuePrevious,
+														parseInt(entry.totalValue) <
+														parseInt(entry.totalValuePrevious),
 												}
 											)}
 										>
@@ -75,7 +76,8 @@ const ReportCard = () => {
 										<div className='arrow-bubble position-relative rounded-circle overflow-hidden d-flex align-items-center justify-content-center'>
 											<img
 												src={
-													entry.totalValue < entry.totalValuePrevious
+													parseInt(entry.totalValue) <
+													parseInt(entry.totalValuePrevious)
 														? Icons.arrowDownIcon
 														: Icons.arrowUpIcon
 												}
@@ -87,7 +89,8 @@ const ReportCard = () => {
 													'bg-success position-absolute h-100 w-100',
 													{
 														'bg-danger':
-															entry.totalValue < entry.totalValuePrevious,
+															parseInt(entry.totalValue) <
+															parseInt(entry.totalValuePrevious),
 													}
 												)}
 											></span>

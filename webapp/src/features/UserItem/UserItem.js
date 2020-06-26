@@ -32,7 +32,7 @@ const UserItem = () => {
 		dispatch(fetchUserInformation())
 		dispatch(fetchBillingHistory())
 		dispatch(fetchActivityHistory(userId))
-	}, [dispatch])
+	}, [dispatch, userId])
 	return (
 		<>
 			{selectedModal && getUserItemModal(selectedModal)}
