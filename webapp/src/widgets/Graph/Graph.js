@@ -4,32 +4,18 @@ import moment from 'moment'
 
 defaults.global.defaultFontSize = '8'
 
-export const Graph = ({ lifeTimeValue, index }) => {
+export const Graph = ({ lifeTimeValueGraph, index }) => {
 	const label = []
 	const formattedLabels = []
 	const lifeTimeValueArray = []
-	const length = lifeTimeValue.data && lifeTimeValue.data.length
-	const labelCount = 5
-	let increment = Math.round(length / labelCount)
-	increment = increment === 1 ? increment + 1 : increment
 
-	lifeTimeValue.data &&
-		(length > 5
-			? lifeTimeValue.data.map((entry, index) => {
-					if (Math.floor(index % increment) === 0) {
-						return (
-							label.push(lifeTimeValue.data[index].date),
-							lifeTimeValueArray.push(lifeTimeValue.data[index].LifetimeValue)
-						)
-					}
-					return null
-			  })
-			: lifeTimeValue.data.map((entry, index) => {
-					return (
-						label.push(lifeTimeValue.data[index].date),
-						lifeTimeValueArray.push(lifeTimeValue.data[index].LifetimeValue)
-					)
-			  }))
+	lifeTimeValueGraph.data &&
+		lifeTimeValueGraph.data.map((entry, index) => {
+			return (
+				label.push(lifeTimeValueGraph.data[index].date),
+				lifeTimeValueArray.push(lifeTimeValueGraph.data[index].LifetimeValue)
+			)
+		})
 
 	label.map((date) => formattedLabels.push(moment(date).format('MMM Do')))
 
