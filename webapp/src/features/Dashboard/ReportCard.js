@@ -4,100 +4,115 @@ import Cards from '../../widgets/Cards'
 import Graph from '../../widgets/Graph'
 import Icons from '../../assets/icons'
 import classNames from 'classnames'
+import { selectGrowthRate } from './dashboard.selectors'
+import { useSelector } from 'react-redux'
+import isEmpty from 'lodash/isEmpty'
+import BusyIndicator from '../../widgets/busyIndicator'
 
 const ReportCard = () => {
-	const mockData = [
+	const allGrowthRate = useSelector(selectGrowthRate)
+	const reportCards = [
 		{
-			title: 'User Churn Rate',
-			graphValue: '4.2%',
-			range: '10.5%',
-			successValue: '60.1%',
+			totalValue: 4.2,
+			from: 10.5,
+			successValue: 60.1,
+			upgrade: true,
+			data: [],
 		},
 		{
-			title: 'Lifetime Value',
-			graphValue: '$149',
-			range: '$555',
-			successValue: '27.01%',
+			totalValue: 149,
+			from: 555,
+			successValue: 27.01,
+			upgrade: true,
+			data: [],
+		},
+		{ totalValue: 200, from: 100, successValue: 200, upgrade: true, data: [] },
+		{
+			totalValue: 50.5,
+			from: 50.4,
+			successValue: 0.02,
+			upgrade: true,
+			data: [],
 		},
 		{
-			title: 'Average Revenue Per User',
-			graphValue: '$200',
-			range: '$100',
-			successValue: '200%',
-		},
-		{
-			title: 'Total MRR',
-			graphValue: '$50.5K',
-			range: '$50.4K',
-			successValue: '00.2%',
-		},
-		{
-			title: 'Active User Rate',
-			graphValue: '89.12%',
-			range: '78.50%',
-			successValue: '13.17%',
-		},
-		{
-			title: 'Growth Rate',
-			graphValue: '25.5%',
-			range: '24%',
-			successValue: '4.17%',
+			totalValue: 89.12,
+			from: 78.5,
+			successValue: 13.17,
+			upgrade: true,
+			data: [],
 		},
 	]
 
+	!isEmpty(allGrowthRate) && reportCards.splice(5, 0, allGrowthRate)
+
+	const title = [
+		'User Churn Rate',
+		'Lifetime Value',
+		'Average Revenue Per User',
+		'Total MRR',
+		'Active User Rate',
+		'Growth Rate',
+	]
+
 	return (
-		<Col lg={8} xl={9}>
-			<Row>
-				{mockData.map((entry, index) => (
-					<Col key={entry.title} md={6} lg={6} xl={4}>
-						<Cards key={entry.title} title={entry.title}>
-							<div className='d-flex align-items-center justify-content-between mb-20'>
-								<div className='flex-fill d-flex'>
-									<h4 className='mb-0 gotham f-24 font-weight-bold graph-value'>
-										{entry.graphValue}
-									</h4>
-									<span className='f-12 align-self-end gotham opacity-50'>
-										{`From ${entry.range}`}
-									</span>
-								</div>
-								<div className='d-flex align-items-center'>
-									<h5
-										className={classNames(
-											'text-success gotham f-18 font-weight-bold mb-0 mr-1',
-											{
-												'text-danger': entry.successValue === '27.01%',
-											}
-										)}
-									>
-										{entry.successValue}
-									</h5>
-									<div className='arrow-bubble position-relative rounded-circle overflow-hidden d-flex align-items-center justify-content-center'>
-										<img
-											src={
-												entry.successValue === '27.01%'
-													? Icons.arrowDownIcon
-													: Icons.arrowUpIcon
-											}
-											alt=''
-											height='16'
-										/>
-										<span
+		<BusyIndicator>
+			<Col lg={8} xl={9}>
+				<Row>
+					{reportCards.map((entry, index) => (
+						<Col key={entry.title} md={6} lg={6} xl={4}>
+							<Cards key={title[index]} title={title[index]}>
+								<div className='d-flex align-items-center justify-content-between mb-20'>
+									<div className='flex-fill d-flex'>
+										<h4 className='mb-0 gotham f-24 font-weight-bold graph-value'>
+											{index === 0 || index === 4 || index === 5
+												? `${entry.totalValue}%`
+												: `$${entry.totalValue}`}
+										</h4>
+										<span className='f-12 align-self-end gotham opacity-50'>
+											{index === 0 || index === 4 || index === 5
+												? `From ${entry.from}%`
+												: `From $${entry.from}`}
+										</span>
+									</div>
+									<div className='d-flex align-items-center'>
+										<h5
 											className={classNames(
-												'bg-success position-absolute h-100 w-100',
+												'text-success gotham f-18 font-weight-bold mb-0 mr-1',
 												{
-													'bg-danger': entry.successValue === '27.01%',
+													'text-danger': !entry.upgrade,
 												}
 											)}
-										></span>
+										>
+											{`${entry.successValue}%`}
+										</h5>
+										<div className='arrow-bubble position-relative rounded-circle overflow-hidden d-flex align-items-center justify-content-center'>
+											<img
+												src={
+													!entry.upgrade
+														? Icons.arrowDownIcon
+														: Icons.arrowUpIcon
+												}
+												alt=''
+												height='16'
+											/>
+											<span
+												className={classNames(
+													'bg-success position-absolute h-100 w-100',
+													{
+														'bg-danger': !entry.upgrade,
+													}
+												)}
+											></span>
+										</div>
 									</div>
 								</div>
-							</div>
-							<Graph />
-						</Cards>
-					</Col>
-				))}
-			</Row>
-		</Col>
+								<Graph data={entry.data} />
+							</Cards>
+						</Col>
+					))}
+				</Row>
+			</Col>
+		</BusyIndicator>
 	)
 }
 export default ReportCard
