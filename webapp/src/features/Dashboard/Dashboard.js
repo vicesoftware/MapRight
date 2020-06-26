@@ -5,11 +5,9 @@ import DashboardFilters from './DashboardFilters'
 import Row from 'react-bootstrap/Row'
 import './Dashboard.css'
 import { fetchGrowthRate } from './dashboard.asyncActions'
-import { useDispatch, useSelector } from 'react-redux'
-import { selectGrowthRate } from './dashboard.selectors'
+import { useDispatch } from 'react-redux'
 
 const Dashboard = () => {
-	const growthRate = useSelector(selectGrowthRate)
 	const dispatch = useDispatch()
 
 	useEffect(() => {
@@ -24,7 +22,7 @@ const Dashboard = () => {
 			</div>
 			<Row>
 				<DashboardFilters />
-				<ReportCard growthRate={growthRate} />
+				<ReportCard />
 			</Row>
 			<SubscriptionTable />
 		</>
