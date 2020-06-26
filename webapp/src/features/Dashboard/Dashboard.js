@@ -11,6 +11,7 @@ import {
 	fetchTotalRevenue,
 	fetchActiveUserRate,
 	fetchGrowthRate,
+	fetchAllSubscriptions,
 } from './dashboard.asyncActions'
 import { selectChurnRate } from './dashboard.selectors'
 import isEmpty from 'lodash/isEmpty'
@@ -21,16 +22,16 @@ const Dashboard = () => {
 	useEffect(() => {
 		dispatch(fetchChurnRate({ beginTime: '2020-06-03', endTime: '2020-06-22' }))
 		dispatch(
-			fetchLifeTimeValue({ beginTime: '2020-06-03', endTime: '2020-06-22' })
+			fetchLifeTimeValue({ beginTime: '2020-07-03', endTime: '2020-07-10' })
 		)
 		dispatch(
-			fetchTotalRevenue({ beginTime: '2020-06-16', endTime: '2020-07-16' })
+			fetchTotalRevenue({ beginTime: '2020-06-16', endTime: '2020-06-20' })
 		)
 		dispatch(
 			fetchActiveUserRate({ beginTime: '2020-06-03', endTime: '2020-06-22' })
 		)
 		dispatch(
-			fetchGrowthRate({ beginTime: '2020-06-12', endTime: '2020-06-20' })
+			fetchGrowthRate({ beginTime: '2020-06-16', endTime: '2020-06-20' })
 		)
 		dispatch(
 			fetchAllSubscriptions({

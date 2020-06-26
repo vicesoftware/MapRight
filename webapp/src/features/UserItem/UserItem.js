@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import ActivityHistory from './ActivityHistory'
 import UserInformation from './UserInformation'
 import BillingHistory from './BillingHistory'
@@ -7,13 +7,30 @@ import './UserItem.css'
 import Icons from '../../assets/icons'
 import { useDispatch, useSelector } from 'react-redux'
 import { setSelectedUserItemModal } from './userItem.slice'
-import { selectedUserItemModal } from './userItem.selectors'
+import {
+	selectedUserItemModal,
+	selectUserInformation,
+	selectBillingHistory,
+} from './userItem.selectors'
 import getUserItemModal from '../UserItemModals'
 import { USERITEM_MODAL_TYPES } from '../UserItemModals/UserItemModals.constants'
+import {
+	fetchUserInformation,
+	fetchBillingHistory,
+	fetchActivityHistory,
+} from './userItem.asyncActions'
+import isEmpty from 'lodash/isEmpty'
 
 const UserItem = () => {
 	const dispatch = useDispatch()
 	const selectedModal = useSelector(selectedUserItemModal)
+	const allUserInformation = useSelector(selectUserInformation)
+	const selectedBillingHistory = useSelector(selectBillingHistory)
+	useEffect(() => {
+		dispatch(fetchUserInformation())
+		dispatch(fetchBillingHistory())
+		dispatch(fetchActivityHistory('n1baksigi8be'))
+	}, [dispatch])
 	return (
 		<>
 			{selectedModal && getUserItemModal(selectedModal)}
@@ -46,8 +63,8 @@ const UserItem = () => {
 			</header>
 			<Row>
 				<Col lg={4}>
-					<UserInformation />
-					<BillingHistory />
+					{!isEmpty(allUserInformation) && <UserInformation />}
+					{!isEmpty(selectedBillingHistory) && <BillingHistory />}
 				</Col>
 				<Col lg={8}>
 					<ActivityHistory />

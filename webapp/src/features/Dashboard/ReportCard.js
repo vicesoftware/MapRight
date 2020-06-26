@@ -19,7 +19,7 @@ const ReportCard = () => {
 	const allChurnRate = useSelector(selectChurnRate)
 	const allLifeTimeValue = useSelector(selectLifeTimeValue)
 	const allTotalRevenue = useSelector(selectTotalRevenue)
-	const allActiveUserRate = userSelector(selectActiveUserRate)
+	const allActiveUserRate = useSelector(selectActiveUserRate)
 	const allGrowthRate = useSelector(selectGrowthRate)
 	const reportCards = [
 		{
@@ -29,22 +29,6 @@ const ReportCard = () => {
 			upgrade: true,
 			data: [],
 		},
-		{ totalValue: 200, from: 100, successValue: 200, upgrade: true, data: [] },
-		{
-			totalValue: 50.5,
-			from: 50.4,
-			successValue: 0.2,
-			upgrade: true,
-			data: [],
-		},
-		{
-			totalValue: 89.12,
-			from: 78.5,
-			successValue: 13.17,
-			upgrade: true,
-			data: [],
-		},
-		{ totalValue: 25.5, from: 24, successValue: 4.17, upgrade: true, data: [] },
 	]
 	!isEmpty(allChurnRate) && reportCards.splice(0, 0, allChurnRate)
 	!isEmpty(allLifeTimeValue) && reportCards.splice(1, 0, allLifeTimeValue)
@@ -77,8 +61,8 @@ const ReportCard = () => {
 										</h4>
 										<span className='f-12 align-self-end gotham opacity-50'>
 											{index === 0 || index === 4 || index === 5
-												? `From ${entry.from}%`
-												: `From $${entry.from}`}
+												? `From ${entry.totalValuePrevious}%`
+												: `From $${entry.totalValuePrevious}`}
 										</span>
 									</div>
 									<div className='d-flex align-items-center'>
@@ -86,7 +70,8 @@ const ReportCard = () => {
 											className={classNames(
 												'text-success gotham f-18 font-weight-bold mb-0 mr-1',
 												{
-													'text-danger': !entry.upgrade,
+													'text-danger':
+														entry.totalValue < entry.totalValuePrevious,
 												}
 											)}
 										>
@@ -106,7 +91,8 @@ const ReportCard = () => {
 												className={classNames(
 													'bg-success position-absolute h-100 w-100',
 													{
-														'bg-danger': !entry.upgrade,
+														'bg-danger':
+															!entry.totalValue < entry.totalValuePrevious,
 													}
 												)}
 											></span>

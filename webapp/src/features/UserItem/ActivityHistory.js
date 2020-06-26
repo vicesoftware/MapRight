@@ -4,8 +4,13 @@ import Icons from '../../assets/icons'
 import Table from '../../widgets/Table'
 import classNames from 'classnames'
 import SortingCustomIcon from '../../widgets/SortingCustomIcon'
+import { selectedActivityHistory } from './userItem.selectors'
+import { useSelector } from 'react-redux'
+import moment from 'moment/moment'
+import BusyIndicator from '../../widgets/busyIndicator'
 
 const ActivityHistory = () => {
+	const userActivityHistory = useSelector(selectedActivityHistory)
 	const eventIconFormatter = (row) => {
 		let iconName = ''
 		let iconClass = ''
@@ -50,6 +55,7 @@ const ActivityHistory = () => {
 			</div>
 		)
 	}
+	const dateFormatter = (row) => moment(row).format('LL')
 	const activityHistoryColumn = [
 		{
 			dataField: 'event',
@@ -62,43 +68,7 @@ const ActivityHistory = () => {
 			classes: 'event-date',
 			sort: true,
 			sortCaret: SortingCustomIcon,
-		},
-	]
-	const mockActivityHistory = [
-		{
-			id: 1,
-			event: '$100 Credit',
-			eventDate: 'May 24, 2020',
-		},
-		{
-			id: 2,
-			event: 'Refunded $70 from Invoice #123456789',
-			eventDate: 'May 24, 2020',
-		},
-		{
-			id: 3,
-			event: 'Downgraded Account to Flex Plan',
-			eventDate: 'May 24, 2020',
-		},
-		{
-			id: 4,
-			event: 'Paid $70',
-			eventDate: 'May 24, 2020',
-		},
-		{
-			id: 5,
-			event: 'Involuntary Churn',
-			eventDate: 'May 24, 2020',
-		},
-		{
-			id: 6,
-			event: 'Upgraded Account to Unlimited Plan',
-			eventDate: 'May 24, 2020',
-		},
-		{
-			id: 7,
-			event: 'Subscription Creation',
-			eventDate: 'May 24, 2020',
+			formatter: dateFormatter,
 		},
 	]
 	return (
@@ -123,14 +93,16 @@ const ActivityHistory = () => {
 					</Button>
 				</Col>
 			</Row>
-			<Table
-				keyField='id'
-				data={mockActivityHistory}
-				columns={activityHistoryColumn}
-				classes='bg-white'
-				headerWrapperClasses='f-12 text-uppercase bg-primary text-white'
-				bodyClasses='f-14 font-weight-bold'
-			/>
+			<BusyIndicator>
+				<Table
+					keyField='id'
+					data={userActivityHistory}
+					columns={activityHistoryColumn}
+					classes='bg-white'
+					headerWrapperClasses='f-12 text-uppercase bg-primary text-white'
+					bodyClasses='f-14 font-weight-bold'
+				/>
+			</BusyIndicator>
 		</>
 	)
 }

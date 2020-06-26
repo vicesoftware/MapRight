@@ -5,17 +5,23 @@ import Table from '../../widgets/Table'
 import Icons from '../../assets/icons'
 import { useDispatch, useSelector } from 'react-redux'
 import { setSelectedUserItemModal } from './userItem.slice'
-import { selectedUserItemModal } from './userItem.selectors'
+import {
+	selectedUserItemModal,
+	selectBillingHistory,
+} from './userItem.selectors'
 import { USERITEM_MODAL_TYPES } from '../UserItemModals/UserItemModals.constants'
 import getUserItemModal from '../UserItemModals'
+import moment from 'moment/moment'
+import BusyIndicator from '../../widgets/busyIndicator'
 
 const BillingHistory = () => {
 	const dispatch = useDispatch()
 	const selectedModal = useSelector(selectedUserItemModal)
+	const selectedBillingHistory = useSelector(selectBillingHistory)
 
 	const deleteButtonFormatter = (cell, row) => (
 		<div className='d-inline-flex align-items-center'>
-			{row.revenue === '$115' && (
+			{/* {row.revenue === '$115' && (
 				<Button variant='link' className='btn-auto p-0'>
 					<Image
 						src={Icons.alertIcon}
@@ -24,7 +30,7 @@ const BillingHistory = () => {
 						className='ml-2'
 					/>
 				</Button>
-			)}
+			)} */}
 			<Button
 				variant='link'
 				className='btn-auto p-0'
@@ -47,39 +53,7 @@ const BillingHistory = () => {
 		</div>
 	)
 
-	const mockTableData = [
-		{
-			id: 1,
-			invoice: '#123456789',
-			date: '01/01/22',
-			revenue: '$115',
-		},
-		{
-			id: 2,
-			invoice: '#123456789',
-			date: '01/01/22',
-			revenue: '$105',
-		},
-		{
-			id: 3,
-			invoice: '#123456789',
-			date: '01/01/22',
-			revenue: '$120',
-		},
-		{
-			id: 4,
-			invoice: '#123456789',
-			date: '01/01/22',
-			revenue: '$220',
-		},
-		{
-			id: 5,
-			invoice: '#123456789',
-			date: '01/01/22',
-			revenue: '$50',
-		},
-	]
-
+	const dateFormatter = (row) => moment(row).format('L')
 	const Column = [
 		{
 			dataField: 'invoice',
@@ -89,6 +63,7 @@ const BillingHistory = () => {
 		{
 			dataField: 'date',
 			text: 'date',
+			formatter: dateFormatter,
 		},
 		{
 			dataField: 'revenue',
@@ -105,14 +80,16 @@ const BillingHistory = () => {
 		<>
 			{selectedModal && getUserItemModal(selectedModal)}
 			<Cards className='mb-25' title='Billing History' buttonText='Add Invoice'>
-				<Table
-					keyField='id'
-					data={mockTableData}
-					columns={Column}
-					classes='table-sidebar'
-					headerWrapperClasses='f-12 text-uppercase text-secondary'
-					bodyClasses='f-14 font-weight-normal'
-				/>
+				<BusyIndicator>
+					<Table
+						keyField='id'
+						data={selectedBillingHistory.data}
+						columns={Column}
+						classes='table-sidebar'
+						headerWrapperClasses='f-12 text-uppercase text-secondary'
+						bodyClasses='f-14 font-weight-normal'
+					/>
+				</BusyIndicator>
 			</Cards>
 		</>
 	)

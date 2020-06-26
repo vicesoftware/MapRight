@@ -24,7 +24,7 @@ const SubscriptionTable = () => {
 	const allSubscriptions = useSelector(selectAllSubscriptions)
 	const viewButton = (cell, row) => (
 		<div className='d-inline-flex align-items-center'>
-			{row.userName === 'Test1' ? (
+			{false ? (
 				<Button variant='link' className='btn-auto p-0'>
 					<Image
 						src={Icons.alertIcon}
@@ -65,7 +65,7 @@ const SubscriptionTable = () => {
 			text: 'Group Name',
 			sort: true,
 			sortCaret: SortingCustomIcon,
-			formatter: NullCheckAlert,
+			// formatter: NullCheckAlert,
 		},
 		{
 			dataField: 'totalUsers',
