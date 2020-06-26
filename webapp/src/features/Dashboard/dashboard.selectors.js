@@ -8,6 +8,8 @@ export const selectLifeTimeValue = (state) => selectSlice(state).lifeTimeValue
 
 export const selectTotalRevenue = (state) => selectSlice(state).totalRevenue
 
+export const selectAverageRevenue = (state) => selectSlice(state).averageRevenue
+
 export const selectActiveUserRate = (state) => selectSlice(state).activeUserRate
 
 export const selectGrowthRate = (state) => selectSlice(state).growthRate

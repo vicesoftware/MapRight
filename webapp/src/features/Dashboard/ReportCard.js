@@ -10,6 +10,7 @@ import {
 	selectTotalRevenue,
 	selectActiveUserRate,
 	selectGrowthRate,
+	selectAverageRevenue,
 } from './dashboard.selectors'
 import { useSelector } from 'react-redux'
 import isEmpty from 'lodash/isEmpty'
@@ -19,19 +20,13 @@ const ReportCard = () => {
 	const allChurnRate = useSelector(selectChurnRate)
 	const allLifeTimeValue = useSelector(selectLifeTimeValue)
 	const allTotalRevenue = useSelector(selectTotalRevenue)
+	const allAverageRevenue = useSelector(selectAverageRevenue)
 	const allActiveUserRate = useSelector(selectActiveUserRate)
 	const allGrowthRate = useSelector(selectGrowthRate)
-	const reportCards = [
-		{
-			totalValue: 149,
-			from: 555,
-			successValue: 27.01,
-			upgrade: true,
-			data: [],
-		},
-	]
+	const reportCards = []
 	!isEmpty(allChurnRate) && reportCards.splice(0, 0, allChurnRate)
 	!isEmpty(allLifeTimeValue) && reportCards.splice(1, 0, allLifeTimeValue)
+	!isEmpty(allAverageRevenue) && reportCards.splice(2, 0, allAverageRevenue)
 	!isEmpty(allTotalRevenue) && reportCards.splice(3, 0, allTotalRevenue)
 	!isEmpty(allActiveUserRate) && reportCards.splice(4, 0, allActiveUserRate)
 	!isEmpty(allGrowthRate) && reportCards.splice(5, 0, allGrowthRate)
@@ -80,7 +75,7 @@ const ReportCard = () => {
 										<div className='arrow-bubble position-relative rounded-circle overflow-hidden d-flex align-items-center justify-content-center'>
 											<img
 												src={
-													!entry.upgrade
+													entry.totalValue < entry.totalValuePrevious
 														? Icons.arrowDownIcon
 														: Icons.arrowUpIcon
 												}
@@ -92,7 +87,7 @@ const ReportCard = () => {
 													'bg-success position-absolute h-100 w-100',
 													{
 														'bg-danger':
-															!entry.totalValue < entry.totalValuePrevious,
+															entry.totalValue < entry.totalValuePrevious,
 													}
 												)}
 											></span>

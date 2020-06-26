@@ -7,6 +7,7 @@ const initialState = {
 	churnRate: {},
 	lifeTimeValue: {},
 	totalRevenue: {},
+	averageRevenue: {},
 	activeUserRate: {},
 	growthRate: {},
 	allSubscriptions: allSubscriptionsDefault,
@@ -25,6 +26,9 @@ const slice = createSlice({
 		},
 		[asyncActions.fetchTotalRevenue.fulfilled]: (state, action) => {
 			state.totalRevenue = action.payload
+		},
+		[asyncActions.fetchAverageRevenue.fulfilled]: (state, action) => {
+			state.averageRevenue = action.payload
 		},
 		[asyncActions.fetchActiveUserRate.fulfilled]: (state, action) => {
 			state.activeUserRate = action.payload

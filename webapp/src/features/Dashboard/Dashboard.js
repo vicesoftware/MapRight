@@ -9,6 +9,7 @@ import {
 	fetchChurnRate,
 	fetchLifeTimeValue,
 	fetchTotalRevenue,
+	fetchAverageRevenue,
 	fetchActiveUserRate,
 	fetchGrowthRate,
 	fetchAllSubscriptions,
@@ -26,6 +27,9 @@ const Dashboard = () => {
 		)
 		dispatch(
 			fetchTotalRevenue({ beginTime: '2020-06-16', endTime: '2020-06-20' })
+		)
+		dispatch(
+			fetchAverageRevenue({ beginTime: '2020-06-16', endTime: '2020-06-20' })
 		)
 		dispatch(
 			fetchActiveUserRate({ beginTime: '2020-06-03', endTime: '2020-06-22' })

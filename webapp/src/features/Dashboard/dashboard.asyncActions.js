@@ -48,6 +48,21 @@ export const fetchTotalRevenue = createAsyncThunk(
 	}
 )
 
+export const fetchAverageRevenue = createAsyncThunk(
+	'api/averageRevenue',
+	async (filters, thunkArgs, { noBusySpinner } = {}) => {
+		const filterQs = createFilterString(filters)
+		const fullQs = filterQs ? `?${filterQs}` : ''
+		return await doAsync({
+			url: `api/averageRevenue${fullQs}`,
+			useCaching: true,
+			noBusySpinner,
+			errorMessage: 'Unable to load average revenue. Please try again later.',
+			...thunkArgs,
+		})
+	}
+)
+
 export const fetchActiveUserRate = createAsyncThunk(
 	'api/activeUserRate',
 	async (filters, thunkArgs, { noBusySpinner } = {}) => {

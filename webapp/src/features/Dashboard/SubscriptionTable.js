@@ -24,7 +24,7 @@ const SubscriptionTable = () => {
 	const allSubscriptions = useSelector(selectAllSubscriptions)
 	const viewButton = (cell, row) => (
 		<div className='d-inline-flex align-items-center'>
-			{false ? (
+			{/* {false ? (
 				<Button variant='link' className='btn-auto p-0'>
 					<Image
 						src={Icons.alertIcon}
@@ -33,7 +33,7 @@ const SubscriptionTable = () => {
 						className='ml-2'
 					/>
 				</Button>
-			) : null}
+			) : null} */}
 			<Button
 				variant='outline-primary'
 				className='font-weight-normal btn-sm ml-3'
@@ -43,21 +43,21 @@ const SubscriptionTable = () => {
 			</Button>
 		</div>
 	)
-	const NullCheckAlert = (row) => (
-		<div className='d-flex align-items-center'>
-			{row === 'Cody Miles' && (
-				<Button variant='link' className='btn-auto p-0'>
-					<Image
-						src={Icons.alertIcon}
-						alt='alert-icon'
-						width='20'
-						className='mr-1'
-					/>
-				</Button>
-			)}
-			{row}
-		</div>
-	)
+	// const NullCheckAlert = (row) => (
+	// 	<div className='d-flex align-items-center'>
+	// 		{row === 'Cody Miles' && (
+	// 			<Button variant='link' className='btn-auto p-0'>
+	// 				<Image
+	// 					src={Icons.alertIcon}
+	// 					alt='alert-icon'
+	// 					width='20'
+	// 					className='mr-1'
+	// 				/>
+	// 			</Button>
+	// 		)}
+	// 		{row}
+	// 	</div>
+	// )
 
 	const groupColumn = [
 		{
