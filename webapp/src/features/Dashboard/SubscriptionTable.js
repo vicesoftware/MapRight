@@ -13,8 +13,11 @@ import Table from '../../widgets/Table'
 import './Dashboard.css'
 import Icons from '../../assets/icons'
 import classNames from 'classnames'
+import { useHistory } from 'react-router-dom'
+import SortingCustomIcon from '../../widgets/SortingCustomIcon'
 
 const SubscriptionTable = () => {
+	const history = useHistory()
 	const viewButton = (cell, row) => (
 		<div className='d-inline-flex align-items-center'>
 			{row.userName === 'Test1' ? (
@@ -30,6 +33,7 @@ const SubscriptionTable = () => {
 			<Button
 				variant='outline-primary'
 				className='font-weight-normal btn-sm ml-3'
+				onClick={() => history.push('user-item')}
 			>
 				View
 			</Button>
@@ -50,58 +54,6 @@ const SubscriptionTable = () => {
 			{row}
 		</div>
 	)
-	const columnGroupSortCaret = (order) => {
-		return (
-			<span className='order-arrow d-flex flex-column'>
-				{(order === 'asc' || !order) && (
-					<span className='arrow-up'>
-						<Image
-							src={Icons.caretIcon}
-							alt='caret-icon'
-							className='opacity-50 upArrow'
-							width='10'
-						/>
-					</span>
-				)}
-				{(order === 'desc' || !order) && (
-					<span className='arrow-down'>
-						<Image
-							src={Icons.caretIcon}
-							alt='caret-icon'
-							className='opacity-50'
-							width='10'
-						/>
-					</span>
-				)}
-			</span>
-		)
-	}
-	const columnGroupUserSortCaret = (order) => {
-		return (
-			<span className='order-arrow d-flex flex-column'>
-				{(order === 'asc' || !order) && (
-					<span className='arrow-up'>
-						<Image
-							src={Icons.caretDarkIcon}
-							alt='caret-icon'
-							className='opacity-50 upArrow'
-							width='10'
-						/>
-					</span>
-				)}
-				{(order === 'desc' || !order) && (
-					<span className='arrow-down'>
-						<Image
-							src={Icons.caretDarkIcon}
-							alt='caret-icon'
-							className='opacity-50'
-							width='10'
-						/>
-					</span>
-				)}
-			</span>
-		)
-	}
 	const mockTableGroupData = [
 		{
 			id: 1,
@@ -184,50 +136,50 @@ const SubscriptionTable = () => {
 			dataField: 'groupName',
 			text: 'Group Name',
 			sort: true,
-			sortCaret: columnGroupSortCaret,
+			sortCaret: SortingCustomIcon,
 			formatter: NullCheckAlert,
 		},
 		{
 			dataField: 'totalUsers',
 			text: 'Total Users',
 			sort: true,
-			sortCaret: columnGroupSortCaret,
+			sortCaret: SortingCustomIcon,
 		},
 		{
 			dataField: 'totalRevenue',
 			text: 'Total Revenue',
 			sort: true,
-			sortCaret: columnGroupSortCaret,
+			sortCaret: SortingCustomIcon,
 		},
 		{
 			dataField: 'mrr',
 			text: 'Mrr',
 			sort: true,
-			sortCaret: columnGroupSortCaret,
+			sortCaret: SortingCustomIcon,
 		},
 		{
 			dataField: 'arpu',
 			text: 'Arpu',
 			sort: true,
-			sortCaret: columnGroupSortCaret,
+			sortCaret: SortingCustomIcon,
 		},
 		{
 			dataField: 'churnRate',
 			text: 'Churn Rate',
 			sort: true,
-			sortCaret: columnGroupSortCaret,
+			sortCaret: SortingCustomIcon,
 		},
 		{
 			dataField: 'taxExempt',
 			text: 'Tax Exempt?',
 			sort: true,
-			sortCaret: columnGroupSortCaret,
+			sortCaret: SortingCustomIcon,
 		},
 		{
 			dataField: 'rate',
 			text: 'Rate',
 			sort: true,
-			sortCaret: columnGroupSortCaret,
+			sortCaret: SortingCustomIcon,
 		},
 	]
 
@@ -236,37 +188,43 @@ const SubscriptionTable = () => {
 			dataField: 'userName',
 			text: 'User Name',
 			sort: true,
-			sortCaret: columnGroupUserSortCaret,
+			sortCaret: SortingCustomIcon,
+			userColumn: true,
 		},
 		{
 			dataField: 'subscriptionStatus',
 			text: 'Subscription Status',
 			sort: true,
-			sortCaret: columnGroupUserSortCaret,
+			sortCaret: SortingCustomIcon,
+			userColumn: true,
 		},
 		{
 			dataField: 'plan',
 			text: 'Plan',
 			sort: true,
-			sortCaret: columnGroupUserSortCaret,
+			sortCaret: SortingCustomIcon,
+			userColumn: true,
 		},
 		{
 			dataField: 'addOns',
 			text: 'Add-Ons',
 			sort: true,
-			sortCaret: columnGroupUserSortCaret,
+			sortCaret: SortingCustomIcon,
+			userColumn: true,
 		},
 		{
 			dataField: 'totalRevenue',
 			text: 'Total Revenue',
 			sort: true,
-			sortCaret: columnGroupUserSortCaret,
+			sortCaret: SortingCustomIcon,
+			userColumn: true,
 		},
 		{
 			dataField: 'userRole',
 			text: 'User Role',
 			sort: true,
-			sortCaret: columnGroupUserSortCaret,
+			sortCaret: SortingCustomIcon,
+			userColumn: true,
 		},
 		{
 			dataField: 'view',
@@ -281,7 +239,7 @@ const SubscriptionTable = () => {
 				keyField='id'
 				data={mockTableGroupUsersData}
 				columns={groupUsersColumn}
-				classes='bg-light'
+				classes='bg-light mb-0'
 				headerWrapperClasses='f-12 text-uppercase'
 			/>
 		),

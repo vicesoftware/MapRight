@@ -1,5 +1,11 @@
+.bg-light {
+	background-color: #f7f7fc !important;
+}
 .bg-primary {
 	background-color: #273766 !important;
+}
+.text-secondary {
+	color: #294c6a !important;
 }
 .text-success {
 	color: #6bb645 !important;
@@ -12,6 +18,12 @@
 }
 .f-14 {
 	font-size: 14px !important;
+}
+.opacity-50 {
+	opacity: 0.5;
+}
+.f-18 {
+	font-size: 18px !important;
 }
 .f-16 {
 	font-size: 16px !important;
@@ -36,6 +48,9 @@
 }
 .mr-30 {
 	margin-right: 30px !important;
+}
+.mb-20 {
+	margin-bottom: 20px !important;
 }
 .mb-25 {
 	margin-bottom: 25px !important;
@@ -192,6 +207,10 @@ select.form-control,
 	line-height: 10px;
 	font-weight: bold !important;
 }
+.btn-small {
+	height: 30px;
+	min-width: 150px;
+}
 .btn-auto {
 	min-width: auto;
 	height: auto;
@@ -230,8 +249,8 @@ select.form-control,
 	border-color: #273764;
 }
 .btn-outline-primary:hover {
-	color: #fff;
-	background-color: #273764;
+	color: #273765;
+	background-color: #2737650f;
 	border-color: #273764;
 }
 .btn-outline-primary:not(:disabled):not(.disabled).active,
@@ -244,22 +263,35 @@ select.form-control,
 .btn-link {
 	color: #294c6a;
 }
+.mb-30 {
+	margin-bottom: 25px !important;
+}
 /*###############-------Btn  css End------###################*/
-
-.bg-light {
-	background-color: #f7f7fc !important;
+/*###############-------Modal  css Start------###################*/
+.modal-footer,
+.modal-header,
+.modal-body {
+	padding: 15px;
 }
-
-.arrow-bubble {
-	height: 25px;
-	width: 25px;
+.modal-backdrop {
+	background-color: #0d1e45;
 }
-.arrow-bubble span {
-	left: 0px;
-	top: 0px;
-	opacity: 0.16;
-	z-index: 1;
+.modal-header .close {
+	position: relative;
+	right: 15px;
+	top: 15px;
 }
+@media (min-width: 576px) {
+	.modal-dialog {
+		max-width: 690px;
+	}
+}
+@media (min-width: 768px) {
+	.modal-footer .btn-secondary {
+		min-width: 250px;
+	}
+}
+/*###############-------Modal  css End------###################*/
 .graph-value {
 	min-width: 90px;
 }
