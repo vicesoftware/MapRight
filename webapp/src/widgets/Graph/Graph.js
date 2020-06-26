@@ -4,31 +4,18 @@ import moment from 'moment'
 
 defaults.global.defaultFontSize = '8'
 
-export const Graph = ({ totalRevenue, index }) => {
+export const Graph = ({ totalRevenueGraph, index }) => {
 	const label = []
 	const formattedLabels = []
 	const totalRevenueArray = []
-	const length = totalRevenue.data && totalRevenue.data.length
-	const labelCount = 5
-	const increment = Math.round(length / labelCount)
 
-	totalRevenue.data &&
-		(length > 5
-			? totalRevenue.data.map((entry, index) => {
-					if (Math.floor(index % increment) === 0) {
-						return (
-							label.push(totalRevenue.data[index].endDate),
-							totalRevenueArray.push(totalRevenue.data[index].revenueAtEndDate)
-						)
-					}
-					return null
-			  })
-			: totalRevenue.data.map((entry, index) => {
-					return (
-						label.push(totalRevenue.data[index].endDate),
-						totalRevenueArray.push(totalRevenue.data[index].revenueAtEndDate)
-					)
-			  }))
+	totalRevenueGraph.data &&
+		totalRevenueGraph.data.map((entry, index) => {
+			return (
+				label.push(totalRevenueGraph.data[index].endDate),
+				totalRevenueArray.push(totalRevenueGraph.data[index].revenueAtEndDate)
+			)
+		})
 
 	label.map((date) => formattedLabels.push(moment(date).format('MMM Do')))
 
