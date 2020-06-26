@@ -4,13 +4,23 @@ import Cards from '../../widgets/Cards'
 import Graph from '../../widgets/Graph'
 import Icons from '../../assets/icons'
 import classNames from 'classnames'
-import { selectChurnRate } from './dashboard.selectors'
+import {
+	selectChurnRate,
+	selectLifeTimeValue,
+	selectTotalRevenue,
+	selectActiveUserRate,
+	selectGrowthRate,
+} from './dashboard.selectors'
 import { useSelector } from 'react-redux'
 import isEmpty from 'lodash/isEmpty'
 import BusyIndicator from '../../widgets/busyIndicator'
 
 const ReportCard = () => {
 	const allChurnRate = useSelector(selectChurnRate)
+	const allLifeTimeValue = useSelector(selectLifeTimeValue)
+	const allTotalRevenue = useSelector(selectTotalRevenue)
+	const allActiveUserRate = userSelector(selectActiveUserRate)
+	const allGrowthRate = useSelector(selectGrowthRate)
 	const reportCards = [
 		{
 			totalValue: 149,
@@ -37,6 +47,10 @@ const ReportCard = () => {
 		{ totalValue: 25.5, from: 24, successValue: 4.17, upgrade: true, data: [] },
 	]
 	!isEmpty(allChurnRate) && reportCards.splice(0, 0, allChurnRate)
+	!isEmpty(allLifeTimeValue) && reportCards.splice(1, 0, allLifeTimeValue)
+	!isEmpty(allTotalRevenue) && reportCards.splice(3, 0, allTotalRevenue)
+	!isEmpty(allActiveUserRate) && reportCards.splice(4, 0, allActiveUserRate)
+	!isEmpty(allGrowthRate) && reportCards.splice(5, 0, allGrowthRate)
 
 	const title = [
 		'User Churn Rate',
