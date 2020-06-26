@@ -1,32 +1,39 @@
 import React from 'react'
 import { Line, defaults } from 'react-chartjs-2'
+import moment from 'moment/moment'
 
 defaults.global.defaultFontSize = '8'
 
-const mockData = {
-	label: ['April 1', 'April 6', 'April 11', 'April 16', 'April 21', 'April 21'],
-	coordinatesData: [3, 10.0, 5.0, 9.0],
-}
+export default function Graph({ data }) {
+	const label = []
+	const coordinates = []
 
-const data = {
-	labels: mockData.label,
-	datasets: [
-		{
-			label: '',
-			fill: false,
-			lineTension: 0.1,
-			borderColor: 'rgba(44, 130, 201, 1)',
-			borderWidth: 2,
-			data: mockData.coordinatesData,
-		},
-	],
-}
+	data.length &&
+		data.forEach((each) => {
+			label.push(each.date)
+			coordinates.push(each.value)
+		})
 
-export default function Graph() {
+	const formattedLabels = label.map((eachDate) =>
+		moment(eachDate).format('MMM Do').slice(0, -2)
+	)
+	const graphData = {
+		labels: formattedLabels,
+		datasets: [
+			{
+				label: '',
+				fill: false,
+				lineTension: 0.1,
+				borderColor: 'rgba(44, 130, 201, 1)',
+				borderWidth: 2,
+				data: coordinates,
+			},
+		],
+	}
 	return (
 		<div className='graph'>
 			<Line
-				data={data}
+				data={graphData}
 				options={{
 					responsive: true,
 					maintainAspectRatio: false,
@@ -44,6 +51,12 @@ export default function Graph() {
 								gridLines: {
 									display: false,
 									drawBorder: false,
+								},
+								ticks: {
+									suggestedMin: 1,
+									suggestedMax: 16,
+									stepSize: 2,
+									beginAtZero: false,
 								},
 							},
 						],
