@@ -55,7 +55,7 @@ const UserItem = () => {
 					<BillingHistory />
 				</Col>
 				<Col lg={8}>
-					<ActivityHistory />
+					<ActivityHistory isGroupSubscription={false} />
 				</Col>
 			</Row>
 		</>

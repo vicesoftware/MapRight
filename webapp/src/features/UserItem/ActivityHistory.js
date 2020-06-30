@@ -95,7 +95,7 @@ const ActivityHistory = () => {
 			</Row>
 			<Table
 				keyField='id'
-				data={allActivityHistory}
+				data={isGroupSubscription ? [] : allActivityHistory}
 				columns={activityHistoryColumn}
 				classes='bg-white'
 				headerWrapperClasses='f-12 text-uppercase bg-primary text-white'
