@@ -20,7 +20,8 @@ const Cards = ({ ...props }) => {
 				})}
 			>
 				<Card.Body className='p-15'>
-					{props.title === 'Billing History' ? (
+					{props.title === 'Billing History' &&
+					props.buttonText === 'Add Invoice' ? (
 						<div className='d-flex align-items-center'>
 							<span className='font-weight-normal d-block gotham lh-25 mb-15'>
 								{props.title}

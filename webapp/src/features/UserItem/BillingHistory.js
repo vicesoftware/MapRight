@@ -9,7 +9,7 @@ import { selectedUserItemModal } from './userItem.selectors'
 import { USERITEM_MODAL_TYPES } from '../UserItemModals/UserItemModals.constants'
 import getUserItemModal from '../UserItemModals'
 
-const BillingHistory = () => {
+const BillingHistory = ({ isGroupSubscription }) => {
 	const dispatch = useDispatch()
 	const selectedModal = useSelector(selectedUserItemModal)
 
@@ -30,7 +30,10 @@ const BillingHistory = () => {
 				className='btn-auto p-0'
 				onClick={() =>
 					dispatch(
-						setSelectedUserItemModal(USERITEM_MODAL_TYPES.DELETE_INVOICE_MODAL)
+						setSelectedUserItemModal({
+							modalName: USERITEM_MODAL_TYPES.DELETE_INVOICE_MODAL,
+							id: row.invoice,
+						})
 					)
 				}
 			>
@@ -97,14 +100,19 @@ const BillingHistory = () => {
 		{
 			dataField: 'button',
 			text: '',
-			formatter: deleteButtonFormatter,
+			formatter: isGroupSubscription ? deleteButtonFormatter : null,
 		},
 	]
 
 	return (
 		<>
-			{selectedModal && getUserItemModal(selectedModal)}
-			<Cards className='mb-25' title='Billing History' buttonText='Add Invoice'>
+			{selectedModal &&
+				getUserItemModal(selectedModal.modalName, selectedModal.id)}
+			<Cards
+				className='mb-25'
+				title='Billing History'
+				buttonText={isGroupSubscription ? 'Add Invoice' : ''}
+			>
 				<Table
 					keyField='id'
 					data={mockTableData}

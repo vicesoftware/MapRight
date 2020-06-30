@@ -47,7 +47,7 @@ const UserItem = () => {
 			<Row>
 				<Col lg={4}>
 					<UserInformation />
-					<BillingHistory />
+					<BillingHistory isGroupSubscription={false} />
 				</Col>
 				<Col lg={8}>
 					<ActivityHistory />

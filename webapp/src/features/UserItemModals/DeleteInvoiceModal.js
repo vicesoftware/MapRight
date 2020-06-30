@@ -3,8 +3,9 @@ import Modal, { hideModal, showModal } from '../../widgets/Modal'
 import { Button } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 import { setSelectedUserItemModal } from '../UserItem/userItem.slice'
+import { deleteInvoice } from '../UserItem/userItem.asyncActions'
 
-const DeleteInvoiceModal = () => {
+const DeleteInvoiceModal = ({ invoiceId }) => {
 	const dispatch = useDispatch()
 	const resetModal = () => dispatch(setSelectedUserItemModal(null))
 
@@ -22,7 +23,15 @@ const DeleteInvoiceModal = () => {
 
 	const footer = (
 		<>
-			<Button variant='secondary'>Confirm Deletion</Button>
+			<Button
+				variant='secondary'
+				onClick={() => {
+					dispatch(deleteInvoice(invoiceId.slice(1)))
+					handleClose()
+				}}
+			>
+				Confirm Deletion
+			</Button>
 			<Button variant='outline-primary' onClick={handleClose}>
 				Go Back
 			</Button>
