@@ -260,6 +260,13 @@ select.form-control,
 	background-color: #273765;
 	border-color: #273765;
 }
+.btn-outline-primary:not(:disabled):not(.disabled).active,
+.btn-outline-primary:not(:disabled):not(.disabled):active,
+.show > .btn-outline-primary.dropdown-toggle {
+	color: #273764;
+	background-color: transparent;
+	border-color: #273765;
+}
 .btn-link {
 	color: #294c6a;
 }

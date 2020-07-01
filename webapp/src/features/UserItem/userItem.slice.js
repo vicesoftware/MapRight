@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
 	selectedUserItemModal: null,
-	eventType: '',
 }
 
 const slice = createSlice({
@@ -12,9 +11,6 @@ const slice = createSlice({
 		setSelectedUserItemModal(state, action) {
 			state.selectedUserItemModal = action.payload || null
 		},
-		setSelectedEventType(state, action) {
-			state.eventType = action.payload
-		},
 	},
 })
 
@@ -22,6 +18,6 @@ export default slice
 
 export const {
 	name,
-	actions: { setSelectedUserItemModal, setSelectedEventType },
+	actions: { setSelectedUserItemModal },
 	reducer,
 } = slice

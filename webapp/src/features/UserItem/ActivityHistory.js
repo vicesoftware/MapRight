@@ -1,14 +1,13 @@
 import React, { useState } from 'react'
-import { Row, Col, Image } from 'react-bootstrap'
-import Dropdown from 'react-bootstrap/Dropdown'
-import DropdownButton from 'react-bootstrap/DropdownButton'
+import { Row, Col, Image, Dropdown } from 'react-bootstrap'
 import Icons from '../../assets/icons'
 import Table from '../../widgets/Table'
 import classNames from 'classnames'
-import { setSelectedEventType } from './userItem.slice'
-import { useDispatch } from 'react-redux'
+import { EVENTS_TYPE } from './userItem.constants'
 
 const ActivityHistory = () => {
+	const [dropdownTitle, setDropdownTitle] = useState('')
+
 	const eventIconFormatter = (row) => {
 		let credit = false
 		let refunded = false
@@ -116,12 +115,9 @@ const ActivityHistory = () => {
 			eventDate: 'May 24, 2020',
 		},
 	]
-	const [dropdownTitle, setDropdownTitle] = useState('Filter by Event Type')
-	const dispatch = useDispatch()
-	const handleClick = (e) => {
-		setDropdownTitle(e)
-		dispatch(setSelectedEventType({ eventType: e }))
-	}
+	const filteredMockActivityHistory = mockActivityHistory.filter((each) =>
+		each.event.includes(dropdownTitle)
+	)
 
 	return (
 		<>
@@ -132,52 +128,34 @@ const ActivityHistory = () => {
 					</h4>
 				</Col>
 				<Col md={6} lg={4} xl={3} className='ml-auto'>
-					<DropdownButton
-						variant='outline-primary'
-						className='d-flex align-items-center justify-content-between w-100'
-						title={
-							<div>
-								{dropdownTitle}
-								<Image
-									src={Icons.arrowDownDarkIcon}
-									alt='arrow-down-dark'
-									width='20'
-								/>
-							</div>
-						}
-					>
-						<Dropdown.Menu>
-							<Dropdown.Item
-								eventKey='Subscription Creation'
-								onSelect={handleClick}
-							>
-								Subscription Creation
-							</Dropdown.Item>
-							<Dropdown.Item eventKey='Invoices paid' onSelect={handleClick}>
-								Invoices paid
-							</Dropdown.Item>
-							<Dropdown.Item
-								eventKey='Upgrading or downgrading'
-								onSelect={handleClick}
-							>
-								Upgrading or downgrading
-							</Dropdown.Item>
-							<Dropdown.Item eventKey='Churn' onSelect={handleClick}>
-								Churn
-							</Dropdown.Item>
-							<Dropdown.Item eventKey='Refunds' onSelect={handleClick}>
-								Refunds
-							</Dropdown.Item>
-							<Dropdown.Item eventKey='Credits' onSelect={handleClick}>
-								Credits
-							</Dropdown.Item>
+					<Dropdown>
+						<Dropdown.Toggle
+							variant='outline-primary'
+							className=' d-flex align-items-center justify-content-between w-100'
+						>
+							{dropdownTitle || 'Filter by Event Type'}
+							<Image
+								src={Icons.arrowDownDarkIcon}
+								alt='arrow-down-dark-icon'
+								width='20'
+							/>
+						</Dropdown.Toggle>
+						<Dropdown.Menu className='dropdown-menu-right f-14 text-dark'>
+							{EVENTS_TYPE.map((each) => (
+								<Dropdown.Item
+									eventKey={each}
+									onSelect={(ev) => setDropdownTitle(ev)}
+								>
+									{each}
+								</Dropdown.Item>
+							))}
 						</Dropdown.Menu>
-					</DropdownButton>
+					</Dropdown>
 				</Col>
 			</Row>
 			<Table
 				keyField='id'
-				data={mockActivityHistory}
+				data={dropdownTitle ? filteredMockActivityHistory : mockActivityHistory}
 				columns={activityHistoryColumn}
 				classes='bg-white'
 				headerWrapperClasses='f-12 text-uppercase bg-primary text-white'
