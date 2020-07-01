@@ -4,19 +4,31 @@ import ReportCard from './ReportCard'
 import DashboardFilters from './DashboardFilters'
 import Row from 'react-bootstrap/Row'
 import './Dashboard.css'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { fetchAllSubscriptions } from './dashboard.asyncActions'
+import {
+	selectEventType,
+	selectSwitchToggle,
+	selectSearchFieldValue,
+} from './dashboard.selectors'
 
 const Dashboard = () => {
 	const dispatch = useDispatch()
+	const type = useSelector(selectEventType)
+	const switchToggle = useSelector(selectSwitchToggle)
+	const searchFieldValue = useSelector(selectSearchFieldValue)
+
 	useEffect(() => {
 		dispatch(
 			fetchAllSubscriptions({
 				beginTime: '2020-06-03',
 				endTime: '2020-06-22',
+				type: type.eventType,
+				switchToggle: switchToggle.switchToggle,
+				searchFieldValue: searchFieldValue.searchFieldValue,
 			})
 		)
-	}, [dispatch])
+	}, [dispatch, type, switchToggle, searchFieldValue])
 	return (
 		<>
 			<div className='py-30'>

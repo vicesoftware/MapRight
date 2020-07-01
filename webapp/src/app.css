@@ -321,3 +321,6 @@ select.form-control,
 .order-arrow span img {
 	display: block;
 }
+.custom-switch {
+	margin-top: 5px;
+}

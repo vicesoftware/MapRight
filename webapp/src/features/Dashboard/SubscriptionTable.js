@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
 	Row,
 	Col,
@@ -15,13 +15,18 @@ import Icons from '../../assets/icons'
 import classNames from 'classnames'
 import { useHistory } from 'react-router-dom'
 import SortingCustomIcon from '../../widgets/SortingCustomIcon'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { selectAllSubscriptions } from './dashboard.selectors'
 import BusyIndicator from '../../widgets/busyIndicator'
-
+import {
+	setSelectedEventType,
+	setSelectedSwitchToggle,
+	setSelectedSearchFieldValue,
+} from './dashboard.slice'
 const SubscriptionTable = () => {
 	const history = useHistory()
 	const allSubscriptions = useSelector(selectAllSubscriptions)
+	const dispatch = useDispatch()
 	const viewButton = (cell, row) => (
 		<div className='d-inline-flex align-items-center'>
 			{row.userName === 'Test1' ? (
@@ -246,6 +251,22 @@ const SubscriptionTable = () => {
 			)
 		},
 	}
+
+	const [switchToggle, setSwitchToggle] = useState(false)
+
+	const handleClick = (e) => {
+		dispatch(setSelectedEventType({ eventType: e }))
+	}
+
+	const handleSwitch = (e) => {
+		setSwitchToggle((switchToggle) => !switchToggle)
+		dispatch(setSelectedSwitchToggle({ switchToggle: !switchToggle }))
+	}
+
+	const handleChange = (e) => {
+		dispatch(setSelectedSearchFieldValue({ searchFieldValue: e.target.value }))
+	}
+
 	return (
 		<>
 			<Row className='py-30'>
@@ -262,11 +283,22 @@ const SubscriptionTable = () => {
 							variant='primary'
 							id='input-dropdown-basic'
 						>
-							<Dropdown.Item>Plan</Dropdown.Item>
-							<Dropdown.Item>E-mail</Dropdown.Item>
+							<Dropdown.Item eventKey='Plan' onSelect={handleClick}>
+								Plan
+							</Dropdown.Item>
+							<Dropdown.Item eventKey='E-mail' onSelect={handleClick}>
+								E-mail
+							</Dropdown.Item>
+							<Dropdown.Item eventKey='Group' onSelect={handleClick}>
+								Group
+							</Dropdown.Item>
 						</DropdownButton>
 						<div className='flex-fill position-relative'>
-							<Form.Control type='text' placeholder='Search...' />
+							<Form.Control
+								type='text'
+								placeholder='Search...'
+								onChange={handleChange}
+							/>
 							<Image
 								src={Icons.searchIcon}
 								alt='search-icon'
@@ -275,6 +307,14 @@ const SubscriptionTable = () => {
 							/>
 						</div>
 					</InputGroup>
+					<Form>
+						<Form.Check
+							type='switch'
+							id='custom-search'
+							label=''
+							onChange={handleSwitch}
+						/>
+					</Form>
 				</Col>
 			</Row>
 			<BusyIndicator>
