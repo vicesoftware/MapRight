@@ -106,6 +106,34 @@ const AddInvoiceModal = () => {
 										</Form.Control>
 									</Form.Group>
 								</Col>
+								<Col md={6}>
+									<Form.Group>
+										<Form.Control
+											as='select'
+											name='invoiceSubStatus'
+											onChange={handleChange}
+										>
+											<option
+												key='Invoice Sub Status'
+												value='Invoice Sub Status'
+											>
+												Invoice Sub Status
+											</option>
+											{values.invoiceStatus === 'Charge Invoice' &&
+												ADD_INVOICE_MODAL.CHARGE_INVOICE_STATUS.map((each) => (
+													<option key={each.value} value={each.value}>
+														{each.option}
+													</option>
+												))}
+											{values.invoiceStatus === 'Credit Invoice' &&
+												ADD_INVOICE_MODAL.CREDIT_INVOICE_STATUS.map((each) => (
+													<option key={each.value} value={each.value}>
+														{each.option}
+													</option>
+												))}
+										</Form.Control>
+									</Form.Group>
+								</Col>
 							</Row>
 
 							<label className='mb-15 font-weight-bold f-14'>
