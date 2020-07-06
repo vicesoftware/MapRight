@@ -5,9 +5,9 @@ const allSubscriptionsDefault = []
 
 const initialState = {
 	allSubscriptions: allSubscriptionsDefault,
-	type: 'group',
-	synchronize: false,
-	value: '',
+	searchType: 'group',
+	outdatedSubscriptions: false,
+	searchValue: '',
 }
 
 const slice = createSlice({
@@ -15,13 +15,13 @@ const slice = createSlice({
 	initialState,
 	reducers: {
 		setSelectedSearchType(state, action) {
-			state.type = action.payload
+			state.searchType = action.payload
 		},
-		setSelectedSynchronize(state, action) {
-			state.synchronize = action.payload
+		setSelectedOutdatedSubscriptions(state, action) {
+			state.outdatedSubscriptions = action.payload
 		},
 		setSelectedSearchValue(state, action) {
-			state.value = action.payload
+			state.searchValue = action.payload
 		},
 	},
 	extraReducers: {
@@ -37,7 +37,7 @@ export const {
 	name,
 	actions: {
 		setSelectedSearchType,
-		setSelectedSynchronize,
+		setSelectedOutdatedSubscriptions,
 		setSelectedSearchValue,
 	},
 	reducer,

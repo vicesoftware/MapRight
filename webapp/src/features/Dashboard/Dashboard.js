@@ -8,27 +8,27 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchAllSubscriptions } from './dashboard.asyncActions'
 import {
 	selectSearchType,
-	selectSynchronize,
-	selectSearchFieldValue,
+	selectOutdatedSubscriptions,
+	selectSearchValue,
 } from './dashboard.selectors'
 
 const Dashboard = () => {
 	const dispatch = useDispatch()
-	const type = useSelector(selectSearchType)
-	const synchronize = useSelector(selectSynchronize)
-	const value = useSelector(selectSearchFieldValue)
+	const searchType = useSelector(selectSearchType)
+	const outdatedSubscriptions = useSelector(selectOutdatedSubscriptions)
+	const searchValue = useSelector(selectSearchValue)
 
 	useEffect(() => {
 		dispatch(
 			fetchAllSubscriptions({
 				beginTime: '2020-06-03',
 				endTime: '2020-06-22',
-				type: type,
-				synchronize: synchronize,
-				value: value,
+				searchType: searchType,
+				outdatedSubscriptions: outdatedSubscriptions,
+				searchValue: searchValue,
 			})
 		)
-	}, [dispatch, type, synchronize, value])
+	}, [dispatch, searchType, outdatedSubscriptions, searchValue])
 	return (
 		<>
 			<div className='py-30'>

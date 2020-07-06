@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {
 	Row,
 	Col,
@@ -16,17 +16,22 @@ import classNames from 'classnames'
 import { useHistory } from 'react-router-dom'
 import SortingCustomIcon from '../../widgets/SortingCustomIcon'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectAllSubscriptions } from './dashboard.selectors'
+import {
+	selectAllSubscriptions,
+	selectOutdatedSubscriptions,
+} from './dashboard.selectors'
 import BusyIndicator from '../../widgets/busyIndicator'
 import {
 	setSelectedSearchType,
-	setSelectedSynchronize,
+	setSelectedOutdatedSubscriptions,
 	setSelectedSearchValue,
 } from './dashboard.slice'
+import { SEARCH_TYPE } from './dashboard.constants'
+
 const SubscriptionTable = () => {
 	const history = useHistory()
-	const [switchToggle, setSwitchToggle] = useState(false)
 	const allSubscriptions = useSelector(selectAllSubscriptions)
+	const outdatedSubscription = useSelector(selectOutdatedSubscriptions)
 	const dispatch = useDispatch()
 	const viewButton = (cell, row) => (
 		<div className='d-inline-flex align-items-center'>
@@ -64,58 +69,6 @@ const SubscriptionTable = () => {
 			{row}
 		</div>
 	)
-	const columnGroupSortCaret = (order) => {
-		return (
-			<span className='order-arrow d-flex flex-column'>
-				{(order === 'asc' || !order) && (
-					<span className='arrow-up'>
-						<Image
-							src={Icons.caretIcon}
-							alt='caret-icon'
-							className='opacity-50 upArrow'
-							width='10'
-						/>
-					</span>
-				)}
-				{(order === 'desc' || !order) && (
-					<span className='arrow-down'>
-						<Image
-							src={Icons.caretIcon}
-							alt='caret-icon'
-							className='opacity-50'
-							width='10'
-						/>
-					</span>
-				)}
-			</span>
-		)
-	}
-	const columnGroupUserSortCaret = (order) => {
-		return (
-			<span className='order-arrow d-flex flex-column'>
-				{(order === 'asc' || !order) && (
-					<span className='arrow-up'>
-						<Image
-							src={Icons.caretDarkIcon}
-							alt='caret-icon'
-							className='opacity-50 upArrow'
-							width='10'
-						/>
-					</span>
-				)}
-				{(order === 'desc' || !order) && (
-					<span className='arrow-down'>
-						<Image
-							src={Icons.caretDarkIcon}
-							alt='caret-icon'
-							className='opacity-50'
-							width='10'
-						/>
-					</span>
-				)}
-			</span>
-		)
-	}
 
 	const groupColumn = [
 		{
@@ -253,19 +206,6 @@ const SubscriptionTable = () => {
 		},
 	}
 
-	const handleClick = (e) => {
-		dispatch(setSelectedSearchType(e))
-	}
-
-	const handleSwitch = (e) => {
-		setSwitchToggle(!switchToggle)
-		dispatch(setSelectedSynchronize(!switchToggle))
-	}
-
-	const handleChange = (e) => {
-		dispatch(setSelectedSearchValue(e.target.value))
-	}
-
 	return (
 		<>
 			<Row className='py-30'>
@@ -282,21 +222,23 @@ const SubscriptionTable = () => {
 							variant='primary'
 							id='input-dropdown-basic'
 						>
-							<Dropdown.Item eventKey='plan' onSelect={handleClick}>
-								Plan
-							</Dropdown.Item>
-							<Dropdown.Item eventKey='individual' onSelect={handleClick}>
-								E-mail
-							</Dropdown.Item>
-							<Dropdown.Item eventKey='group' onSelect={handleClick}>
-								Group
-							</Dropdown.Item>
+							{SEARCH_TYPE.map((eachType) => (
+								<Dropdown.Item
+									key={eachType.label}
+									eventKey={eachType.value}
+									onSelect={(ev) => dispatch(setSelectedSearchType(ev))}
+								>
+									{eachType.label}
+								</Dropdown.Item>
+							))}
 						</DropdownButton>
 						<div className='flex-fill position-relative'>
 							<Form.Control
 								type='text'
 								placeholder='Search...'
-								onChange={handleChange}
+								onChange={(ev) =>
+									dispatch(setSelectedSearchValue(ev.target.value))
+								}
 							/>
 							<Image
 								src={Icons.searchIcon}
@@ -310,8 +252,12 @@ const SubscriptionTable = () => {
 						<Form.Check
 							type='switch'
 							id='custom-search'
-							label=''
-							onChange={handleSwitch}
+							label='Outdated Subscriptions'
+							onChange={() =>
+								dispatch(
+									setSelectedOutdatedSubscriptions(!outdatedSubscription)
+								)
+							}
 						/>
 					</Form>
 				</Col>
