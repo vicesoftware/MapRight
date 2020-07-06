@@ -5,12 +5,12 @@ import './Cards.css'
 import { USERITEM_MODAL_TYPES } from '../../features/UserItemModals/UserItemModals.constants'
 import { useDispatch, useSelector } from 'react-redux'
 import { setSelectedUserItemModal } from '../../features/UserItem/userItem.slice'
-import { selectedUserItemModal } from '../../features/UserItem/userItem.selectors'
+import { selectUserItemModal } from '../../features/UserItem/userItem.selectors'
 import getUserItemModal from '../../features/UserItemModals'
 
 const Cards = ({ ...props }) => {
 	const dispatch = useDispatch()
-	const selectedModal = useSelector(selectedUserItemModal)
+	const selectedModal = useSelector(selectUserItemModal)
 	return (
 		<>
 			{selectedModal && getUserItemModal(selectedModal)}

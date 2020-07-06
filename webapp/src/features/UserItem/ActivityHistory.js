@@ -4,34 +4,35 @@ import Icons from '../../assets/icons'
 import Table from '../../widgets/Table'
 import classNames from 'classnames'
 import SortingCustomIcon from '../../widgets/SortingCustomIcon'
+import { EVENTS } from './ActivityHistoryEvent.enums'
 
 const ActivityHistory = () => {
 	const eventIconFormatter = (row) => {
 		let iconName = ''
 		let iconClass = ''
 		switch (true) {
-			case row.includes('Credit'):
+			case row.includes(EVENTS.CREDIT):
 				iconName = 'orangeDollarIcon'
 				iconClass = 'bg-warning'
 				break
-			case row.includes('Refunded'):
+			case row.includes(EVENTS.REFUNDED):
 				iconName = 'blueDollarIcon'
 				iconClass = 'bg-secondary'
 				break
-			case row.includes('Downgraded'):
+			case row.includes(EVENTS.DOWNGRADED):
 				iconName = 'redArrowDownIcon'
 				iconClass = 'bg-danger'
 				break
-			case row.includes('Paid'):
-			case row.includes('Subscription Creation'):
+			case row.includes(EVENTS.PAID):
+			case row.includes(EVENTS.SUBSCRIPTION_CREATION):
 				iconName = 'greenDollarIcon'
 				iconClass = 'bg-success'
 				break
-			case row.includes('Churn'):
+			case row.includes(EVENTS.CHURN):
 				iconName = 'redDollarIcon'
 				iconClass = 'bg-danger'
 				break
-			case row.includes('Upgraded'):
+			case row.includes(EVENTS.UPGRADED):
 				iconName = 'greenArrowUpIcon'
 				iconClass = 'bg-success'
 				break

@@ -5,15 +5,16 @@ import Table from '../../widgets/Table'
 import Icons from '../../assets/icons'
 import { useDispatch, useSelector } from 'react-redux'
 import { setSelectedUserItemModal } from './userItem.slice'
-import { selectedUserItemModal } from './userItem.selectors'
+import { selectUserItemModal } from './userItem.selectors'
 import { USERITEM_MODAL_TYPES } from '../UserItemModals/UserItemModals.constants'
 import getUserItemModal from '../UserItemModals'
 
 const BillingHistory = () => {
 	const dispatch = useDispatch()
-	const selectedModal = useSelector(selectedUserItemModal)
+	const selectedModal = useSelector(selectUserItemModal)
 
 	const deleteButtonFormatter = (cell, row) => (
+		// TODOs: we need to fix this.
 		<div className='d-inline-flex align-items-center'>
 			{row.revenue === '$115' && (
 				<Button variant='link' className='btn-auto p-0'>

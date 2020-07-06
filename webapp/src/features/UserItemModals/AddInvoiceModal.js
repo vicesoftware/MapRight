@@ -74,7 +74,7 @@ const AddInvoiceModal = () => {
 				</Col>
 				<Col md={6}>
 					<Form.Group>
-						<Form.Control type='text' placeholder='' defaultValue='$15' />
+						<Form.Control type='text' placeholder='' />
 					</Form.Group>
 				</Col>
 			</Row>
@@ -90,7 +90,7 @@ const AddInvoiceModal = () => {
 				</Col>
 				<Col md={6}>
 					<Form.Group>
-						<Form.Control type='text' placeholder='' defaultValue='$15' />
+						<Form.Control type='text' placeholder='' />
 					</Form.Group>
 				</Col>
 			</Row>

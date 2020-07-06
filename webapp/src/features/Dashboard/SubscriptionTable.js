@@ -101,6 +101,7 @@ const SubscriptionTable = () => {
 		},
 	]
 
+	// TODOs: we need to remove mockData.
 	const mockTableGroupUsersData = [
 		{
 			id: 1,

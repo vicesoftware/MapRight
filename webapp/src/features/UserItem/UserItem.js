@@ -7,13 +7,13 @@ import './UserItem.css'
 import Icons from '../../assets/icons'
 import { useDispatch, useSelector } from 'react-redux'
 import { setSelectedUserItemModal } from './userItem.slice'
-import { selectedUserItemModal } from './userItem.selectors'
+import { selectUserItemModal } from './userItem.selectors'
 import getUserItemModal from '../UserItemModals'
 import { USERITEM_MODAL_TYPES } from '../UserItemModals/UserItemModals.constants'
 
 const UserItem = () => {
 	const dispatch = useDispatch()
-	const selectedModal = useSelector(selectedUserItemModal)
+	const selectedModal = useSelector(selectUserItemModal)
 	return (
 		<>
 			{selectedModal && getUserItemModal(selectedModal)}
