@@ -7,28 +7,28 @@ import './Dashboard.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchAllSubscriptions } from './dashboard.asyncActions'
 import {
-	selectEventType,
-	selectSwitchToggle,
+	selectSearchType,
+	selectSynchronize,
 	selectSearchFieldValue,
 } from './dashboard.selectors'
 
 const Dashboard = () => {
 	const dispatch = useDispatch()
-	const type = useSelector(selectEventType)
-	const switchToggle = useSelector(selectSwitchToggle)
-	const searchFieldValue = useSelector(selectSearchFieldValue)
+	const type = useSelector(selectSearchType)
+	const synchronize = useSelector(selectSynchronize)
+	const value = useSelector(selectSearchFieldValue)
 
 	useEffect(() => {
 		dispatch(
 			fetchAllSubscriptions({
 				beginTime: '2020-06-03',
 				endTime: '2020-06-22',
-				type: type.eventType,
-				switchToggle: switchToggle.switchToggle,
-				searchFieldValue: searchFieldValue.searchFieldValue,
+				type: type,
+				synchronize: synchronize,
+				value: value,
 			})
 		)
-	}, [dispatch, type, switchToggle, searchFieldValue])
+	}, [dispatch, type, synchronize, value])
 	return (
 		<>
 			<div className='py-30'>

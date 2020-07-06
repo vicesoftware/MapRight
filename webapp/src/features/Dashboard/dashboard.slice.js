@@ -5,23 +5,23 @@ const allSubscriptionsDefault = []
 
 const initialState = {
 	allSubscriptions: allSubscriptionsDefault,
-	eventType: '',
-	switchToggle: false,
-	searchFieldValue: '',
+	type: 'group',
+	synchronize: false,
+	value: '',
 }
 
 const slice = createSlice({
 	name: 'dashboard',
 	initialState,
 	reducers: {
-		setSelectedEventType(state, action) {
-			state.eventType = action.payload
+		setSelectedSearchType(state, action) {
+			state.type = action.payload
 		},
-		setSelectedSwitchToggle(state, action) {
-			state.switchToggle = action.payload
+		setSelectedSynchronize(state, action) {
+			state.synchronize = action.payload
 		},
-		setSelectedSearchFieldValue(state, action) {
-			state.searchFieldValue = action.payload
+		setSelectedSearchValue(state, action) {
+			state.value = action.payload
 		},
 	},
 	extraReducers: {
@@ -36,9 +36,9 @@ export default slice
 export const {
 	name,
 	actions: {
-		setSelectedEventType,
-		setSelectedSwitchToggle,
-		setSelectedSearchFieldValue,
+		setSelectedSearchType,
+		setSelectedSynchronize,
+		setSelectedSearchValue,
 	},
 	reducer,
 } = slice

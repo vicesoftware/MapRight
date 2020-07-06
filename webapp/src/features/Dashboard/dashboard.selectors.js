@@ -5,9 +5,8 @@ export const selectSlice = (state) => state[slice.name]
 export const selectAllSubscriptions = (state) =>
 	selectSlice(state).allSubscriptions
 
-export const selectEventType = (state) => selectSlice(state).eventType
+export const selectSearchType = (state) => selectSlice(state).type
 
-export const selectSwitchToggle = (state) => selectSlice(state).switchToggle
+export const selectSynchronize = (state) => selectSlice(state).synchronize
 
-export const selectSearchFieldValue = (state) =>
-	selectSlice(state).searchFieldValue
+export const selectSearchFieldValue = (state) => selectSlice(state).value

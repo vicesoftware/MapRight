@@ -19,12 +19,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import { selectAllSubscriptions } from './dashboard.selectors'
 import BusyIndicator from '../../widgets/busyIndicator'
 import {
-	setSelectedEventType,
-	setSelectedSwitchToggle,
-	setSelectedSearchFieldValue,
+	setSelectedSearchType,
+	setSelectedSynchronize,
+	setSelectedSearchValue,
 } from './dashboard.slice'
 const SubscriptionTable = () => {
 	const history = useHistory()
+	const [switchToggle, setSwitchToggle] = useState(false)
 	const allSubscriptions = useSelector(selectAllSubscriptions)
 	const dispatch = useDispatch()
 	const viewButton = (cell, row) => (
@@ -252,19 +253,17 @@ const SubscriptionTable = () => {
 		},
 	}
 
-	const [switchToggle, setSwitchToggle] = useState(false)
-
 	const handleClick = (e) => {
-		dispatch(setSelectedEventType({ eventType: e }))
+		dispatch(setSelectedSearchType(e))
 	}
 
 	const handleSwitch = (e) => {
-		setSwitchToggle((switchToggle) => !switchToggle)
-		dispatch(setSelectedSwitchToggle({ switchToggle: !switchToggle }))
+		setSwitchToggle(!switchToggle)
+		dispatch(setSelectedSynchronize(!switchToggle))
 	}
 
 	const handleChange = (e) => {
-		dispatch(setSelectedSearchFieldValue({ searchFieldValue: e.target.value }))
+		dispatch(setSelectedSearchValue(e.target.value))
 	}
 
 	return (
@@ -283,13 +282,13 @@ const SubscriptionTable = () => {
 							variant='primary'
 							id='input-dropdown-basic'
 						>
-							<Dropdown.Item eventKey='Plan' onSelect={handleClick}>
+							<Dropdown.Item eventKey='plan' onSelect={handleClick}>
 								Plan
 							</Dropdown.Item>
-							<Dropdown.Item eventKey='E-mail' onSelect={handleClick}>
+							<Dropdown.Item eventKey='individual' onSelect={handleClick}>
 								E-mail
 							</Dropdown.Item>
-							<Dropdown.Item eventKey='Group' onSelect={handleClick}>
+							<Dropdown.Item eventKey='group' onSelect={handleClick}>
 								Group
 							</Dropdown.Item>
 						</DropdownButton>

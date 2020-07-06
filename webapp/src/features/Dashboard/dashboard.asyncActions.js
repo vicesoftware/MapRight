@@ -4,12 +4,12 @@ import { createFilterString } from './dashboard.utils'
 
 export const fetchAllSubscriptions = createAsyncThunk(
 	'subscriptions',
-	async (filters, thunkArgs, { noBusySpinner } = {}) => {
+	async (filters, thunkArgs, { useCaching, noBusySpinner } = {}) => {
 		const filterQs = createFilterString(filters)
 		const fullQs = filterQs ? `?${filterQs}` : ''
 		return await doAsync({
-			url: `api/subscriptions${fullQs}`,
-			useCaching: true,
+			url: `subscriptions${fullQs}`,
+			useCaching,
 			noBusySpinner,
 			errorMessage: 'Unable to load subscription data. Please try again later.',
 			...thunkArgs,
