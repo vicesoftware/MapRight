@@ -3,7 +3,6 @@ import { Modal, Image } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux'
 import { selectShowModal } from './modal.selectors'
 import { actions } from './modal.slice'
-import './Modal.css'
 import Icons from '../../assets/icons'
 
 const { hideModal } = actions
@@ -18,7 +17,6 @@ const MapRightModal = ({
 }) => {
 	const show = useSelector(selectShowModal)
 	const dispatch = useDispatch()
-
 	const handleClose = () => {
 		dispatch(hideModal())
 		if (reset) reset()
@@ -47,5 +45,4 @@ const MapRightModal = ({
 		</Modal>
 	)
 }
-
 export default MapRightModal
