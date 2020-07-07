@@ -106,7 +106,23 @@ const BillingHistory = () => {
 	return (
 		<>
 			{selectedModal && getUserItemModal(selectedModal)}
-			<Cards className='mb-25' title='Billing History' buttonText='Add Invoice'>
+			<Cards shouldShowTitle={false}>
+				<div className='d-flex align-items-center'>
+					<span className='font-weight-normal d-block gotham lh-25 mb-15'>
+						Billing History
+					</span>
+					<Button
+						variant='secondary'
+						className='ml-auto btn-small'
+						onClick={() =>
+							dispatch(
+								setSelectUserItemModal(USERITEM_MODAL_TYPES.ADD_INVOICE_MODAL)
+							)
+						}
+					>
+						Add Invoice
+					</Button>
+				</div>
 				<Table
 					keyField='id'
 					data={mockTableData}

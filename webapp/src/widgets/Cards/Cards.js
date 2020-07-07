@@ -1,45 +1,18 @@
 import React from 'react'
-import { Card, Button } from 'react-bootstrap'
+import { Card } from 'react-bootstrap'
 import classNames from 'classnames'
 import './Cards.css'
-import { USERITEM_MODAL_TYPES } from '../../features/UserItemModals/UserItemModals.constants'
-import { useDispatch, useSelector } from 'react-redux'
-import { setSelectUserItemModal } from '../../features/UserItem/userItem.slice'
-import { selectUserItemModal } from '../../features/UserItem/userItem.selectors'
-import getUserItemModal from '../../features/UserItemModals'
 
-const Cards = ({ ...props }) => {
-	const dispatch = useDispatch()
-	const selectedModal = useSelector(selectUserItemModal)
+const Cards = ({ shouldShowTitle = true, ...props }) => {
 	return (
 		<>
-			{selectedModal && getUserItemModal(selectedModal)}
 			<Card
 				className={classNames('shadow-sm border-0 mb-25', {
 					'h-100': props.title === 'Filter',
 				})}
 			>
 				<Card.Body className='p-15'>
-					{props.title === 'Billing History' ? (
-						<div className='d-flex align-items-center'>
-							<span className='font-weight-normal d-block gotham lh-25 mb-15'>
-								{props.title}
-							</span>
-							<Button
-								variant='secondary'
-								className='ml-auto btn-small'
-								onClick={() =>
-									dispatch(
-										setSelectUserItemModal(
-											USERITEM_MODAL_TYPES.ADD_INVOICE_MODAL
-										)
-									)
-								}
-							>
-								{props.buttonText}
-							</Button>
-						</div>
-					) : (
+					{shouldShowTitle && (
 						<Card.Title className='font-weight-normal d-block gotham lh-25 mb-15'>
 							{props.title}
 						</Card.Title>
