@@ -10,7 +10,7 @@ import isEmpty from 'lodash/isEmpty'
 import BusyIndicator from '../../widgets/busyIndicator'
 
 const ReportCard = () => {
-	const allTotalRevenue = useSelector(selectTotalRevenue)
+	const totalRevenue = useSelector(selectTotalRevenue)
 	const reportCards = [
 		{
 			totalValue: 4.2,
@@ -37,7 +37,7 @@ const ReportCard = () => {
 		{ totalValue: 25.5, from: 24, successValue: 4.17, upgrade: true, data: [] },
 	]
 
-	!isEmpty(allTotalRevenue) && reportCards.splice(4, 0, allTotalRevenue)
+	!isEmpty(totalRevenue) && reportCards.splice(4, 0, totalRevenue)
 
 	const title = [
 		'User Churn Rate',
@@ -49,6 +49,7 @@ const ReportCard = () => {
 	]
 
 	return (
+		// TODOs: we need to remove the use of hardcoded indexes
 		<BusyIndicator>
 			<Col lg={8} xl={9}>
 				<Row>

@@ -5,16 +5,16 @@ import moment from 'moment'
 defaults.global.defaultFontSize = '8'
 
 export const Graph = ({ data }) => {
-	const label = []
+	const labels = []
 	const coordinates = []
 
-	data.length &&
+	data &&
 		data.forEach((each) => {
-			label.push(each.date)
+			labels.push(each.date)
 			coordinates.push(each.value)
 		})
 
-	const formattedLabels = label.map((eachDate) =>
+	const formattedLabels = labels.map((eachDate) =>
 		moment(eachDate).format('MMM Do').slice(0, -2)
 	)
 
