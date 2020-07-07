@@ -19,6 +19,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import {
 	selectAllSubscriptions,
 	selectOutdatedSubscriptions,
+	selectSearchType,
 } from './dashboard.selectors'
 import BusyIndicator from '../../widgets/busyIndicator'
 import {
@@ -32,6 +33,7 @@ const SubscriptionTable = () => {
 	const history = useHistory()
 	const allSubscriptions = useSelector(selectAllSubscriptions)
 	const outdatedSubscription = useSelector(selectOutdatedSubscriptions)
+	const searchType = useSelector(selectSearchType)
 	const dispatch = useDispatch()
 	const viewButton = (cell, row) => (
 		<div className='d-inline-flex align-items-center'>
@@ -120,6 +122,12 @@ const SubscriptionTable = () => {
 			sort: true,
 			sortCaret: SortingCustomIcon,
 		},
+		{
+			dataField: 'id',
+			text: '',
+			formatter: viewButton,
+			hidden: searchType === 'group',
+		},
 	]
 
 	const groupUsersColumn = [
@@ -182,28 +190,26 @@ const SubscriptionTable = () => {
 				headerWrapperClasses='f-12 text-uppercase'
 			/>
 		),
-		showExpandColumn: true,
+		showExpandColumn: (searchType === 'group' && true) || false,
 		expandColumnPosition: 'right',
 		// eslint-disable-next-line
 		expandByColumnOnly: true,
 		// eslint-disable-next-line
 		expandHeaderColumnRenderer: ({ isAnyExpands }) => <div></div>,
 		// eslint-disable-next-line
-		expandColumnRenderer: ({ expanded }) => {
-			return (
-				<Button
-					variant='link'
-					className='btn-auto p-0 d-inline-flex align-items-center'
-				>
-					{expanded ? 'CLOSE' : 'EXPAND'}
-					<Image
-						src={Icons.arrowDownDarkIcon}
-						width='14'
-						className={classNames('ml-2', { invertArrow: expanded })}
-					/>
-				</Button>
-			)
-		},
+		expandColumnRenderer: ({ expanded }) => (
+			<Button
+				variant='link'
+				className='btn-auto p-0 d-inline-flex align-items-center'
+			>
+				{expanded ? 'CLOSE' : 'EXPAND'}
+				<Image
+					src={Icons.arrowDownDarkIcon}
+					width='14'
+					className={classNames('ml-2', { invertArrow: expanded })}
+				/>
+			</Button>
+		),
 	}
 
 	return (
