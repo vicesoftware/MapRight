@@ -15,9 +15,26 @@ import Icons from '../../assets/icons'
 import classNames from 'classnames'
 import { useHistory } from 'react-router-dom'
 import SortingCustomIcon from '../../widgets/SortingCustomIcon'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+	selectAllSubscriptions,
+	selectOutdatedSubscriptions,
+	selectSearchType,
+} from './dashboard.selectors'
+import BusyIndicator from '../../widgets/busyIndicator'
+import {
+	setSelectedSearchType,
+	setSelectedOutdatedSubscriptions,
+	setSelectedSearchValue,
+} from './dashboard.slice'
+import { SEARCH_TYPE } from './dashboard.constants'
 
 const SubscriptionTable = () => {
 	const history = useHistory()
+	const allSubscriptions = useSelector(selectAllSubscriptions)
+	const outdatedSubscription = useSelector(selectOutdatedSubscriptions)
+	const searchType = useSelector(selectSearchType)
+	const dispatch = useDispatch()
 	const viewButton = (cell, row) => (
 		<div className='d-inline-flex align-items-center'>
 			{row.userName === 'Test1' ? (
@@ -33,7 +50,7 @@ const SubscriptionTable = () => {
 			<Button
 				variant='outline-primary'
 				className='font-weight-normal btn-sm ml-3'
-				onClick={() => history.push('user-item')}
+				onClick={() => history.push(`users/${row.id}`)}
 			>
 				View
 			</Button>
@@ -54,83 +71,6 @@ const SubscriptionTable = () => {
 			{row}
 		</div>
 	)
-	const mockTableGroupData = [
-		{
-			id: 1,
-			groupName: 'Cody Miles',
-			totalUsers: 5,
-			totalRevenue: '$20205',
-			mrr: '$400',
-			arpu: '$50',
-			churnRate: '11%',
-			taxExempt: 'No',
-			rate: '$25',
-		},
-		{
-			id: 2,
-			groupName: 'Any Miles',
-			totalUsers: 5,
-			totalRevenue: '$20205',
-			mrr: '$400',
-			arpu: '$50',
-			churnRate: '11%',
-			taxExempt: 'No',
-			rate: '$25',
-		},
-		{
-			id: 3,
-			groupName: 'Kaylie Meek',
-			totalUsers: 5,
-			totalRevenue: '$20205',
-			mrr: '$400',
-			arpu: '$50',
-			churnRate: '11%',
-			taxExempt: 'No',
-			rate: '$25',
-		},
-		{
-			id: 4,
-			groupName: 'AbbyNash',
-			totalUsers: 5,
-			totalRevenue: '$20205',
-			mrr: '$400',
-			arpu: '$50',
-			churnRate: '11%',
-			taxExempt: 'Yes',
-			rate: '$25',
-		},
-	]
-
-	// TODOs: we need to remove mockData.
-	const mockTableGroupUsersData = [
-		{
-			id: 1,
-			userName: 'Test1',
-			subscriptionStatus: 'active',
-			plan: 'Flex',
-			addOns: 5,
-			totalRevenue: 2050,
-			userRole: 'Owner',
-		},
-		{
-			id: 2,
-			userName: 'Test2',
-			subscriptionStatus: 'active',
-			plan: 'Flex',
-			addOns: 5,
-			totalRevenue: 2050,
-			userRole: 'Owner',
-		},
-		{
-			id: 3,
-			userName: 'Test3',
-			subscriptionStatus: 'active',
-			plan: 'Flex',
-			addOns: 5,
-			totalRevenue: 2050,
-			userRole: 'Owner',
-		},
-	]
 
 	const groupColumn = [
 		{
@@ -181,6 +121,12 @@ const SubscriptionTable = () => {
 			text: 'Rate',
 			sort: true,
 			sortCaret: SortingCustomIcon,
+		},
+		{
+			dataField: 'id',
+			text: '',
+			formatter: viewButton,
+			hidden: searchType === 'group',
 		},
 	]
 
@@ -235,38 +181,37 @@ const SubscriptionTable = () => {
 	]
 	const expandRow = {
 		// eslint-disable-next-line
-		renderer: () => (
+		renderer: (row) => (
 			<Table
 				keyField='id'
-				data={mockTableGroupUsersData}
+				data={row.data}
 				columns={groupUsersColumn}
-				classes='bg-light mb-0'
+				classes='bg-light m-0'
 				headerWrapperClasses='f-12 text-uppercase'
 			/>
 		),
-		showExpandColumn: true,
+		showExpandColumn: (searchType === 'group' && true) || false,
 		expandColumnPosition: 'right',
 		// eslint-disable-next-line
 		expandByColumnOnly: true,
 		// eslint-disable-next-line
 		expandHeaderColumnRenderer: ({ isAnyExpands }) => <div></div>,
 		// eslint-disable-next-line
-		expandColumnRenderer: ({ expanded }) => {
-			return (
-				<Button
-					variant='link'
-					className='btn-auto p-0 d-inline-flex align-items-center'
-				>
-					{expanded ? 'CLOSE' : 'EXPAND'}
-					<Image
-						src={Icons.arrowDownDarkIcon}
-						width='14'
-						className={classNames('ml-2', { invertArrow: expanded })}
-					/>
-				</Button>
-			)
-		},
+		expandColumnRenderer: ({ expanded }) => (
+			<Button
+				variant='link'
+				className='btn-auto p-0 d-inline-flex align-items-center'
+			>
+				{expanded ? 'CLOSE' : 'EXPAND'}
+				<Image
+					src={Icons.arrowDownDarkIcon}
+					width='14'
+					className={classNames('ml-2', { invertArrow: expanded })}
+				/>
+			</Button>
+		),
 	}
+
 	return (
 		<>
 			<Row className='py-30'>
@@ -283,11 +228,24 @@ const SubscriptionTable = () => {
 							variant='primary'
 							id='input-dropdown-basic'
 						>
-							<Dropdown.Item>Plan</Dropdown.Item>
-							<Dropdown.Item>E-mail</Dropdown.Item>
+							{SEARCH_TYPE.map((eachType) => (
+								<Dropdown.Item
+									key={eachType.label}
+									eventKey={eachType.value}
+									onSelect={(ev) => dispatch(setSelectedSearchType(ev))}
+								>
+									{eachType.label}
+								</Dropdown.Item>
+							))}
 						</DropdownButton>
 						<div className='flex-fill position-relative'>
-							<Form.Control type='text' placeholder='Search...' />
+							<Form.Control
+								type='text'
+								placeholder='Search...'
+								onChange={(ev) =>
+									dispatch(setSelectedSearchValue(ev.target.value))
+								}
+							/>
 							<Image
 								src={Icons.searchIcon}
 								alt='search-icon'
@@ -296,17 +254,31 @@ const SubscriptionTable = () => {
 							/>
 						</div>
 					</InputGroup>
+					<Form>
+						<Form.Check
+							type='switch'
+							id='custom-search'
+							label='Outdated Subscriptions'
+							onChange={() =>
+								dispatch(
+									setSelectedOutdatedSubscriptions(!outdatedSubscription)
+								)
+							}
+						/>
+					</Form>
 				</Col>
 			</Row>
-			<Table
-				keyField='id'
-				data={mockTableGroupData}
-				columns={groupColumn}
-				expandRow={expandRow}
-				classes='bg-white'
-				headerWrapperClasses='f-12 text-uppercase bg-primary text-white'
-				bodyClasses='f-14 font-weight-bold'
-			/>
+			<BusyIndicator>
+				<Table
+					keyField='id'
+					data={allSubscriptions}
+					columns={groupColumn}
+					expandRow={expandRow}
+					classes='bg-white'
+					headerWrapperClasses='f-12 text-uppercase bg-primary text-white'
+					bodyClasses='f-14 font-weight-bold'
+				/>
+			</BusyIndicator>
 		</>
 	)
 }
