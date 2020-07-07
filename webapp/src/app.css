@@ -245,13 +245,13 @@ select.form-control,
 .btn-outline-primary,
 .btn-outline-primary:focus,
 .btn-outline-primary:active {
-	color: #273764;
-	border-color: #273764;
+	color: #273766;
+	border-color: #273766;
 }
 .btn-outline-primary:hover {
 	color: #273765;
 	background-color: #2737650f;
-	border-color: #273764;
+	border-color: #273766;
 }
 .btn-outline-primary:not(:disabled):not(.disabled).active,
 .btn-outline-primary:not(:disabled):not(.disabled):active,

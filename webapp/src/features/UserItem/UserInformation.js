@@ -4,6 +4,7 @@ import Cards from '../../widgets/Cards'
 import classNames from 'classnames'
 
 const UserInformation = () => {
+	// TODO : Need to remove mockData while api integration
 	const mockData = [
 		{
 			name: 'Total Revenue',

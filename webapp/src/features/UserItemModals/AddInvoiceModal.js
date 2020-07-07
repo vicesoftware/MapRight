@@ -2,13 +2,13 @@ import React, { useEffect } from 'react'
 import Modal, { hideModal, showModal } from '../../widgets/Modal'
 import { Button, Row, Col, Form } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
-import { setSelectedUserItemModal } from '../UserItem/userItem.slice'
+import { setSelectUserItemModal } from '../UserItem/userItem.slice'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 
 const AddInvoiceModal = () => {
 	const dispatch = useDispatch()
-	const resetModal = () => dispatch(setSelectedUserItemModal(null))
+	const resetModal = () => dispatch(setSelectUserItemModal(null))
 
 	useEffect(() => {
 		dispatch(showModal())

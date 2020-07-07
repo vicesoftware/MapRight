@@ -8,7 +8,7 @@ const slice = createSlice({
 	name: 'userItem',
 	initialState,
 	reducers: {
-		setSelectedUserItemModal(state, action) {
+		setSelectUserItemModal(state, action) {
 			state.selectedUserItemModal = action.payload || null
 		},
 	},
@@ -18,6 +18,6 @@ export default slice
 
 export const {
 	name,
-	actions: { setSelectedUserItemModal },
+	actions: { setSelectUserItemModal },
 	reducer,
 } = slice

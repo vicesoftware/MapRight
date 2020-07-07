@@ -19,6 +19,7 @@ import redArrowDownIcon from './redArrowDown.svg'
 import greenDollarIcon from './greenDollar.svg'
 import blueDollarIcon from './blueDollar.svg'
 import greenArrowUpIcon from './greenArrowUp.svg'
+import logoWhiteIcon from './logoWhite.png'
 
 export default {
 	arrowDownIcon,
@@ -42,4 +43,5 @@ export default {
 	greenDollarIcon,
 	blueDollarIcon,
 	greenArrowUpIcon,
+	logoWhiteIcon,
 }

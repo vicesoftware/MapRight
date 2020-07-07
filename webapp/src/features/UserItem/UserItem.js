@@ -6,7 +6,7 @@ import { Row, Col, Button, Image } from 'react-bootstrap'
 import './UserItem.css'
 import Icons from '../../assets/icons'
 import { useDispatch, useSelector } from 'react-redux'
-import { setSelectedUserItemModal } from './userItem.slice'
+import { setSelectUserItemModal } from './userItem.slice'
 import { selectUserItemModal } from './userItem.selectors'
 import getUserItemModal from '../UserItemModals'
 import { USERITEM_MODAL_TYPES } from '../UserItemModals/UserItemModals.constants'
@@ -32,7 +32,7 @@ const UserItem = () => {
 							className='d-flex align-items-center justify-content-between w-100'
 							onClick={() =>
 								dispatch(
-									setSelectedUserItemModal(
+									setSelectUserItemModal(
 										USERITEM_MODAL_TYPES.CANCEL_SUBSCRIPTION_MODAL
 									)
 								)

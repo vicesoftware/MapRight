@@ -3,7 +3,7 @@ import slice from './userItem.slice'
 
 export const {
 	name,
-	actions: { setSelectedUserItemModal },
+	actions: { setSelectUserItemModal },
 	reducer,
 } = slice
 

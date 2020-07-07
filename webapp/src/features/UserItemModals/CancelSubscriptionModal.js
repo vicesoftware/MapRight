@@ -2,11 +2,11 @@ import React, { useEffect } from 'react'
 import Modal, { hideModal, showModal } from '../../widgets/Modal'
 import { Button } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
-import { setSelectedUserItemModal } from '../UserItem/userItem.slice'
+import { setSelectUserItemModal } from '../UserItem/userItem.slice'
 
 const CancelSubscriptionModal = () => {
 	const dispatch = useDispatch()
-	const resetModal = () => dispatch(setSelectedUserItemModal(null))
+	const resetModal = () => dispatch(setSelectUserItemModal(null))
 
 	useEffect(() => {
 		dispatch(showModal())

@@ -4,7 +4,7 @@ import Icons from '../../assets/icons'
 import Table from '../../widgets/Table'
 import classNames from 'classnames'
 import SortingCustomIcon from '../../widgets/SortingCustomIcon'
-import { EVENTS } from './ActivityHistoryEvent.enums'
+import { EVENTS } from './userItem.constants'
 
 const ActivityHistory = () => {
 	const eventIconFormatter = (row) => {
@@ -65,6 +65,7 @@ const ActivityHistory = () => {
 			sortCaret: SortingCustomIcon,
 		},
 	]
+	// TODO : Need to remove mockActivityHistory while api integration
 	const mockActivityHistory = [
 		{
 			id: 1,

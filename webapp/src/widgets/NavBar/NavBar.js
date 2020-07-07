@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Navbar, Nav, Container, Image } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import Icons from '../../assets/icons'
-import logo from '../../assets/logoWhite.png'
+// import logo from '../../assets/logoWhite.png'
 import { useLocation } from 'react-router-dom'
 import classNames from 'classnames'
 
@@ -18,13 +18,13 @@ export default function NavBar() {
 			<Container fluid>
 				<LinkContainer to='/'>
 					<Navbar.Brand className='pt-0 mr-30'>
-						<Image src={logo} alt='map-right-logo' width='200' />
+						<Image src={Icons.logoWhiteIcon} alt='map-right-logo' width='200' />
 					</Navbar.Brand>
 				</LinkContainer>
 				<Navbar.Toggle aria-controls='basic-navbar-nav' />
 				<Navbar.Collapse className='collapse'>
 					<Nav className='mr-auto align-items-lg-center'>
-						<Nav.Item className={classNames({ active: selectedNav === '' })}>
+						<Nav.Item className={classNames({ active: !selectedNav })}>
 							<LinkContainer to='/'>
 								<Nav.Link className='px-40'>Revenue Dashboard</Nav.Link>
 							</LinkContainer>

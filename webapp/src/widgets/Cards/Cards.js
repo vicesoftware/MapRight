@@ -4,7 +4,7 @@ import classNames from 'classnames'
 import './Cards.css'
 import { USERITEM_MODAL_TYPES } from '../../features/UserItemModals/UserItemModals.constants'
 import { useDispatch, useSelector } from 'react-redux'
-import { setSelectedUserItemModal } from '../../features/UserItem/userItem.slice'
+import { setSelectUserItemModal } from '../../features/UserItem/userItem.slice'
 import { selectUserItemModal } from '../../features/UserItem/userItem.selectors'
 import getUserItemModal from '../../features/UserItemModals'
 
@@ -30,7 +30,7 @@ const Cards = ({ ...props }) => {
 								className='ml-auto btn-small'
 								onClick={() =>
 									dispatch(
-										setSelectedUserItemModal(
+										setSelectUserItemModal(
 											USERITEM_MODAL_TYPES.ADD_INVOICE_MODAL
 										)
 									)

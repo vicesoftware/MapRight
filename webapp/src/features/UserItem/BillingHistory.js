@@ -4,7 +4,7 @@ import Cards from '../../widgets/Cards'
 import Table from '../../widgets/Table'
 import Icons from '../../assets/icons'
 import { useDispatch, useSelector } from 'react-redux'
-import { setSelectedUserItemModal } from './userItem.slice'
+import { setSelectUserItemModal } from './userItem.slice'
 import { selectUserItemModal } from './userItem.selectors'
 import { USERITEM_MODAL_TYPES } from '../UserItemModals/UserItemModals.constants'
 import getUserItemModal from '../UserItemModals'
@@ -14,7 +14,7 @@ const BillingHistory = () => {
 	const selectedModal = useSelector(selectUserItemModal)
 
 	const deleteButtonFormatter = (cell, row) => (
-		// TODOs: we need to fix this.
+		// TODOs : Need to update the condition for the alert icon.
 		<div className='d-inline-flex align-items-center'>
 			{row.revenue === '$115' && (
 				<Button variant='link' className='btn-auto p-0'>
@@ -31,7 +31,7 @@ const BillingHistory = () => {
 				className='btn-auto p-0'
 				onClick={() =>
 					dispatch(
-						setSelectedUserItemModal(USERITEM_MODAL_TYPES.DELETE_INVOICE_MODAL)
+						setSelectUserItemModal(USERITEM_MODAL_TYPES.DELETE_INVOICE_MODAL)
 					)
 				}
 			>
@@ -48,6 +48,7 @@ const BillingHistory = () => {
 		</div>
 	)
 
+	// TODO : Need to remove mockTableData while api integration
 	const mockTableData = [
 		{
 			id: 1,
