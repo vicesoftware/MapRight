@@ -15,7 +15,7 @@ const BillingHistory = ({ isGroupSubscription }) => {
 
 	const deleteButtonFormatter = (cell, row) => (
 		<div className='d-inline-flex align-items-center'>
-			{row.revenue === '$115' && (
+			{row.alert && (
 				<Button variant='link' className='btn-auto p-0'>
 					<Image
 						src={Icons.alertIcon}
@@ -56,30 +56,35 @@ const BillingHistory = ({ isGroupSubscription }) => {
 			invoice: '#123456789',
 			date: '01/01/22',
 			revenue: '$115',
+			alert: false,
 		},
 		{
 			id: 2,
 			invoice: '#123456789',
 			date: '01/01/22',
 			revenue: '$105',
+			alert: false,
 		},
 		{
 			id: 3,
 			invoice: '#123456789',
 			date: '01/01/22',
 			revenue: '$120',
+			alert: true,
 		},
 		{
 			id: 4,
 			invoice: '#123456789',
 			date: '01/01/22',
 			revenue: '$220',
+			alert: false,
 		},
 		{
 			id: 5,
 			invoice: '#123456789',
 			date: '01/01/22',
 			revenue: '$50',
+			alert: false,
 		},
 	]
 
