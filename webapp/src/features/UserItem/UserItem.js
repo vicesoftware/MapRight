@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import ActivityHistory from './ActivityHistory'
 import UserInformation from './UserInformation'
 import BillingHistory from './BillingHistory'
@@ -10,10 +10,15 @@ import { setSelectUserItemModal } from './userItem.slice'
 import { selectUserItemModal } from './userItem.selectors'
 import getUserItemModal from '../UserItemModals'
 import { USERITEM_MODAL_TYPES } from '../UserItemModals/UserItemModals.constants'
+import { fetchActivityHistory } from './userItem.asyncActions'
 
 const UserItem = () => {
 	const dispatch = useDispatch()
 	const selectedModal = useSelector(selectUserItemModal)
+	useEffect(() => {
+		dispatch(fetchActivityHistory('n1baksigi8be'))
+	}, [dispatch])
+	const selectedModal = useSelector(selectedUserItemModal)
 	return (
 		<>
 			{selectedModal && getUserItemModal(selectedModal)}
@@ -50,7 +55,7 @@ const UserItem = () => {
 					<BillingHistory />
 				</Col>
 				<Col lg={8}>
-					<ActivityHistory />
+					<ActivityHistory isGroupSubscription={false} />
 				</Col>
 			</Row>
 		</>
