@@ -18,6 +18,9 @@ const slice = createSlice({
 		[asyncActions.saveInvoice.fulfilled]: (state, action) => {
 			state.invoice = action.payload
 		},
+		[asyncActions.updateInvoice.fulfilled]: (state, action) => {
+			state.invoice = action.payload
+		},
 	},
 })
 

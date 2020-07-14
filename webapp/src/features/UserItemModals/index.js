@@ -12,6 +12,9 @@ const getUserItemModal = (modalName, id) => {
 			return <CancelSubscriptionModal />
 		case USERITEM_MODAL_TYPES.DELETE_INVOICE_MODAL:
 			return <DeleteInvoiceModal invoiceId={id} />
+		case USERITEM_MODAL_TYPES.UPDATE_INVOICE_MODAL:
+			return <AddInvoiceModal />
+
 		default:
 			return null
 	}

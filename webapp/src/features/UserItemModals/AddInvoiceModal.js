@@ -1,15 +1,55 @@
 import React, { useEffect } from 'react'
 import Modal, { hideModal, showModal } from '../../widgets/Modal'
 import { Button, Row, Col, Form } from 'react-bootstrap'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { setSelectedUserItemModal } from '../UserItem/userItem.slice'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import { Formik } from 'formik'
 import { ADD_INVOICE_MODAL } from './UserItemModals.constants'
-import { saveInvoice } from '../UserItem/userItem.asyncActions'
+import { saveInvoice, updateInvoice } from '../UserItem/userItem.asyncActions'
+import { selectedUserItemModal } from '../UserItem/userItem.selectors'
+
+const mockTableData = [
+	{
+		id: 1,
+		invoice: 123456789,
+		date: '01/01/22',
+		revenue: '$115',
+		alert: false,
+	},
+	{
+		id: 2,
+		invoice: 12345678,
+		date: '01/01/22',
+		revenue: '$105',
+		alert: false,
+	},
+	{
+		id: 3,
+		invoice: 1234567,
+		date: '01/01/22',
+		revenue: '$120',
+		alert: true,
+	},
+	{
+		id: 4,
+		invoice: 123456,
+		date: '01/01/22',
+		revenue: '$220',
+		alert: false,
+	},
+	{
+		id: 5,
+		invoice: 12345,
+		date: '01/01/22',
+		revenue: '$50',
+		alert: false,
+	},
+]
 
 const AddInvoiceModal = () => {
+	const invoice = useSelector(selectedUserItemModal)
 	const dispatch = useDispatch()
 	const resetModal = () => dispatch(setSelectedUserItemModal(null))
 
@@ -34,15 +74,37 @@ const AddInvoiceModal = () => {
 		invoiceStatus: '',
 		numberOfAddOns: '',
 	}
+
+	const selectedInvoice = mockTableData.filter(
+		(obj) => obj.invoice === invoice.id
+	)
+	if (selectedInvoice.length !== 0) {
+		initialValues.date = selectedInvoice[0].date
+		initialValues.invoiceNumber = selectedInvoice[0].invoice
+		initialValues.basePlanCost = selectedInvoice[0].revenue
+	}
 	return (
 		<Formik
 			initialValues={initialValues}
 			onSubmit={(values, { setSubmitting, resetForm }) => {
-				dispatch(saveInvoice({ ...values })).then(() => {
-					handleClose()
-					resetForm()
-					setSubmitting(false)
-				})
+				if (invoice.modalName === 'addInvoiceModal') {
+					dispatch(saveInvoice({ ...values })).then(() => {
+						handleClose()
+						resetForm()
+						setSubmitting(false)
+					})
+				} else {
+					dispatch(
+						updateInvoice({
+							invoices: values,
+							id: selectedInvoice[0].id,
+						})
+					).then(() => {
+						handleClose()
+						resetForm()
+						setSubmitting(false)
+					})
+				}
 			}}
 		>
 			{({ values, handleChange, handleSubmit, setFieldValue }) => {

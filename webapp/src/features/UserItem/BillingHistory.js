@@ -39,7 +39,18 @@ const BillingHistory = ({ isGroupSubscription }) => {
 			>
 				<Image src={Icons.binIcon} alt='bin-icon' width='20' className='ml-2' />
 			</Button>
-			<Button variant='link' className='btn-auto p-0'>
+			<Button
+				variant='link'
+				className='btn-auto p-0'
+				onClick={() =>
+					dispatch(
+						setSelectedUserItemModal({
+							modalName: USERITEM_MODAL_TYPES.UPDATE_INVOICE_MODAL,
+							id: row.invoice,
+						})
+					)
+				}
+			>
 				<Image
 					src={Icons.arrowRightDarkIcon}
 					alt='arrow-right-dark-icon'
@@ -53,35 +64,35 @@ const BillingHistory = ({ isGroupSubscription }) => {
 	const mockTableData = [
 		{
 			id: 1,
-			invoice: '#123456789',
+			invoice: 123456789,
 			date: '01/01/22',
 			revenue: '$115',
 			alert: false,
 		},
 		{
 			id: 2,
-			invoice: '#123456789',
+			invoice: 12345678,
 			date: '01/01/22',
 			revenue: '$105',
 			alert: false,
 		},
 		{
 			id: 3,
-			invoice: '#123456789',
+			invoice: 1234567,
 			date: '01/01/22',
 			revenue: '$120',
 			alert: true,
 		},
 		{
 			id: 4,
-			invoice: '#123456789',
+			invoice: 123456,
 			date: '01/01/22',
 			revenue: '$220',
 			alert: false,
 		},
 		{
 			id: 5,
-			invoice: '#123456789',
+			invoice: 12345,
 			date: '01/01/22',
 			revenue: '$50',
 			alert: false,
