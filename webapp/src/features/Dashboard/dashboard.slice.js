@@ -9,6 +9,7 @@ const initialState = {
 		plan: '',
 		subscriptionStatus: '',
 	},
+	filterStartDate: null,
 	plans: [],
 }
 
@@ -23,6 +24,9 @@ const slice = createSlice({
 	extraReducers: {
 		[asyncActions.fetchPlans.fulfilled]: (state, action) => {
 			state.plans = action.payload
+		},
+		[asyncActions.fetchStartDate.fulfilled]: (state, action) => {
+			state.filterStartDate = action.payload
 		},
 	},
 })

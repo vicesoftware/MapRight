@@ -4,17 +4,23 @@ import ReportCard from './ReportCard'
 import DashboardFilters from './DashboardFilters'
 import Row from 'react-bootstrap/Row'
 import './Dashboard.css'
-import { fetchPlans } from './dashboard.asyncActions'
+import { fetchPlans, fetchStartDate } from './dashboard.asyncActions'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectfilter, selectPlans } from './dashboard.selectors'
+import {
+	selectfilter,
+	selectPlans,
+	selectFilterStartDate,
+} from './dashboard.selectors'
 
 const Dashboard = () => {
 	const dispatch = useDispatch()
 	const filter = useSelector(selectfilter)
 	const plans = useSelector(selectPlans)
+	const filterStartDate = useSelector(selectFilterStartDate)
 
 	useEffect(() => {
 		dispatch(fetchPlans())
+		dispatch(fetchStartDate())
 	}, [dispatch, filter])
 	return (
 		<>
@@ -24,7 +30,7 @@ const Dashboard = () => {
 				</h3>
 			</div>
 			<Row>
-				<DashboardFilters plans={plans} />
+				<DashboardFilters plans={plans} filterStartDate={filterStartDate} />
 				<ReportCard />
 			</Row>
 			<SubscriptionTable />

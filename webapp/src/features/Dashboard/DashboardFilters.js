@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Col, Button, Form } from 'react-bootstrap'
 import Cards from '../../widgets/Cards'
 import DatePicker from 'react-datepicker'
@@ -8,13 +8,19 @@ import { useDispatch } from 'react-redux'
 
 const { updateFilter } = actions
 
-const DashboardFilters = ({ plans }) => {
-	const [startDate, setStartDate] = useState(new Date('May22,2020'))
+const DashboardFilters = ({ plans, filterStartDate }) => {
+	
+	const [startDate, setStartDate] = useState(filterStartDate)
+
 	const [endDate, setEndDate] = useState(new Date())
 	const [plan, setPlan] = useState('')
 	const [subscriptionStatus, setSubscriptionStatus] = useState('')
 
 	const dispatch = useDispatch()
+
+	useEffect(() => {
+		setStartDate((filterStartDate))
+	}, [dispatch, startDate])
 
 	const handleUpdate = () => {
 		dispatch(
@@ -33,7 +39,7 @@ const DashboardFilters = ({ plans }) => {
 					<Form.Label>Start Date</Form.Label>
 					<DatePicker
 						showPopperArrow={false}
-						selected={startDate}
+						selected={startDate || filterStartDate}
 						onChange={(startDate) => setStartDate(startDate)}
 						dateFormat='MMMM d, yyyy'
 						className='form-control calender-input'
@@ -75,6 +81,9 @@ const DashboardFilters = ({ plans }) => {
 						onChange={(e) => setSubscriptionStatus(e.target.value)}
 					>
 						<option>All Status</option>
+						<option>Active</option>
+						<option>Churn</option>
+						<option>Expired</option>
 					</Form.Control>
 				</Form.Group>
 				<Button variant='secondary' onClick={handleUpdate}>

@@ -13,3 +13,16 @@ export const fetchPlans = createAsyncThunk(
 		})
 	}
 )
+
+export const fetchStartDate = createAsyncThunk(
+	'startDate',
+	async ({ useCaching, noBusySpinner } = {}, thunkArgs) => {
+		return await doAsync({
+			url: 'filter/start-date',
+			useCaching,
+			noBusySpin,
+			errorMessage: 'Unable to fetch start date. Please try again later.',
+			...thunkArgs,
+		})
+	}
+)
