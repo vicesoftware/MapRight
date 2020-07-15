@@ -6,4 +6,4 @@ export const BAD_REQUEST = 400
 // will result in /api/your-endpoint-name being used to call the api
 // not we should move this to a config file and doucment it in the readme
 // export const API_URL_PREFIX = 'api'
-export const API_URL_PREFIX = undefined
+export const API_URL_PREFIX = 'http://localhost:3000'

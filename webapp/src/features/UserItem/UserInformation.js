@@ -3,42 +3,41 @@ import { Col, Row } from 'react-bootstrap'
 import Cards from '../../widgets/Cards'
 import classNames from 'classnames'
 
-const UserInformation = () => {
-	// TODO : Need to remove mockData while api integration
-	const mockData = [
+const UserInformation = ({ selectedUserInformation }) => {
+	const userData = [
 		{
-			name: 'Total Revenue',
-			value: '$2,050',
+			name: 'Lifetime Value',
+			value: selectedUserInformation.lifetimeValue,
 		},
 		{
 			name: 'Monthly Recurring Revenue',
-			value: '$70',
+			value: selectedUserInformation.total,
 		},
 		{
 			name: 'Subscription Status',
-			value: 'Active',
+			value: selectedUserInformation.status,
 		},
 		{
 			name: 'Add-Ons',
-			value: '5 states',
+			value: selectedUserInformation.addOns,
 		},
 		{
 			name: 'Role',
-			value: 'Owner',
+			value: selectedUserInformation.role,
 		},
 		{
 			name: 'Plan',
-			value: 'Flex',
+			value: selectedUserInformation.plan,
 		},
 		{
 			name: 'Group',
-			value: 'Brandcave',
+			value: selectedUserInformation.group,
 		},
 	]
 	return (
-		<Cards title='User Information'>
+		<Cards className='mb-25' title='User Information'>
 			<Row className='user-info'>
-				{mockData.map((user) => (
+				{userData.map((user, index) => (
 					<Col
 						md={6}
 						key={user.name}

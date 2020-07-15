@@ -5,16 +5,27 @@ import DashboardFilters from './DashboardFilters'
 import Row from 'react-bootstrap/Row'
 import './Dashboard.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchAllSubscriptions } from './dashboard.asyncActions'
+import {
+	fetchAllSubscriptions,
+	fetchChurnRate,
+	fetchGrowthRate,
+	fetchActiveUserRate,
+	fetchTotalRevenue,
+	fetchLifeTimeValue,
+	fetchAverageRevenue,
+	fetchPlans,
+} from './dashboard.asyncActions'
 import {
 	selectSearchType,
 	selectOutdatedSubscriptions,
 	selectSearchValue,
+	selectChurnRate,
+	selectfilter,
+	selectPlans,
 } from './dashboard.selectors'
-import { useDispatch, useSelector } from 'react-redux'
-import { fetchChurnRate } from './dashboard.asyncActions'
-import { selectChurnRate } from './dashboard.selectors'
 import isEmpty from 'lodash/isEmpty'
+import moment from 'moment'
+import BusyIndicator from '../../widgets/busyIndicator'
 
 const Dashboard = () => {
 	const dispatch = useDispatch()
@@ -22,19 +33,69 @@ const Dashboard = () => {
 	const outdatedSubscriptions = useSelector(selectOutdatedSubscriptions)
 	const allChurnRate = useSelector(selectChurnRate)
 	const searchValue = useSelector(selectSearchValue)
+	const filter = useSelector(selectfilter)
+	const plans = useSelector(selectPlans)
+
+	const dateFormatter = (date) => moment(date).format('YYYY-MM-DD')
 
 	useEffect(() => {
 		dispatch(
 			fetchAllSubscriptions({
-				beginTime: '2020-06-03',
-				endTime: '2020-06-22',
+				beginTime: dateFormatter(filter.startDate),
+				endTime: dateFormatter(filter.endDate),
 				searchType: searchType,
 				outdatedSubscriptions: outdatedSubscriptions,
 				searchValue: searchValue,
 			})
 		)
-		dispatch(fetchChurnRate({ beginTime: '2020-06-03', endTime: '2020-06-22' }))
-	}, [dispatch, searchType, outdatedSubscriptions, searchValue])
+	}, [
+		dispatch,
+		searchType,
+		outdatedSubscriptions,
+		searchValue,
+		filter.startDate,
+		filter.endDate,
+	])
+
+	useEffect(() => {
+		dispatch(
+			fetchChurnRate({
+				beginTime: dateFormatter(filter.startDate),
+				endTime: dateFormatter(filter.endDate),
+			})
+		)
+		dispatch(
+			fetchGrowthRate({
+				beginTime: dateFormatter(filter.startDate),
+				endTime: dateFormatter(filter.endDate),
+			})
+		)
+		dispatch(
+			fetchActiveUserRate({
+				beginTime: dateFormatter(filter.startDate),
+				endTime: dateFormatter(filter.endDate),
+			})
+		)
+		dispatch(
+			fetchTotalRevenue({
+				beginTime: dateFormatter(filter.startDate),
+				endTime: dateFormatter(filter.endDate),
+			})
+		)
+		dispatch(
+			fetchLifeTimeValue({
+				beginTime: dateFormatter(filter.startDate),
+				endTime: dateFormatter(filter.endDate),
+			})
+		)
+		dispatch(
+			fetchAverageRevenue({
+				beginTime: dateFormatter(filter.startDate),
+				endTime: dateFormatter(filter.endDate),
+			})
+		)
+		dispatch(fetchPlans())
+	}, [dispatch, filter])
 	return (
 		<>
 			<div className='py-30'>
@@ -43,8 +104,10 @@ const Dashboard = () => {
 				</h3>
 			</div>
 			<Row>
-				<DashboardFilters />
-				{!isEmpty(allChurnRate) && <ReportCard />}
+				<DashboardFilters plans={plans} />
+				<BusyIndicator>
+					{!isEmpty(allChurnRate) && <ReportCard />}
+				</BusyIndicator>
 			</Row>
 			<SubscriptionTable />
 		</>

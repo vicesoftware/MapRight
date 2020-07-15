@@ -27,7 +27,7 @@
 	text-align: right;
 }
 tr th:nth-last-child(1) {
-	width: 136px !important;
+	width: 144px !important;
 }
 .invertArrow {
 	transform: rotate(180deg);
