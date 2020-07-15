@@ -21,7 +21,7 @@ const UserItem = () => {
 	const selectedBillingHistory = useSelector(selectBillingHistory)
 
 	useEffect(() => {
-		dispatch(fetchBillingHistory())
+		dispatch(fetchBillingHistory('n1baksigi8be'))
 	}, [dispatch])
 
 	return (

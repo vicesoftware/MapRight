@@ -3,9 +3,9 @@ import doAsync from '../../infrastructure/doAsync'
 
 export const fetchBillingHistory = createAsyncThunk(
 	'billingHistory',
-	async ({ useCaching, noBusySpinner } = {}, thunkArgs) => {
+	async (accountId, { useCaching, noBusySpinner } = {}, thunkArgs) => {
 		return await doAsync({
-			url: '/accounts/{accountId}/invoices',
+			url: `/accounts/${accountId}/invoices`,
 			httpMethod: 'get',
 			useCaching,
 			noBusySpinner,
