@@ -8,6 +8,7 @@ const initialState = {
 	searchType: 'group',
 	outdatedSubscriptions: false,
 	searchValue: '',
+	churnRate: {},
 }
 
 const slice = createSlice({
@@ -27,6 +28,9 @@ const slice = createSlice({
 	extraReducers: {
 		[asyncActions.fetchAllSubscriptions.fulfilled]: (state, action) => {
 			state.allSubscriptions = action.payload || allSubscriptionsDefault
+		},
+		[asyncActions.fetchChurnRate.fulfilled]: (state, action) => {
+			state.churnRate = action.payload
 		},
 	},
 })

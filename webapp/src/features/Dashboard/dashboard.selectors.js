@@ -11,3 +11,5 @@ export const selectOutdatedSubscriptions = (state) =>
 	selectSlice(state).outdatedSubscriptions
 
 export const selectSearchValue = (state) => selectSlice(state).searchValue
+
+export const selectChurnRate = (state) => selectSlice(state).churnRate

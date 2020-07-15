@@ -11,11 +11,16 @@ import {
 	selectOutdatedSubscriptions,
 	selectSearchValue,
 } from './dashboard.selectors'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchChurnRate } from './dashboard.asyncActions'
+import { selectChurnRate } from './dashboard.selectors'
+import isEmpty from 'lodash/isEmpty'
 
 const Dashboard = () => {
 	const dispatch = useDispatch()
 	const searchType = useSelector(selectSearchType)
 	const outdatedSubscriptions = useSelector(selectOutdatedSubscriptions)
+	const allChurnRate = useSelector(selectChurnRate)
 	const searchValue = useSelector(selectSearchValue)
 
 	useEffect(() => {
@@ -28,6 +33,7 @@ const Dashboard = () => {
 				searchValue: searchValue,
 			})
 		)
+		dispatch(fetchChurnRate({ beginTime: '2020-06-03', endTime: '2020-06-22' }))
 	}, [dispatch, searchType, outdatedSubscriptions, searchValue])
 	return (
 		<>
@@ -38,7 +44,7 @@ const Dashboard = () => {
 			</div>
 			<Row>
 				<DashboardFilters />
-				<ReportCard />
+				{!isEmpty(allChurnRate) && <ReportCard />}
 			</Row>
 			<SubscriptionTable />
 		</>
