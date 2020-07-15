@@ -6,3 +6,5 @@ export const selectedUserItemModal = (state) =>
 	selectSlice(state).selectedUserItemModal
 
 export const selectedInvoice = (state) => selectSlice(state).invoice
+
+export const selectBillingHistory = (state) => selectSlice(state).billingHistory

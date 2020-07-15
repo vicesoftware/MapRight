@@ -9,7 +9,7 @@ import { selectedUserItemModal } from './userItem.selectors'
 import { USERITEM_MODAL_TYPES } from '../UserItemModals/UserItemModals.constants'
 import getUserItemModal from '../UserItemModals'
 
-const BillingHistory = ({ isGroupSubscription }) => {
+const BillingHistory = ({ isGroupSubscription, selectedBillingHistory }) => {
 	const dispatch = useDispatch()
 	const selectedModal = useSelector(selectedUserItemModal)
 
@@ -61,53 +61,15 @@ const BillingHistory = ({ isGroupSubscription }) => {
 		</div>
 	)
 
-	const mockTableData = [
-		{
-			id: 1,
-			invoice: 123456789,
-			date: '01/01/22',
-			revenue: '$115',
-			alert: false,
-		},
-		{
-			id: 2,
-			invoice: 12345678,
-			date: '01/01/22',
-			revenue: '$105',
-			alert: false,
-		},
-		{
-			id: 3,
-			invoice: 1234567,
-			date: '01/01/22',
-			revenue: '$120',
-			alert: true,
-		},
-		{
-			id: 4,
-			invoice: 123456,
-			date: '01/01/22',
-			revenue: '$220',
-			alert: false,
-		},
-		{
-			id: 5,
-			invoice: 12345,
-			date: '01/01/22',
-			revenue: '$50',
-			alert: false,
-		},
-	]
-
 	const Column = [
 		{
-			dataField: 'invoice',
+			dataField: 'invoiceNumber',
 			text: 'invoice',
 			sort: true,
 		},
 		{
-			dataField: 'date',
-			text: 'date',
+			dataField: 'invoiceDate',
+			text: 'Date',
 		},
 		{
 			dataField: 'revenue',
@@ -131,7 +93,7 @@ const BillingHistory = ({ isGroupSubscription }) => {
 			>
 				<Table
 					keyField='id'
-					data={mockTableData}
+					data={selectedBillingHistory}
 					columns={Column}
 					classes='table-sidebar'
 					headerWrapperClasses='f-12 text-uppercase text-secondary'

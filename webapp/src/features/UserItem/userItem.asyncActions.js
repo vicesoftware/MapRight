@@ -1,5 +1,20 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import doAsync from '../../infrastructure/doAsync'
+
+export const fetchBillingHistory = createAsyncThunk(
+	'billingHistory',
+	async ({ useCaching, noBusySpinner } = {}, thunkArgs) => {
+		return await doAsync({
+			url: '/accounts/{accountId}/invoices',
+			httpMethod: 'get',
+			useCaching,
+			noBusySpinner,
+			errorMessage: 'Unable to load billing history. Please try again later.',
+			...thunkArgs,
+		})
+	}
+)
+
 export const saveInvoice = createAsyncThunk(
 	'saveInvoice',
 	async (invoice, thunkArgs, { useCaching, noBusySpinner } = {}) => {
@@ -11,7 +26,7 @@ export const saveInvoice = createAsyncThunk(
 			},
 			useCaching,
 			noBusySpinner,
-			errorMessage: 'Unable to load user information. Please try again later.',
+			errorMessage: 'Unable to save invoice details. Please try again later.',
 			...thunkArgs,
 		})
 	}
@@ -25,7 +40,7 @@ export const deleteInvoice = createAsyncThunk(
 			httpMethod: 'delete',
 			useCaching,
 			noBusySpinner,
-			errorMessage: 'Unable to load user information. Please try again later.',
+			errorMessage: 'Unable to delete invoice. Please try again later.',
 			...thunkArgs,
 		})
 	}
@@ -42,7 +57,8 @@ export const updateInvoice = createAsyncThunk(
 			},
 			useCaching,
 			noBusySpinner,
-			errorMessage: 'Unable to load user information. Please try again later.',
+			errorMessage:
+				'Unable to update user information. Please try again later.',
 			...thunkArgs,
 		})
 	}

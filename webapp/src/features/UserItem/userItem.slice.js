@@ -4,6 +4,7 @@ import * as asyncActions from './userItem.asyncActions'
 const initialState = {
 	selectedUserItemModal: null,
 	invoice: {},
+	billingHistory: [],
 }
 
 const slice = createSlice({
@@ -20,6 +21,9 @@ const slice = createSlice({
 		},
 		[asyncActions.updateInvoice.fulfilled]: (state, action) => {
 			state.invoice = action.payload
+		},
+		[asyncActions.fetchBillingHistory.fulfilled]: (state, action) => {
+			state.billingHistory = action.payload || null
 		},
 	},
 })
