@@ -23,10 +23,10 @@ const slice = createSlice({
 	},
 	extraReducers: {
 		[asyncActions.fetchPlans.fulfilled]: (state, action) => {
-			state.plans = action.payload
+			state.plans = action.payload || null
 		},
 		[asyncActions.fetchStartDate.fulfilled]: (state, action) => {
-			state.filterStartDate = action.payload
+			state.filterStartDate = action.payload || null
 		},
 	},
 })

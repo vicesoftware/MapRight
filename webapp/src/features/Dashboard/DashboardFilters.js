@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Col, Button, Form } from 'react-bootstrap'
 import Cards from '../../widgets/Cards'
 import DatePicker from 'react-datepicker'
@@ -9,18 +9,12 @@ import { useDispatch } from 'react-redux'
 const { updateFilter } = actions
 
 const DashboardFilters = ({ plans, filterStartDate }) => {
-	
-	const [startDate, setStartDate] = useState(filterStartDate)
-
+	const [startDate, setStartDate] = useState(new Date(filterStartDate))
 	const [endDate, setEndDate] = useState(new Date())
 	const [plan, setPlan] = useState('')
 	const [subscriptionStatus, setSubscriptionStatus] = useState('')
 
 	const dispatch = useDispatch()
-
-	useEffect(() => {
-		setStartDate((filterStartDate))
-	}, [dispatch, startDate])
 
 	const handleUpdate = () => {
 		dispatch(
@@ -39,7 +33,7 @@ const DashboardFilters = ({ plans, filterStartDate }) => {
 					<Form.Label>Start Date</Form.Label>
 					<DatePicker
 						showPopperArrow={false}
-						selected={startDate || filterStartDate}
+						selected={startDate}
 						onChange={(startDate) => setStartDate(startDate)}
 						dateFormat='MMMM d, yyyy'
 						className='form-control calender-input'

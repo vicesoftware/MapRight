@@ -20,7 +20,7 @@ export const fetchStartDate = createAsyncThunk(
 		return await doAsync({
 			url: 'filter/start-date',
 			useCaching,
-			noBusySpin,
+			noBusySpinner,
 			errorMessage: 'Unable to fetch start date. Please try again later.',
 			...thunkArgs,
 		})
