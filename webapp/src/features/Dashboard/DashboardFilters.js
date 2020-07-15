@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Col, Button, Form } from 'react-bootstrap'
 import Cards from '../../widgets/Cards'
 import DatePicker from 'react-datepicker'
@@ -13,8 +13,11 @@ const DashboardFilters = ({ plans, filterStartDate }) => {
 	const [endDate, setEndDate] = useState(new Date())
 	const [plan, setPlan] = useState('')
 	const [subscriptionStatus, setSubscriptionStatus] = useState('')
-
 	const dispatch = useDispatch()
+
+	useEffect(() => {
+		setStartDate(new Date(filterStartDate))
+	}, [dispatch, filterStartDate])
 
 	const handleUpdate = () => {
 		dispatch(
